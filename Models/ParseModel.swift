@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct ImgurImage: Codable {
-    let data: [Images]
+struct GalleryResponse: Codable {
+    let data: [Image]
 }
 
-struct Images: Codable {
+struct Image: Codable {
     let link: String
     let titel: String?
 }
