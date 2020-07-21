@@ -10,15 +10,18 @@ import Foundation
 
 struct NetworkManadger {
     
-    func fetchCurrentImage() {
+    func fetchGallery() {
         let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
+                let dataString = String(data: data, encoding: .utf8)
+                print(dataString!)
                 self.parseJSON(withData: data)
             }
         }
+        task.resume()
     }
     
     func parseJSON(withData data: Data) {

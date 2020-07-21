@@ -15,10 +15,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var windowOutlet: UITextField!
     @IBOutlet weak var numberOutlet: UITextField!
     
+    let networkManager = NetworkManadger()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        networkManager.fetchGallery()
     }
 
     @IBAction func downloadImageButton(_ sender: UIButton) {
