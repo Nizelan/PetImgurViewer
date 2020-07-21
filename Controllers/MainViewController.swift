@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var sectionOutlet: UITextField!
     @IBOutlet weak var sortOutlet: UITextField!
     @IBOutlet weak var windowOutlet: UITextField!
-    @IBOutlet weak var nomberOutlet: UITextField!
+    @IBOutlet weak var numberOutlet: UITextField!
     
     
     override func viewDidLoad() {
@@ -21,6 +21,6 @@ class MainViewController: UIViewController {
 
     }
 
-    @IBAction func DownloadImageButton(_ sender: UIButton) {
+    @IBAction func downloadImageButton(_ sender: UIButton) {
     }
 }

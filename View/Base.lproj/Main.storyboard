@@ -74,13 +74,13 @@
                                 <rect key="frame" x="280" y="265" width="114" height="34"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="Fmf-UK-fLL"/>
                                     <constraint firstAttribute="height" constant="34" id="Qoh-iv-Uj7"/>
+                                    <constraint firstAttribute="width" constant="114" id="wzi-fB-UGK"/>
                                 </constraints>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <state key="normal" title="Download Image"/>
                                 <connections>
-                                    <action selector="DownloadImageButton:" destination="Cj9-aK-Ocx" eventType="touchUpInside" id="hDW-Hh-jjK"/>
+                                    <action selector="downloadImageButton:" destination="Cj9-aK-Ocx" eventType="touchUpInside" id="hDW-Hh-jjK"/>
                                     <segue destination="vWJ-8R-0BP" kind="presentation" id="KKd-uC-nBf"/>
                                 </connections>
                             </button>
@@ -111,7 +111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fqO-AG-D0I"/>
                     <connections>
-                        <outlet property="nomberOutlet" destination="oIP-8g-JUl" id="i1h-Hr-JC3"/>
+                        <outlet property="numberOutlet" destination="oIP-8g-JUl" id="i1h-Hr-JC3"/>
                         <outlet property="sectionOutlet" destination="dV9-op-YYJ" id="F4F-r5-KAp"/>
                         <outlet property="sortOutlet" destination="Vaa-zc-bvY" id="MVh-kJ-Js4"/>
                         <outlet property="windowOutlet" destination="qtN-u9-Rl2" id="voM-4s-3MP"/>
