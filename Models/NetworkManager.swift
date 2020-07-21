@@ -12,7 +12,15 @@ struct NetworkManadger {
     
     func fetchGallery() {
         let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
+        
+        let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
+        
         guard let url = URL(string: urlString) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = httpHeaders
+        
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { data, response, error in
             if let data = data {
