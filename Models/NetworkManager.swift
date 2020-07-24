@@ -12,7 +12,7 @@ struct NetworkManadger {
     
     //Fetch data
     
-    func fetchGallery() {
+    func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
         let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
         
         let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
@@ -29,26 +29,26 @@ struct NetworkManadger {
            }
            
            if let data = data {
-               do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                    self.parseJSON(withData: data)
-               } catch {
-                    print(error)
-               }
+            if let gallery: GalleryResponse = self.parseJSON(withData: data) {
+                    DispatchQueue.main.async {
+                        closure(gallery)
+                        print(gallery.data)
+                    }
+                }
            }
         }.resume()
     }
     
     //Parse JSON
     
-    func parseJSON(withData data: Data) {
+    func parseJSON<T>(withData data: Data) -> T? where T:Codable {
         let decoder = JSONDecoder()
         do {
-            let galleryResponse = try decoder.decode(GalleryResponse.self, from: data)
-            print(galleryResponse.data[0].link)
+            let galleryData = try decoder.decode(T.self, from: data)
+            return galleryData
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        return nil
     }
 }

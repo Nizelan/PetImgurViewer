@@ -9,10 +9,16 @@
 import Foundation
 
 struct GalleryResponse: Codable {
-    let data: [Image]
+    let data: [GalleryEntry]
 }
 
-struct Image: Codable {
+struct GalleryEntry: Codable {
+    let images: [Images]
+}
+
+struct Images: Codable {
+    let title: String?
     let link: String
-    let titel: String?
+    let ups: Int?
+    let downs: Int?
 }
