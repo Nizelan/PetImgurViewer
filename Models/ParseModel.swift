@@ -13,10 +13,12 @@ struct GalleryResponse: Codable {
 }
 
 struct GalleryEntry: Codable {
-    let images: [Images]
+    let is_album: Bool
+    let link: String?
+    let images: [Image]?
 }
 
-struct Images: Codable {
+struct Image: Codable {
     let title: String?
     let link: String
     let ups: Int?

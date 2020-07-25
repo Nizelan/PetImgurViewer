@@ -16,15 +16,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="400" id="D5m-Qs-st3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="400" id="D5m-Qs-st3" customClass="AlbumCell" customModule="someAPIMadness" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="400"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D5m-Qs-st3" id="F5r-i1-hz1">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j6i-K6-gkJ">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="j6i-K6-gkJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="400" id="NMZ-gY-RCA"/>
+                                            </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ya-wb-med">
                                             <rect key="frame" x="160.5" y="11" width="93.5" height="34"/>
@@ -61,10 +64,19 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oDM-q4-VNN">
+                                            <rect key="frame" x="184" y="359" width="46" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <connections>
+                                                <action selector="button:" destination="vWJ-8R-0BP" eventType="touchUpInside" id="0xx-v8-cS4"/>
+                                                <segue destination="sPK-eC-99S" kind="show" id="l5Z-TQ-hL1"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="j6i-K6-gkJ" firstAttribute="top" secondItem="F5r-i1-hz1" secondAttribute="top" id="8Q0-j8-fwE"/>
                                         <constraint firstItem="7Ya-wb-med" firstAttribute="centerX" secondItem="j6i-K6-gkJ" secondAttribute="centerX" id="MDv-G5-A6Y"/>
+                                        <constraint firstItem="oDM-q4-VNN" firstAttribute="bottom" secondItem="F5r-i1-hz1" secondAttribute="bottomMargin" id="P85-aG-Gvp"/>
                                         <constraint firstItem="tbm-8y-Xvk" firstAttribute="leading" secondItem="F5r-i1-hz1" secondAttribute="leadingMargin" id="PQd-XX-EhX"/>
                                         <constraint firstItem="5ly-Ej-bjt" firstAttribute="trailing" secondItem="F5r-i1-hz1" secondAttribute="trailingMargin" id="R3I-Qq-l0e"/>
                                         <constraint firstItem="bgg-fI-G4M" firstAttribute="top" secondItem="tbm-8y-Xvk" secondAttribute="bottom" id="Xzr-pn-0tN"/>
@@ -79,6 +91,15 @@
                                         <constraint firstItem="C2s-v1-PSD" firstAttribute="trailing" secondItem="F5r-i1-hz1" secondAttribute="trailingMargin" id="zra-Gc-mE4"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="oDM-q4-VNN" firstAttribute="centerX" secondItem="D5m-Qs-st3" secondAttribute="centerX" id="uqm-0B-mlF"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="downsOutlet" destination="5ly-Ej-bjt" id="1Km-To-exO"/>
+                                    <outlet property="imageNameOutlet" destination="7Ya-wb-med" id="J6v-YZ-4En"/>
+                                    <outlet property="imageViewOutlet" destination="F5r-i1-hz1" id="Fzm-ul-lzi"/>
+                                    <outlet property="upsOutlet" destination="tbm-8y-Xvk" id="IxS-bU-9dV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -91,6 +112,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IfG-YT-7Aj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1073.913043478261" y="67.633928571428569"/>
+        </scene>
+        <!--Second View Controller-->
+        <scene sceneID="Jwz-4m-ABa">
+            <objects>
+                <viewController id="sPK-eC-99S" customClass="SecondViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JGK-BV-MEY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OFf-Mn-DYI">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="OFf-Mn-DYI" firstAttribute="top" secondItem="IJG-63-ARb" secondAttribute="top" id="B5m-Yc-0Bg"/>
+                            <constraint firstItem="OFf-Mn-DYI" firstAttribute="leading" secondItem="IJG-63-ARb" secondAttribute="leading" id="BYP-qR-rWK"/>
+                            <constraint firstItem="OFf-Mn-DYI" firstAttribute="trailing" secondItem="IJG-63-ARb" secondAttribute="trailing" id="QdD-ke-XSm"/>
+                            <constraint firstAttribute="bottom" secondItem="OFf-Mn-DYI" secondAttribute="bottom" id="x9l-dZ-a6g"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IJG-63-ARb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="mB3-8K-Bpt"/>
+                    <connections>
+                        <outlet property="imageView" destination="OFf-Mn-DYI" id="Y5J-b0-ayg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Khz-Rw-TIr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1865.217391304348" y="67.633928571428569"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="tjI-Yn-NEW">
@@ -188,5 +239,6 @@
     <resources>
         <image name="Down" width="800" height="800"/>
         <image name="Up" width="807" height="768"/>
+        <image name="placeholder" width="1920" height="1280"/>
     </resources>
 </document>

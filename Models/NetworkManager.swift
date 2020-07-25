@@ -32,7 +32,7 @@ struct NetworkManadger {
             if let gallery: GalleryResponse = self.parseJSON(withData: data) {
                     DispatchQueue.main.async {
                         closure(gallery)
-                        print(gallery.data)
+                        //print(gallery.data)
                     }
                 }
            }

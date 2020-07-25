@@ -15,25 +15,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var windowOutlet: UITextField!
     @IBOutlet weak var numberOutlet: UITextField!
     
-    let networkManager = NetworkManadger()
-    var arrayOfImages = [GalleryResponse]()
-    var imageLinks = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        networkManager.fetchGallery { (galleryArray: GalleryResponse) in
-            print(galleryArray)
-            self.arrayOfImages = [galleryArray]
-            for i in 0...self.arrayOfImages.count {
-                self.imageLinks.append(galleryArray.data[i].images[i].link)
-            }
-            
-            
-        }
+        
     }
     
 
     @IBAction func downloadImageButton(_ sender: UIButton) {
-        print(self.imageLinks)
+        
     }
 }

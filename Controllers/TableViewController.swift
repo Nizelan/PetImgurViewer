@@ -10,26 +10,40 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    let main = MainViewController()
+    
+    let albumCell = AlbumCell()
+    let networkManager = NetworkManadger()
+    var albums = [GalleryEntry]()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-    }
-
-    func linksAsArray() -> [String] {
         
-        var imageLinks = [String]()
+        networkManager.fetchGallery { (galleryArray: GalleryResponse) in
         
-        return imageLinks
+            self.albums = galleryArray.data
+            print(self.albums)
+            self.tableView.reloadData()
+        }
+        
     }
     
+    @IBAction func button(_ sender: UIButton) {
+        
+        
+    }
+    
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return main.arrayOfImages.count
+        
+        return albums.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
         
         return cell
     }
