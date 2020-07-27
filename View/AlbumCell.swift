@@ -10,22 +10,10 @@ import UIKit
 
 class AlbumCell: UITableViewCell {
 
+    @IBOutlet weak var imageViewOutlet: UIImageView!
+    @IBOutlet weak var upsLabel: UILabel!
+    @IBOutlet weak var downsLabel: UILabel!
+    @IBOutlet weak var imageNamelable: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var imageViewOutlet: UIView!
-    @IBOutlet weak var imageNameOutlet: UILabel!
-    
-    @IBOutlet weak var upsOutlet: UILabel!
-    @IBOutlet weak var downsOutlet: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
