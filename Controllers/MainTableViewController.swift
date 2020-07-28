@@ -13,6 +13,7 @@ class MainTableViewController: UITableViewController {
     
     private let networkManager = NetworkManadger()
     var albums = [GalleryEntry]()
+    var indexPathRow = Int()
     
     
     override func viewDidLoad() {
@@ -25,12 +26,7 @@ class MainTableViewController: UITableViewController {
             print(self.albums)
             self.tableView.reloadData()
         }
-        
-        
     }
-    
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return albums.count
@@ -61,13 +57,19 @@ class MainTableViewController: UITableViewController {
             return image
         }
         
-        
-        cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
         if albums[indexPath.row].is_album == true {
             if let imageURLString = albums[indexPath.row].images?[0].link {
                 cell.imageViewOutlet.image = fetchImage(urlString: imageURLString)
             }
+        } else {
+            cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
         }
+        
+        
+        
+        
+        
+        
         
 //         if let albumCell = cell as? AlbumCell {
 //             albumCell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
@@ -77,14 +79,21 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAlbum = albums[indexPath.row]
-       
+        
+        for i in 0..<albums.count {
+            print("isAlbum____________________\(albums[indexPath.row].is_album)")
+            print("Images____________________\(albums[indexPath.row].images)")
+            print("Link____________________\(albums[indexPath.row].link)")
+        }
+        
         performSegue(withIdentifier: "openAlbum", sender: selectedAlbum)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var vc = segue.destination
-        let album = sender
-        vc = album as! AlbumTableViewController
+        guard segue.identifier == "openAlbum" else { return }
+        guard let destination = segue.destination as? AlbumTableViewController else { return }
+        guard let castedSender = sender as? GalleryEntry else { return }
+        destination.album = castedSender
     }
     
 }
