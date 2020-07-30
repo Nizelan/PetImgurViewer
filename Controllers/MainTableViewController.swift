@@ -13,8 +13,7 @@ class MainTableViewController: UITableViewController {
     
     private let networkManager = NetworkManadger()
     var albums = [GalleryEntry]()
-    var indexPathRow = Int()
-    
+    var imagesCount = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +51,13 @@ class MainTableViewController: UITableViewController {
             imageURL = URL(string: urlString)
             cell.activityIndicator.isHidden = false
             cell.activityIndicator.startAnimating()
-            guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return UIImage(named: "placeholder") }
-            image = UIImage(data: imageData)
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return }
+                DispatchQueue.main.async {
+                    image = UIImage(data: imageData)
+                }
+            }
             return image
         }
         
@@ -65,12 +69,6 @@ class MainTableViewController: UITableViewController {
             cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
         }
         
-        
-        
-        
-        
-        
-        
 //         if let albumCell = cell as? AlbumCell {
 //             albumCell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
 //         }
@@ -79,12 +77,6 @@ class MainTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAlbum = albums[indexPath.row]
-        
-        for i in 0..<albums.count {
-            print("isAlbum____________________\(albums[indexPath.row].is_album)")
-            print("Images____________________\(albums[indexPath.row].images)")
-            print("Link____________________\(albums[indexPath.row].link)")
-        }
         
         performSegue(withIdentifier: "openAlbum", sender: selectedAlbum)
     }

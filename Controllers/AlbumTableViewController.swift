@@ -18,24 +18,24 @@ class AlbumTableViewController: UITableViewController {
         print("_________________________")
         print(album)
         print("_________________________")
+        self.tableView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("_________________________")
         print(album)
         print("_________________________")
-        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return album!.images!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as! AlbumCell
 
         var imageURL: URL?
         var image: UIImage? {
@@ -43,6 +43,8 @@ class AlbumTableViewController: UITableViewController {
                 cell.imageViewOutlet.image
             }
             set {
+                cell.activityIndicator.stopAnimating()
+                cell.activityIndicator.isHidden = true
                 cell.imageViewOutlet.image = newValue
                 cell.imageViewOutlet.sizeToFit()
             }
@@ -51,12 +53,28 @@ class AlbumTableViewController: UITableViewController {
             imageURL = URL(string: urlString)
             cell.activityIndicator.isHidden = false
             cell.activityIndicator.startAnimating()
-            guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return UIImage(named: "placeholder") }
-            image = UIImage(data: imageData)
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async {
+                guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return }
+                DispatchQueue.main.async {
+                    image = UIImage(data: imageData)
+                }
+            }
             return image
         }
         
-        //cell.imageViewOutlet.image = fetchImage(urlString: album[indexPathRow].images![indexPath.row].link)
+        if let imageLink = album?.images?[indexPath.row].link {
+            cell.imageViewOutlet.image = fetchImage(urlString: imageLink)
+        }
+        if let downsIs = album?.images?[indexPath.row].downs {
+            cell.downsLabel.text = String(downsIs)
+        }
+        if let upsIs = album?.images?[indexPath.row].ups {
+            cell.downsLabel.text = String(upsIs)
+        }
+        if let titleIs = album?.images?[indexPath.row].title {
+            cell.downsLabel.text = titleIs
+        }
         
         
         return cell
