@@ -36,7 +36,13 @@ class AlbumTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as! AlbumCell
-
+        
+        cell.downsImage.isHidden = false
+        cell.downsLabel.isHidden = false
+        cell.upsLabel.isHidden = false
+        cell.upsImage.isHidden = false
+        cell.imageNamelable.isHidden = false
+        
         var imageURL: URL?
         var image: UIImage? {
             get {
@@ -63,19 +69,32 @@ class AlbumTableViewController: UITableViewController {
             return image
         }
         
-        if let imageLink = album?.images?[indexPath.row].link {
-            cell.imageViewOutlet.image = fetchImage(urlString: imageLink)
+        if album?.images?[indexPath.row].link != nil {
+            if album!.images![indexPath.row].link.contains("mp4") {
+                cell.imageViewOutlet.image = UIImage(named: "placeholder")
+                cell.activityIndicator.stopAnimating()
+                cell.activityIndicator.isHidden = true
+            } else {
+                cell.imageViewOutlet.image = fetchImage(urlString: album!.images![indexPath.row].link)
+            }
         }
-        if let downsIs = album?.images?[indexPath.row].downs {
-            cell.downsLabel.text = String(downsIs)
+        if album?.images?[indexPath.row].downs != nil {
+            cell.downsLabel.text = String(album!.images![indexPath.row].downs!)
+        } else {
+            cell.downsImage.isHidden = true
+            cell.downsLabel.isHidden = true
         }
-        if let upsIs = album?.images?[indexPath.row].ups {
-            cell.downsLabel.text = String(upsIs)
+        if album?.images?[indexPath.row].ups != nil {
+            cell.upsLabel.text = String(album!.images![indexPath.row].ups!)
+        } else {
+            cell.upsLabel.isHidden = true
+            cell.upsImage.isHidden = true
         }
-        if let titleIs = album?.images?[indexPath.row].title {
-            cell.downsLabel.text = titleIs
+        if album?.images?[indexPath.row].title != nil {
+            cell.imageNamelable.text = album?.images?[indexPath.row].title
+        } else {
+            cell.imageNamelable.isHidden = true
         }
-        
         
         return cell
     }

@@ -15,5 +15,7 @@ class AlbumCell: UITableViewCell {
     @IBOutlet weak var downsLabel: UILabel!
     @IBOutlet weak var imageNamelable: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var downsImage: UIImageView!
+    @IBOutlet weak var upsImage: UIImageView!
     
 }

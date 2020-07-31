@@ -35,6 +35,8 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumCell
         
+        cell.activityIndicator.startAnimating()
+        
         var imageURL: URL?
         var image: UIImage? {
             get {
@@ -63,15 +65,24 @@ class MainTableViewController: UITableViewController {
         
         if albums[indexPath.row].is_album == true {
             if let imageURLString = albums[indexPath.row].images?[0].link {
-                cell.imageViewOutlet.image = fetchImage(urlString: imageURLString)
+                if imageURLString.contains("mp4") {
+                    cell.imageViewOutlet.image = UIImage(named: "placeholder")
+                    cell.activityIndicator.stopAnimating()
+                    cell.activityIndicator.isHidden = true
+                } else {
+                    cell.imageViewOutlet.image = fetchImage(urlString: imageURLString)
+                }
             }
         } else {
-            cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
+            if albums[indexPath.row].link!.contains("mp4") {
+                cell.imageViewOutlet.image = UIImage(named: "placeholder")
+                cell.activityIndicator.stopAnimating()
+                cell.activityIndicator.isHidden = true
+            } else {
+                cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
+            }
         }
         
-//         if let albumCell = cell as? AlbumCell {
-//             albumCell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
-//         }
         return cell
     }
     
