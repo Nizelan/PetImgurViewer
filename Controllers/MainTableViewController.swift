@@ -66,7 +66,7 @@ class MainTableViewController: UITableViewController {
         if albums[indexPath.row].is_album == true {
             if let imageURLString = albums[indexPath.row].images?[0].link {
                 if imageURLString.contains("mp4") {
-                    cell.imageViewOutlet.image = UIImage(named: "placeholder")
+                    cell.imageViewOutlet.image = UIImage(named: "playVideo")
                     cell.activityIndicator.stopAnimating()
                     cell.activityIndicator.isHidden = true
                 } else {

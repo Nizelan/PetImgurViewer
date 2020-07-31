@@ -73,17 +73,10 @@ class AlbumTableViewController: UITableViewController {
         
         if album?.images?[indexPath.row].link != nil {
             if album!.images![indexPath.row].link.contains("mp4") {
-                cell.imageViewOutlet.isHidden = true
+                cell.imageViewOutlet.image = UIImage(named: "playVideo")
                 cell.activityIndicator.stopAnimating()
                 cell.activityIndicator.isHidden = true
-                let url = URL(string: album!.images![indexPath.row].link)
-                let player = AVPlayer(url: url!)
-                let vc = AVPlayerViewController()
-                vc.player = player
-
-                present(vc, animated: true) {
-                    vc.player?.play()
-                }
+                
             } else {
                 cell.imageViewOutlet.image = fetchImage(urlString: album!.images![indexPath.row].link)
             }
@@ -109,5 +102,14 @@ class AlbumTableViewController: UITableViewController {
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = URL(string: album!.images![indexPath.row].link)
+        let player = AVPlayer(url: url!)
+        let vc = AVPlayerViewController()
+        vc.player = player
+        
+        present(vc, animated: true) {
+            vc.player?.play()
+        }
+    }
 }
