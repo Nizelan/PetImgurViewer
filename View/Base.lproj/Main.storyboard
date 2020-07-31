@@ -110,6 +110,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hx9-JF-Cbe">
+                                            <rect key="frame" x="0.0" y="11" width="414" height="378"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WK3-Yu-OT4">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                             <constraints>
@@ -158,6 +162,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="tVx-xP-Kd9" firstAttribute="bottom" secondItem="0f9-Lk-1BD" secondAttribute="bottomMargin" id="1M5-Eq-OYA"/>
+                                        <constraint firstItem="hx9-JF-Cbe" firstAttribute="top" secondItem="0f9-Lk-1BD" secondAttribute="top" constant="11" id="2B4-mX-h92"/>
                                         <constraint firstItem="WK3-Yu-OT4" firstAttribute="leading" secondItem="0f9-Lk-1BD" secondAttribute="leading" id="6Iy-tl-eaI"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="kVI-mZ-5NK" secondAttribute="trailing" id="78i-1x-Xtx"/>
                                         <constraint firstItem="tVx-xP-Kd9" firstAttribute="trailing" secondItem="0f9-Lk-1BD" secondAttribute="trailingMargin" id="8we-W5-4yv"/>
@@ -167,9 +172,12 @@
                                         <constraint firstItem="hX7-Jy-V1K" firstAttribute="centerY" secondItem="WK3-Yu-OT4" secondAttribute="centerY" id="SsN-LY-Kt0"/>
                                         <constraint firstItem="cci-jn-Ojm" firstAttribute="centerX" secondItem="WK3-Yu-OT4" secondAttribute="centerX" id="Ufn-YU-9Fg"/>
                                         <constraint firstItem="xoL-Lr-zRz" firstAttribute="leading" secondItem="0f9-Lk-1BD" secondAttribute="leadingMargin" id="VJg-3e-ASy"/>
+                                        <constraint firstAttribute="bottom" secondItem="hx9-JF-Cbe" secondAttribute="bottom" constant="11" id="Xgc-aa-3uJ"/>
                                         <constraint firstItem="cci-jn-Ojm" firstAttribute="top" secondItem="0f9-Lk-1BD" secondAttribute="topMargin" id="ZwQ-u6-imW"/>
                                         <constraint firstItem="tVx-xP-Kd9" firstAttribute="top" secondItem="kVI-mZ-5NK" secondAttribute="bottom" id="dDF-z4-4lE"/>
+                                        <constraint firstAttribute="trailing" secondItem="hx9-JF-Cbe" secondAttribute="trailing" id="kPc-bE-nxi"/>
                                         <constraint firstItem="zg6-N4-Im8" firstAttribute="leading" secondItem="0f9-Lk-1BD" secondAttribute="leadingMargin" id="nQb-pj-FdW"/>
+                                        <constraint firstItem="hx9-JF-Cbe" firstAttribute="leading" secondItem="0f9-Lk-1BD" secondAttribute="leading" id="qjA-35-rYI"/>
                                         <constraint firstItem="zg6-N4-Im8" firstAttribute="top" secondItem="xoL-Lr-zRz" secondAttribute="bottom" id="rVE-Ut-MA8"/>
                                         <constraint firstAttribute="trailing" secondItem="WK3-Yu-OT4" secondAttribute="trailing" id="wEn-Wv-pPZ"/>
                                         <constraint firstAttribute="bottom" secondItem="WK3-Yu-OT4" secondAttribute="bottom" id="yVB-5k-Ayz"/>
@@ -183,6 +191,7 @@
                                     <outlet property="imageViewOutlet" destination="WK3-Yu-OT4" id="X7M-oJ-gFL"/>
                                     <outlet property="upsImage" destination="zg6-N4-Im8" id="B8R-hh-GLR"/>
                                     <outlet property="upsLabel" destination="xoL-Lr-zRz" id="Wlh-8E-2O8"/>
+                                    <outlet property="videoView" destination="hx9-JF-Cbe" id="7ZG-OQ-KLO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

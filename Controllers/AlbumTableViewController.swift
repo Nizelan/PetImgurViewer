@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class AlbumTableViewController: UITableViewController {
 
@@ -71,9 +73,17 @@ class AlbumTableViewController: UITableViewController {
         
         if album?.images?[indexPath.row].link != nil {
             if album!.images![indexPath.row].link.contains("mp4") {
-                cell.imageViewOutlet.image = UIImage(named: "placeholder")
+                cell.imageViewOutlet.isHidden = true
                 cell.activityIndicator.stopAnimating()
                 cell.activityIndicator.isHidden = true
+                let url = URL(string: album!.images![indexPath.row].link)
+                let player = AVPlayer(url: url!)
+                let vc = AVPlayerViewController()
+                vc.player = player
+
+                present(vc, animated: true) {
+                    vc.player?.play()
+                }
             } else {
                 cell.imageViewOutlet.image = fetchImage(urlString: album!.images![indexPath.row].link)
             }
@@ -98,4 +108,6 @@ class AlbumTableViewController: UITableViewController {
         
         return cell
     }
+    
+    
 }
