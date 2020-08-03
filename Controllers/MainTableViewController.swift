@@ -36,33 +36,7 @@ class MainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumCell
         
         cell.activityIndicator.startAnimating()
-        
-        var imageURL: URL?
-        var image: UIImage? {
-            get {
-                cell.imageViewOutlet.image
-            }
-            set {
-                cell.activityIndicator.stopAnimating()
-                cell.activityIndicator.isHidden = true
-                cell.imageViewOutlet.image = newValue
-                cell.imageViewOutlet.sizeToFit()
-            }
-        }
-        func fetchImage(urlString: String) -> UIImage? {
-            imageURL = URL(string: urlString)
-            cell.activityIndicator.isHidden = false
-            cell.activityIndicator.startAnimating()
-            let queue = DispatchQueue.global(qos: .utility)
-            queue.async {
-                guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return }
-                DispatchQueue.main.async {
-                    image = UIImage(data: imageData)
-                }
-            }
-            return image
-        }
-        
+
         if albums[indexPath.row].is_album == true {
             if let imageURLString = albums[indexPath.row].images?[0].link {
                 if imageURLString.contains("mp4") {
@@ -70,7 +44,13 @@ class MainTableViewController: UITableViewController {
                     cell.activityIndicator.stopAnimating()
                     cell.activityIndicator.isHidden = true
                 } else {
-                    cell.imageViewOutlet.image = fetchImage(urlString: imageURLString)
+                    cell.imageViewOutlet.loadImage(from: imageURLString, completion: { (success) in
+                        if success {
+                            print("successfully loaded image with url: \(imageURLString)")
+                        } else {
+                            print("failed to load image with url: \(imageURLString)")
+                        }
+                    })
                 }
             }
         } else {
@@ -79,21 +59,32 @@ class MainTableViewController: UITableViewController {
                 cell.activityIndicator.stopAnimating()
                 cell.activityIndicator.isHidden = true
             } else {
-                cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
+                if let link = albums[indexPath.row].link {
+                    cell.imageViewOutlet.loadImage(from: link, completion: { (success) in
+                        if success {
+                            print("successfully loaded image with url: \(link)")
+                        } else {
+                            print("failed to load image with url: \(link)")
+                        }
+                    })
+                }
             }
         }
+
         if albums[indexPath.row].downs != nil {
             cell.downsLabel.text = String(albums[indexPath.row].downs!)
         } else {
             cell.downsImage.isHidden = true
             cell.downsLabel.isHidden = true
         }
+
         if albums[indexPath.row].ups != nil {
             cell.upsLabel.text = String(albums[indexPath.row].ups!)
         } else {
             cell.upsLabel.isHidden = true
             cell.upsImage.isHidden = true
         }
+
         if albums[indexPath.row].title != nil {
             cell.imageNamelable.text = albums[indexPath.row].title
         } else {
