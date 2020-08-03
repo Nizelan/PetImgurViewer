@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
+		9973867A24D87B23004B2EAA /* SetingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973867924D87B23004B2EAA /* SetingsManager.swift */; };
+		9973867C24D880A7004B2EAA /* SetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973867B24D880A7004B2EAA /* SetingsViewController.swift */; };
 		9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9999FF4A24CB5F85000F660A /* AlbumCell.swift */; };
 		99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */; };
 		99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D1929B24B8A59500082D6A /* AppDelegate.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		9973867924D87B23004B2EAA /* SetingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsManager.swift; sourceTree = "<group>"; };
+		9973867B24D880A7004B2EAA /* SetingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsViewController.swift; sourceTree = "<group>"; };
 		9999FF4A24CB5F85000F660A /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
 		99D1929824B8A59500082D6A /* someAPIMadness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = someAPIMadness.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,7 @@
 			children = (
 				99DE876824C07F160085DCE2 /* ParseModel.swift */,
 				99DE877224C08D6D0085DCE2 /* NetworkManager.swift */,
+				9973867924D87B23004B2EAA /* SetingsManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */,
 				99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */,
 				99D9CA8524D2CA14009B0809 /* MainViewController.swift */,
+				9973867B24D880A7004B2EAA /* SetingsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -302,10 +308,12 @@
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */,
+				9973867C24D880A7004B2EAA /* SetingsViewController.swift in Sources */,
 				995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */,
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */,
 				99D9CA8624D2CA14009B0809 /* MainViewController.swift in Sources */,
+				9973867A24D87B23004B2EAA /* SetingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

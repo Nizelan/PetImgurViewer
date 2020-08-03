@@ -9,13 +9,10 @@
 import Foundation
 import UIKit
 
-struct NetworkManadger {
+struct NetworkManager {
     
     //Fetch data
-    
-    
-    
-    
+   
     func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
         let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
         

@@ -11,8 +11,8 @@ import UIKit
 class MainTableViewController: UITableViewController {
     
     
-    private let networkManager = NetworkManadger()
-    var albums = [Porst]()
+    private let networkManager = NetworkManager()
+    var albums = [Post]()
     var imagesCount = Int()
     
     override func viewDidLoad() {
@@ -112,7 +112,7 @@ class MainTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "openAlbum" else { return }
         guard let destination = segue.destination as? AlbumTableViewController else { return }
-        guard let castedSender = sender as? Porst else { return }
+        guard let castedSender = sender as? Post else { return }
         destination.album = castedSender
     }
     

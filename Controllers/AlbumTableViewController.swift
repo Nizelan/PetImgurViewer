@@ -12,8 +12,8 @@ import AVFoundation
 
 class AlbumTableViewController: UITableViewController {
 
-    var album: Porst?
-    let networkManager = NetworkManadger()
+    var album: Post?
+    let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
