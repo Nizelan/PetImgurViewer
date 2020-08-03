@@ -9,18 +9,18 @@
 import Foundation
 
 struct GalleryResponse: Codable {
-    let data: [GalleryEntry]
+    let data: [Porst]
 }
 
-struct GalleryEntry: Codable {
+struct Porst: Codable {
+    let ups: Int?
+    let downs: Int?
+    let title: String?
     let is_album: Bool
     let link: String?
     let images: [Image]?
 }
 
 struct Image: Codable {
-    let title: String?
     let link: String
-    let ups: Int?
-    let downs: Int?
 }

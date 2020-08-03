@@ -12,12 +12,12 @@ class MainTableViewController: UITableViewController {
     
     
     private let networkManager = NetworkManadger()
-    var albums = [GalleryEntry]()
+    var albums = [Porst]()
     var imagesCount = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 200
+        tableView.rowHeight = 300
         
         self.networkManager.fetchGallery { (galleryArray: GalleryResponse) in
             
@@ -82,6 +82,23 @@ class MainTableViewController: UITableViewController {
                 cell.imageViewOutlet.image = fetchImage(urlString: albums[indexPath.row].link!)
             }
         }
+        if albums[indexPath.row].downs != nil {
+            cell.downsLabel.text = String(albums[indexPath.row].downs!)
+        } else {
+            cell.downsImage.isHidden = true
+            cell.downsLabel.isHidden = true
+        }
+        if albums[indexPath.row].ups != nil {
+            cell.upsLabel.text = String(albums[indexPath.row].ups!)
+        } else {
+            cell.upsLabel.isHidden = true
+            cell.upsImage.isHidden = true
+        }
+        if albums[indexPath.row].title != nil {
+            cell.imageNamelable.text = albums[indexPath.row].title
+        } else {
+            cell.imageNamelable.isHidden = true
+        }
         
         return cell
     }
@@ -95,7 +112,7 @@ class MainTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "openAlbum" else { return }
         guard let destination = segue.destination as? AlbumTableViewController else { return }
-        guard let castedSender = sender as? GalleryEntry else { return }
+        guard let castedSender = sender as? Porst else { return }
         destination.album = castedSender
     }
     

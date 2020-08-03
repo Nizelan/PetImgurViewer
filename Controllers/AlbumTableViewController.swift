@@ -12,7 +12,8 @@ import AVFoundation
 
 class AlbumTableViewController: UITableViewController {
 
-    var album: GalleryEntry?
+    var album: Porst?
+    let networkManager = NetworkManadger()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +34,12 @@ class AlbumTableViewController: UITableViewController {
 
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return album!.images!.count
+        guard let count = album?.images?.count else { return 0 }
+        return count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as! AlbumCell
-        
-        cell.downsImage.isHidden = false
-        cell.downsLabel.isHidden = false
-        cell.upsLabel.isHidden = false
-        cell.upsImage.isHidden = false
-        cell.imageNamelable.isHidden = false
         
         var imageURL: URL?
         var image: UIImage? {
@@ -81,35 +77,23 @@ class AlbumTableViewController: UITableViewController {
                 cell.imageViewOutlet.image = fetchImage(urlString: album!.images![indexPath.row].link)
             }
         }
-        if album?.images?[indexPath.row].downs != nil {
-            cell.downsLabel.text = String(album!.images![indexPath.row].downs!)
-        } else {
-            cell.downsImage.isHidden = true
-            cell.downsLabel.isHidden = true
-        }
-        if album?.images?[indexPath.row].ups != nil {
-            cell.upsLabel.text = String(album!.images![indexPath.row].ups!)
-        } else {
-            cell.upsLabel.isHidden = true
-            cell.upsImage.isHidden = true
-        }
-        if album?.images?[indexPath.row].title != nil {
-            cell.imageNamelable.text = album?.images?[indexPath.row].title
-        } else {
-            cell.imageNamelable.isHidden = true
-        }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: album!.images![indexPath.row].link)
-        let player = AVPlayer(url: url!)
-        let vc = AVPlayerViewController()
-        vc.player = player
-        
-        present(vc, animated: true) {
-            vc.player?.play()
+        if album!.images![indexPath.row].link.contains("mp4") {
+            
+            let url = URL(string: album!.images![indexPath.row].link)
+            let player = AVPlayer(url: url!)
+            let vc = AVPlayerViewController()
+            vc.player = player
+            
+            present(vc, animated: true) {
+                vc.player?.play()
+            }
+        } else {
+            return
         }
     }
 }
