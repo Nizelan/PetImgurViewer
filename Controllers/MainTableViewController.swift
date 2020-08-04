@@ -10,29 +10,27 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     
-    
     private let networkManager = NetworkManager()
     var albums = [Post]()
     var imagesCount = Int()
-    var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 300
         
-        self.networkManager.fetchGallery(albomURL: urlString) { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery { (galleryArray: GalleryResponse) in
             
             self.albums = galleryArray.data
-            print(self.albums)
             self.tableView.reloadData()
         }
-        print(urlString)
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return albums.count
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return albums.count
+    }
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumCell
@@ -48,6 +46,8 @@ class MainTableViewController: UITableViewController {
                 } else {
                     cell.imageViewOutlet.loadImage(from: imageURLString, completion: { (success) in
                         if success {
+                            cell.activityIndicator.stopAnimating()
+                            cell.activityIndicator.isHidden = true
                             print("successfully loaded image with url: \(imageURLString)")
                         } else {
                             print("failed to load image with url: \(imageURLString)")
@@ -101,17 +101,15 @@ class MainTableViewController: UITableViewController {
         
         performSegue(withIdentifier: "openAlbum", sender: selectedAlbum)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "openAlbum" else { return }
-        guard let destination = segue.destination as? AlbumTableViewController else { return }
-        guard let castedSender = sender as? Post else { return }
-        destination.album = castedSender
+    @IBAction func goToSetings(_ sender: UIButton) {
+        performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
     }
     
-    @IBAction func saveData(_ unwindSegue: UIStoryboardSegue) {
-        guard unwindSegue.identifier == "SetingsSegue" else { return }
-        guard let source = unwindSegue.source as? SetingsViewController else { return }
-        urlString = source.urlString
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "openAlbum" {
+            guard let destination = segue.destination as? AlbumTableViewController else { return }
+            guard let castedSender = sender as? Post else { return }
+            destination.album = castedSender
+        }
     }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SetingsControllerDelegate: class {
+    func update(sectionsText: String, sortText: String, windowText: String)
+}
+
 class SetingsViewController: UITableViewController {
 
     enum SectionButtons: String {
@@ -34,28 +38,16 @@ class SetingsViewController: UITableViewController {
     var window = "viral"
     var button = String()
     
+    weak var delegate: SetingsControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 338
-        urlString = "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
+        tableView.rowHeight = 664
     }
-    
-    @IBAction func sectionsButtons(_ sender: UIButton) {
-        button = sender.currentTitle!
-        sections = button
-        tableView.reloadData()
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        delegate?.update(sectionsText: sections, sortText: sort, windowText: window)
     }
-    @IBAction func sortButtons(_ sender: UIButton) {
-        button = sender.currentTitle!
-        sort = button
-        tableView.reloadData()
-    }
-    @IBAction func windowButtons(_ sender: UIButton) {
-        button = sender.currentTitle!
-        window = button
-        tableView.reloadData()
-    }
-    
     
         // MARK: - Table view data source
 
@@ -66,14 +58,6 @@ class SetingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SetingsCell", for: indexPath) as! SetingsCell
         
-        cell.sectionsLable.text = sections
-        cell.sortLable.text = sort
-        cell.windowLable.text = window
-        
         return cell
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        urlString = "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
     }
 }

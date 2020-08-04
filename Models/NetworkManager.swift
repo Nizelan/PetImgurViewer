@@ -9,23 +9,26 @@
 import Foundation
 import UIKit
 
-<<<<<<< HEAD
-struct NetworkManager {
+class NetworkManager: SetingsControllerDelegate {
+    
+    var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
+    var sections = "hot"
+    var sort = "top"
+    var window = "viral"
+    
+    func update(sectionsText: String, sortText: String, windowText: String) {
+        sections = sectionsText
+        sort = sortText
+        window = windowText
+    }
     
     //Fetch data
    
-    func fetchGallery(albomURL: String, closure: @escaping (GalleryResponse) -> ()) {
-        let urlString = albomURL
-<<<<<<< HEAD
-=======
-struct NetworkManadger {
-
     func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
-        let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
->>>>>>> fixed-image-loading
-=======
->>>>>>> de8d54f... not workin filter commit
+        update(sectionsText: sections, sortText: sort, windowText: window)
         
+        let urlString = "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
+        print(urlString)
         let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
         
         guard let url = URL(string: urlString) else { return }
@@ -76,4 +79,6 @@ struct NetworkManadger {
         }
         return nil
     }
+    
+    
 }
