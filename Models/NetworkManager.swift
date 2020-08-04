@@ -13,8 +13,8 @@ struct NetworkManager {
     
     //Fetch data
    
-    func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
-        let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
+    func fetchGallery(albomURL: String, closure: @escaping (GalleryResponse) -> ()) {
+        let urlString = albomURL
         
         let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
         

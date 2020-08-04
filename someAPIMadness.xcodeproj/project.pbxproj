@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
-		9973867A24D87B23004B2EAA /* SetingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973867924D87B23004B2EAA /* SetingsManager.swift */; };
 		9973867C24D880A7004B2EAA /* SetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973867B24D880A7004B2EAA /* SetingsViewController.swift */; };
 		9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9999FF4A24CB5F85000F660A /* AlbumCell.swift */; };
 		99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */; };
+		99B4FF1024D95E2600BE8F60 /* SetingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4FF0F24D95E2600BE8F60 /* SetingsCell.swift */; };
 		99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D1929B24B8A59500082D6A /* AppDelegate.swift */; };
 		99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D1929D24B8A59500082D6A /* SceneDelegate.swift */; };
 		99D192A324B8A59500082D6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99D192A124B8A59500082D6A /* Main.storyboard */; };
@@ -43,10 +43,10 @@
 
 /* Begin PBXFileReference section */
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		9973867924D87B23004B2EAA /* SetingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsManager.swift; sourceTree = "<group>"; };
 		9973867B24D880A7004B2EAA /* SetingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsViewController.swift; sourceTree = "<group>"; };
 		9999FF4A24CB5F85000F660A /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
+		99B4FF0F24D95E2600BE8F60 /* SetingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsCell.swift; sourceTree = "<group>"; };
 		99D1929824B8A59500082D6A /* someAPIMadness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = someAPIMadness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D1929B24B8A59500082D6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99D1929D24B8A59500082D6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 			children = (
 				99DE876824C07F160085DCE2 /* ParseModel.swift */,
 				99DE877224C08D6D0085DCE2 /* NetworkManager.swift */,
-				9973867924D87B23004B2EAA /* SetingsManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -158,6 +157,7 @@
 				99D192A124B8A59500082D6A /* Main.storyboard */,
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
 				9999FF4A24CB5F85000F660A /* AlbumCell.swift */,
+				99B4FF0F24D95E2600BE8F60 /* SetingsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +306,7 @@
 			files = (
 				99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */,
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
+				99B4FF1024D95E2600BE8F60 /* SetingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */,
 				9973867C24D880A7004B2EAA /* SetingsViewController.swift in Sources */,
@@ -313,7 +314,6 @@
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */,
 				99D9CA8624D2CA14009B0809 /* MainViewController.swift in Sources */,
-				9973867A24D87B23004B2EAA /* SetingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

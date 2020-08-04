@@ -14,17 +14,19 @@ class MainTableViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var albums = [Post]()
     var imagesCount = Int()
+    var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 300
         
-        self.networkManager.fetchGallery { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery(albomURL: urlString) { (galleryArray: GalleryResponse) in
             
             self.albums = galleryArray.data
             print(self.albums)
             self.tableView.reloadData()
         }
+        print(urlString)
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -116,4 +118,9 @@ class MainTableViewController: UITableViewController {
         destination.album = castedSender
     }
     
+    @IBAction func saveData(_ unwindSegue: UIStoryboardSegue) {
+        guard unwindSegue.identifier == "SetingsSegue" else { return }
+        guard let source = unwindSegue.source as? SetingsViewController else { return }
+        urlString = source.urlString
+    }
 }
