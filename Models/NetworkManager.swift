@@ -9,12 +9,19 @@
 import Foundation
 import UIKit
 
+<<<<<<< HEAD
 struct NetworkManager {
     
     //Fetch data
    
     func fetchGallery(albomURL: String, closure: @escaping (GalleryResponse) -> ()) {
         let urlString = albomURL
+=======
+struct NetworkManadger {
+
+    func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
+        let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
+>>>>>>> fixed-image-loading
         
         let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
         
@@ -39,9 +46,23 @@ struct NetworkManager {
            }
         }.resume()
     }
-    
-    //Parse JSON
-    
+
+    func fetchImage(urlString: String, completion: @escaping (UIImage?) -> ()) {
+        let imageURL = URL(string: urlString)
+        DispatchQueue.global(qos: .utility).async {
+            guard let url = imageURL, let imageData = try? Data(contentsOf: url) else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(UIImage(data: imageData))
+            }
+        }
+    }
+
+    /// Parse JSON
     func parseJSON<T>(withData data: Data) -> T? where T:Codable {
         let decoder = JSONDecoder()
         do {

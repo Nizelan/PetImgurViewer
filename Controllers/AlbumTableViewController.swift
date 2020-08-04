@@ -39,42 +39,24 @@ class AlbumTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as! AlbumCell
-        
-        var imageURL: URL?
-        var image: UIImage? {
-            get {
-                cell.imageViewOutlet.image
-            }
-            set {
-                cell.activityIndicator.stopAnimating()
-                cell.activityIndicator.isHidden = true
-                cell.imageViewOutlet.image = newValue
-                cell.imageViewOutlet.sizeToFit()
-            }
-        }
-        func fetchImage(urlString: String) -> UIImage? {
-            imageURL = URL(string: urlString)
-            cell.activityIndicator.isHidden = false
-            cell.activityIndicator.startAnimating()
-            let queue = DispatchQueue.global(qos: .utility)
-            queue.async {
-                guard let url = imageURL, let imageData = try? Data(contentsOf: url) else { return }
-                DispatchQueue.main.async {
-                    image = UIImage(data: imageData)
-                }
-            }
-            return image
+        guard let album = album,
+              let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as? AlbumCell else {
+            return UITableViewCell()
         }
         
-        if album?.images?[indexPath.row].link != nil {
-            if album!.images![indexPath.row].link.contains("mp4") {
+        if album.images?[indexPath.row].link != nil {
+            if album.images![indexPath.row].link.contains("mp4") {
                 cell.imageViewOutlet.image = UIImage(named: "playVideo")
                 cell.activityIndicator.stopAnimating()
                 cell.activityIndicator.isHidden = true
-                
             } else {
-                cell.imageViewOutlet.image = fetchImage(urlString: album!.images![indexPath.row].link)
+                cell.imageViewOutlet.loadImage(from: album.images![indexPath.row].link, completion: { (success) in
+                    if success {
+                        print("successfully loaded image with url: \(album.images![indexPath.row].link)")
+                    } else {
+                        print("failed to load image with url: \(album.images![indexPath.row].link)")
+                    }
+                })
             }
         }
         
