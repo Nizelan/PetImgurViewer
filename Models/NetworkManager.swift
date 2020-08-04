@@ -16,12 +16,15 @@ struct NetworkManager {
    
     func fetchGallery(albomURL: String, closure: @escaping (GalleryResponse) -> ()) {
         let urlString = albomURL
+<<<<<<< HEAD
 =======
 struct NetworkManadger {
 
     func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
         let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
 >>>>>>> fixed-image-loading
+=======
+>>>>>>> de8d54f... not workin filter commit
         
         let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
         
