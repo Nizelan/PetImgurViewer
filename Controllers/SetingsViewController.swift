@@ -12,52 +12,98 @@ protocol SetingsControllerDelegate: class {
     func update(sectionsText: String, sortText: String, windowText: String)
 }
 
-class SetingsViewController: UITableViewController {
-
-    enum SectionButtons: String {
-        case hot = "hot"
-        case top = "top"
-        case user = "user"
-    }
-    enum SortButtons: String {
-        case viral = "viral"
-        case top = "top"
-        case time = "time"
-        case rising = "rising"
-    }
-    enum WindowButtons: String {
-        case week = "week"
-        case month = "month"
-        case year = "year"
-        case all = "all"
-    }
+class SetingsViewController: UIViewController {
     
-    var urlString = String()
-    var sections = "hot"
-    var sort = "top"
-    var window = "viral"
-    var button = String()
+    var arrayOfSetings = [["hot", "top", "user"],
+                          ["viral", "top", "time", "rising"],
+                          ["week", "month", "year", "all"]]
+    var selectedSeting: String?
+    
+    
+    @IBOutlet weak var sectionsField: UITextField!
+    @IBOutlet weak var sortField: UITextField!
+    @IBOutlet weak var windowField: UITextField!
     
     weak var delegate: SetingsControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 664
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        delegate?.update(sectionsText: sections, sortText: sort, windowText: window)
+        choiceSeting()
+        createToolbar()
     }
     
-        // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        delegate?.update(sectionsText: sectionsField.text!, sortText: sortField.text!, windowText: windowField.text!)
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "SetingsCell", for: indexPath) as! SetingsCell
+    
+    func choiceSeting() {
+        let setingPicker = UIPickerView()
+        setingPicker.delegate = self
         
-        return cell
+        sectionsField.inputView = setingPicker
+        sortField.inputView = setingPicker
+        windowField.inputView = setingPicker
+    }
+    
+    func createToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(dismissKeyboard))
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        
+        sectionsField.inputAccessoryView = toolbar
+        sortField.inputAccessoryView = toolbar
+        windowField.inputAccessoryView = toolbar
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+extension SetingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if sectionsField.isEditing == true {
+            return arrayOfSetings[0].count
+        } else if sortField.isEditing == true {
+            return arrayOfSetings[1].count
+        } else if windowField.isEditing == true {
+            return arrayOfSetings[2].count
+        }
+        return 3
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if sectionsField.isEditing == true {
+            return arrayOfSetings[0][row]
+        } else if sortField.isEditing == true {
+            return arrayOfSetings[1][row]
+        } else if windowField.isEditing == true {
+            return arrayOfSetings[2][row]
+        }
+        return nil
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if sectionsField.isEditing == true {
+            selectedSeting = arrayOfSetings[0][row]
+            sectionsField.text = selectedSeting
+        } else if sortField.isEditing == true {
+            selectedSeting = arrayOfSetings[1][row]
+            sortField.text = selectedSeting
+        } else if windowField.isEditing == true {
+            selectedSeting = arrayOfSetings[2][row]
+            windowField.text = selectedSeting
+        }
     }
 }

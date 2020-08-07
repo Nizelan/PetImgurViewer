@@ -8,9 +8,18 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController {
+class MainTableViewController: UITableViewController, SetingsControllerDelegate {
+    func update(sectionsText: String, sortText: String, windowText: String) {
+        sections = sectionsText
+        sort = sortText
+        window = windowText
+    }
+    
     
     private let networkManager = NetworkManager()
+    var sections = "hot"
+    var sort = "top"
+    var window = "viral"
     var albums = [Post]()
     var imagesCount = Int()
     
@@ -18,7 +27,7 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.rowHeight = 300
         
-        self.networkManager.fetchGallery { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
             
             self.albums = galleryArray.data
             self.tableView.reloadData()
@@ -99,17 +108,20 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAlbum = albums[indexPath.row]
         
-        performSegue(withIdentifier: "openAlbum", sender: selectedAlbum)
+        performSegue(withIdentifier: "AlbumSegue", sender: selectedAlbum)
     }
     @IBAction func goToSetings(_ sender: UIButton) {
         performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "openAlbum" {
+        if segue.identifier == "AlbumSegue" {
             guard let destination = segue.destination as? AlbumTableViewController else { return }
             guard let castedSender = sender as? Post else { return }
             destination.album = castedSender
+        } else if segue.identifier == "SetingsSegue" {
+            guard let destination = segue.destination as? SetingsViewController else { return }
+            destination.delegate = self
         }
     }
 }

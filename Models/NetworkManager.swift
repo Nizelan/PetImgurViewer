@@ -9,23 +9,13 @@
 import Foundation
 import UIKit
 
-class NetworkManager: SetingsControllerDelegate {
+struct NetworkManager {
     
     var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
-    var sections = "hot"
-    var sort = "top"
-    var window = "viral"
-    
-    func update(sectionsText: String, sortText: String, windowText: String) {
-        sections = sectionsText
-        sort = sortText
-        window = windowText
-    }
     
     //Fetch data
    
-    func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
-        update(sectionsText: sections, sortText: sort, windowText: window)
+    func fetchGallery(sections: String, sort: String, window: String, closure: @escaping (GalleryResponse) -> ()) {
         
         let urlString = "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
         print(urlString)
