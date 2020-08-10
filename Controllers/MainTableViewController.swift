@@ -43,11 +43,6 @@ class MainTableViewController: UITableViewController, SetingsControllerDelegate 
 
         cell.setup(with: albums[indexPath.row])
 
-        UIView.performWithoutAnimation {
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
-
         return cell
     }
     

@@ -12,13 +12,12 @@ protocol SetingsControllerDelegate: class {
     func update(sectionsText: String, sortText: String, windowText: String)
 }
 
-class SetingsViewController: UIViewController {
+class SetingsViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var arrayOfSetings = [["hot", "top", "user"],
                           ["viral", "top", "time", "rising"],
                           ["week", "month", "year", "all"]]
     var selectedSeting: String?
-    
     
     @IBOutlet weak var sectionsField: UITextField!
     @IBOutlet weak var sortField: UITextField!
@@ -30,11 +29,26 @@ class SetingsViewController: UIViewController {
         super.viewDidLoad()
         choiceSeting()
         createToolbar()
+        taptObserver()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         delegate?.update(sectionsText: sectionsField.text!, sortText: sortField.text!, windowText: windowField.text!)
+    }
+    
+    func taptObserver() {
+        
+        let tapt = UITapGestureRecognizer(target: self, action: #selector(taptAction))
+        tapt.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tapt)
+    }
+    
+    @objc func taptAction() {
+        view.endEditing(true)
+        sectionsField.isHidden = false
+        sortField.isHidden = false
+        windowField.isHidden = false
     }
     
     func choiceSeting() {
@@ -64,6 +78,9 @@ class SetingsViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+        sectionsField.isHidden = false
+        sortField.isHidden = false
+        windowField.isHidden = false
     }
 }
 
@@ -74,10 +91,16 @@ extension SetingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if sectionsField.isEditing == true {
+            sortField.isHidden = true
+            windowField.isHidden = true
             return arrayOfSetings[0].count
         } else if sortField.isEditing == true {
+            sectionsField.isHidden = true
+            windowField.isHidden = true
             return arrayOfSetings[1].count
         } else if windowField.isEditing == true {
+            sortField.isHidden = true
+            sectionsField.isHidden = true
             return arrayOfSetings[2].count
         }
         return 3
@@ -96,14 +119,11 @@ extension SetingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if sectionsField.isEditing == true {
-            selectedSeting = arrayOfSetings[0][row]
-            sectionsField.text = selectedSeting
+            sectionsField.text = arrayOfSetings[0][row]
         } else if sortField.isEditing == true {
-            selectedSeting = arrayOfSetings[1][row]
-            sortField.text = selectedSeting
+            sortField.text = arrayOfSetings[1][row]
         } else if windowField.isEditing == true {
-            selectedSeting = arrayOfSetings[2][row]
-            windowField.text = selectedSeting
+            windowField.text = arrayOfSetings[2][row]
         }
     }
 }
