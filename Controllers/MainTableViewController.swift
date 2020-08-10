@@ -66,13 +66,15 @@ class MainTableViewController: UITableViewController, SetingsControllerDelegate 
             }
         } else {
             if albums[indexPath.row].link!.contains("mp4") {
-                cell.imageViewOutlet.image = UIImage(named: "placeholder")
+                cell.imageViewOutlet.image = UIImage(named: "playVideo")
                 cell.activityIndicator.stopAnimating()
                 cell.activityIndicator.isHidden = true
             } else {
                 if let link = albums[indexPath.row].link {
                     cell.imageViewOutlet.loadImage(from: link, completion: { (success) in
                         if success {
+                            cell.activityIndicator.stopAnimating()
+                            cell.activityIndicator.isHidden = true
                             print("successfully loaded image with url: \(link)")
                         } else {
                             print("failed to load image with url: \(link)")
@@ -110,6 +112,7 @@ class MainTableViewController: UITableViewController, SetingsControllerDelegate 
         
         performSegue(withIdentifier: "AlbumSegue", sender: selectedAlbum)
     }
+    
     @IBAction func goToSetings(_ sender: UIButton) {
         performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
     }
