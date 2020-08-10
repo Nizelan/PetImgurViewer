@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		97961C3B24D860690054F9E7 /* UIImageView+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */; };
+		97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */; };
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
 		9961B5B124DB26530055E220 /* SubImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9961B5B024DB26530055E220 /* SubImageView.swift */; };
 		9973867C24D880A7004B2EAA /* SetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973867B24D880A7004B2EAA /* SetingsViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoading.swift"; sourceTree = "<group>"; };
+		97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingImageView.swift; sourceTree = "<group>"; };
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		9961B5B024DB26530055E220 /* SubImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubImageView.swift; sourceTree = "<group>"; };
 		9973867B24D880A7004B2EAA /* SetingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingsViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */,
+				97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */,
 				99DE876C24C0819C0085DCE2 /* Controllers */,
 				99DE876A24C0815A0085DCE2 /* View */,
 				99DE876724C07EDB0085DCE2 /* Models */,
@@ -315,6 +318,7 @@
 				99B4FF1024D95E2600BE8F60 /* SetingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */,
+				97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */,
 				9961B5B124DB26530055E220 /* SubImageView.swift in Sources */,
 				9973867C24D880A7004B2EAA /* SetingsViewController.swift in Sources */,
 				995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */,
