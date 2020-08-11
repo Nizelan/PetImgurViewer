@@ -28,10 +28,6 @@ class MainTableViewController: UITableViewController, SetingsControllerDelegate 
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albums.count
     }
@@ -56,6 +52,12 @@ class MainTableViewController: UITableViewController, SetingsControllerDelegate 
         sections = sectionsText
         sort = sortText
         window = windowText
+        
+        self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
+            
+            self.albums = galleryArray.data
+            self.tableView.reloadData()
+        }
     }
 
     @IBAction func goToSetings(_ sender: UIButton) {
