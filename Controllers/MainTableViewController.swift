@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController, SetingsControllerDelegate {
+class MainTableViewController: UITableViewController, SettingsControllerDelegate {
     private let networkManager = NetworkManager()
     var sections = "hot"
     var sort = "top"
@@ -70,7 +70,7 @@ class MainTableViewController: UITableViewController, SetingsControllerDelegate 
             guard let castedSender = sender as? Post else { return }
             destination.album = castedSender
         } else if segue.identifier == "SetingsSegue" {
-            guard let destination = segue.destination as? SetingsViewController else { return }
+            guard let destination = segue.destination as? SettingsViewController else { return }
             destination.delegate = self
         }
     }

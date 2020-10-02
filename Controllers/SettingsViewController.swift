@@ -8,23 +8,24 @@
 
 import UIKit
 
-protocol SetingsControllerDelegate: class {
+protocol SettingsControllerDelegate: class {
     func update(sectionsText: String, sortText: String, windowText: String)
 }
 
-class SetingsViewController: UITableViewController, SettingViewControllerDelagate {
+class SettingsViewController: UITableViewController, SettingViewControllerDelagate {
     
     var arrayOfSetings = [["hot", "top", "user"],
     ["viral", "top", "time", "rising"],
     ["week", "month", "year", "all"]]
     var settingsNames = ["Sections", "Sort", "Window"]
     
-    var selectedSetting = ""
+    var selectedRow = 0
+    var selectedSettings = ["hot", "viral", "week"]
     var sections = "hot"
     var sort = "viral"
     var window = "week"
     
-    weak var delegate: SetingsControllerDelegate?
+    weak var delegate: SettingsControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +37,11 @@ class SetingsViewController: UITableViewController, SettingViewControllerDelagat
     }
     
     func updateSeting(selectedSetting: String) {
-        self.selectedSetting = selectedSetting
+        self.selectedSettings[selectedRow] = selectedSetting
         self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
-
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingsNames.count
@@ -49,15 +49,15 @@ class SetingsViewController: UITableViewController, SettingViewControllerDelagat
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
-        selectedSetting = arrayOfSetings[indexPath.row][0]
         
         cell.textLabel?.text = settingsNames[indexPath.row]
-        cell.detailTextLabel?.text = selectedSetting
+        cell.detailTextLabel?.text = selectedSettings[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectCell = arrayOfSetings[indexPath.row]
+        selectedRow = indexPath.row
         
         performSegue(withIdentifier: "SettingSegue", sender: selectCell)
     }
