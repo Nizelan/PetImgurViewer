@@ -16,7 +16,7 @@ class SettingViewController: UITableViewController {
 
     var settings = [String]()
     var selectedString = ""
-    weak var setingDelegate: SettingViewControllerDelagate?
+    weak var settingDelegate: SettingViewControllerDelagate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class SettingViewController: UITableViewController {
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        setingDelegate?.updateSeting(selectedSetting: selectedString)
+        settingDelegate?.updateSeting(selectedSetting: selectedString)
     }
 
     // MARK: - Table view data source

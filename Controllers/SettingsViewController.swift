@@ -14,6 +14,7 @@ protocol SettingsControllerDelegate: class {
 
 class SettingsViewController: UITableViewController, SettingViewControllerDelagate {
     
+    let settingsData = SettingsData()
     var arrayOfSetings = [["hot", "top", "user"],
     ["viral", "top", "time", "rising"],
     ["week", "month", "year", "all"]]
@@ -33,6 +34,9 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
+        settingsData.sectionsData = sections
+        settingsData.sortData = sort
+        settingsData.windowData = window
         delegate?.update(sectionsText: sections, sortText: sort, windowText: window)
     }
     
@@ -67,7 +71,7 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
             guard let destination = segue.destination as? SettingViewController else { return }
             guard let castedSender = sender as? [String] else { return }
             destination.settings = castedSender
-            destination.setingDelegate = self
+            destination.settingDelegate = self
         }
     }
 }
