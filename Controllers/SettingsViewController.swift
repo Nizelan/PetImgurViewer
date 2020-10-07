@@ -14,17 +14,13 @@ protocol SettingsControllerDelegate: class {
 
 class SettingsViewController: UITableViewController, SettingViewControllerDelagate {
     
-    let settingsData = SettingsData()
     var arrayOfSetings = [["hot", "top", "user"],
     ["viral", "top", "time", "rising"],
     ["week", "month", "year", "all"]]
-    var settingsNames = ["Sections", "Sort", "Window"]
+    var settingsNames = [SettingsData.sectionsData, SettingsData.sortData, SettingsData.windowData]
     
     var selectedRow = 0
-    var selectedSettings = ["hot", "viral", "week"]
-    var sections = "hot"
-    var sort = "viral"
-    var window = "week"
+    var selectedSettings = [SettingsData.sectionsData, SettingsData.sortData, SettingsData.windowData]
     
     weak var delegate: SettingsControllerDelegate?
     
@@ -34,10 +30,13 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        settingsData.sectionsData = sections
-        settingsData.sortData = sort
-        settingsData.windowData = window
-        delegate?.update(sectionsText: sections, sortText: sort, windowText: window)
+        SettingsData.sectionsData = selectedSettings[0]
+        SettingsData.sortData = selectedSettings[1]
+        SettingsData.windowData = selectedSettings[2]
+        print("\(SettingsData.sectionsData)-------------------------------------")
+        print("\(SettingsData.sortData)-----------------------------------")
+        print("\(SettingsData.windowData)----------------------------------------")
+        delegate?.update(sectionsText: selectedSettings[0], sortText: selectedSettings[1], windowText: selectedSettings[2])
     }
     
     func updateSeting(selectedSetting: String) {
