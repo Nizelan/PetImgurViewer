@@ -8,10 +8,10 @@
 
 import Foundation
 
-class SettingsData {
+struct SettingsData {
     
-    var sectionsData = "hot"
-    var sortData = "viral"
-    var windowData = "week"
+    static var sectionsData = "hot"
+    static var sortData = "viral"
+    static var windowData = "week"
     
 }
