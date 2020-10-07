@@ -12,8 +12,8 @@ import AVFoundation
 
 class AlbumTableViewController: UITableViewController {
 
-    var album: Porst?
-    let networkManager = NetworkManadger()
+    var album: Post?
+    let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +52,12 @@ class AlbumTableViewController: UITableViewController {
             } else {
                 cell.imageViewOutlet.loadImage(from: album.images![indexPath.row].link, completion: { (success) in
                     if success {
+                        cell.activityIndicator.stopAnimating()
+                        cell.activityIndicator.isHidden = true
                         print("successfully loaded image with url: \(album.images![indexPath.row].link)")
                     } else {
+                        cell.activityIndicator.stopAnimating()
+                        cell.activityIndicator.isHidden = true
                         print("failed to load image with url: \(album.images![indexPath.row].link)")
                     }
                 })

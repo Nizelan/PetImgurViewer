@@ -8,103 +8,70 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController {
-    
-    
-    private let networkManager = NetworkManadger()
-    var albums = [Porst]()
+class MainTableViewController: UITableViewController, SettingsControllerDelegate {
+    private let networkManager = NetworkManager()
+    var sections = "hot"
+    var sort = "top"
+    var window = "viral"
+    var albums = [Post]()
     var imagesCount = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 300
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
         
-        self.networkManager.fetchGallery { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
             
             self.albums = galleryArray.data
-            print(self.albums)
             self.tableView.reloadData()
         }
     }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return albums.count
     }
-    
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AlbumCell
-        
-        cell.activityIndicator.startAnimating()
-
-        if albums[indexPath.row].is_album == true {
-            if let imageURLString = albums[indexPath.row].images?[0].link {
-                if imageURLString.contains("mp4") {
-                    cell.imageViewOutlet.image = UIImage(named: "playVideo")
-                    cell.activityIndicator.stopAnimating()
-                    cell.activityIndicator.isHidden = true
-                } else {
-                    cell.imageViewOutlet.loadImage(from: imageURLString, completion: { (success) in
-                        if success {
-                            print("successfully loaded image with url: \(imageURLString)")
-                        } else {
-                            print("failed to load image with url: \(imageURLString)")
-                        }
-                    })
-                }
-            }
-        } else {
-            if albums[indexPath.row].link!.contains("mp4") {
-                cell.imageViewOutlet.image = UIImage(named: "placeholder")
-                cell.activityIndicator.stopAnimating()
-                cell.activityIndicator.isHidden = true
-            } else {
-                if let link = albums[indexPath.row].link {
-                    cell.imageViewOutlet.loadImage(from: link, completion: { (success) in
-                        if success {
-                            print("successfully loaded image with url: \(link)")
-                        } else {
-                            print("failed to load image with url: \(link)")
-                        }
-                    })
-                }
-            }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AlbumCell else {
+            return UITableViewCell()
         }
 
-        if albums[indexPath.row].downs != nil {
-            cell.downsLabel.text = String(albums[indexPath.row].downs!)
-        } else {
-            cell.downsImage.isHidden = true
-            cell.downsLabel.isHidden = true
-        }
+        cell.setup(with: albums[indexPath.row])
 
-        if albums[indexPath.row].ups != nil {
-            cell.upsLabel.text = String(albums[indexPath.row].ups!)
-        } else {
-            cell.upsLabel.isHidden = true
-            cell.upsImage.isHidden = true
-        }
-
-        if albums[indexPath.row].title != nil {
-            cell.imageNamelable.text = albums[indexPath.row].title
-        } else {
-            cell.imageNamelable.isHidden = true
-        }
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAlbum = albums[indexPath.row]
         
-        performSegue(withIdentifier: "openAlbum", sender: selectedAlbum)
+        performSegue(withIdentifier: "AlbumSegue", sender: selectedAlbum)
+    }
+
+    func update(sectionsText: String, sortText: String, windowText: String) {
+        sections = sectionsText
+        sort = sortText
+        window = windowText
+        
+        self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
+            
+            self.albums = galleryArray.data
+            self.tableView.reloadData()
+        }
+    }
+
+    @IBAction func goToSetings(_ sender: UIButton) {
+        performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "openAlbum" else { return }
-        guard let destination = segue.destination as? AlbumTableViewController else { return }
-        guard let castedSender = sender as? Porst else { return }
-        destination.album = castedSender
+        if segue.identifier == "AlbumSegue" {
+            guard let destination = segue.destination as? AlbumTableViewController else { return }
+            guard let castedSender = sender as? Post else { return }
+            destination.album = castedSender
+        } else if segue.identifier == "SetingsSegue" {
+            guard let destination = segue.destination as? SettingsViewController else { return }
+            destination.delegate = self
+        }
     }
-    
 }

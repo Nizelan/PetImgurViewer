@@ -9,11 +9,16 @@
 import Foundation
 import UIKit
 
-struct NetworkManadger {
-
-    func fetchGallery(closure: @escaping (GalleryResponse) -> ()) {
-        let urlString = "https://api.imgur.com/3/gallery/top/top/week/17?showViral=true&mature=true&album_previews=true"
+struct NetworkManager {
+    
+    var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
+    
+    //Fetch data
+   
+    func fetchGallery(sections: String, sort: String, window: String, closure: @escaping (GalleryResponse) -> ()) {
         
+        let urlString = "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
+        print(urlString)
         let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
         
         guard let url = URL(string: urlString) else { return }
@@ -64,4 +69,6 @@ struct NetworkManadger {
         }
         return nil
     }
+    
+    
 }
