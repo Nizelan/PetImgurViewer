@@ -254,12 +254,27 @@
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hX7-Jy-V1K" userLabel="Activity Indicator">
                                             <rect key="frame" x="197" y="190" width="20" height="20"/>
                                         </activityIndicatorView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaI-Uf-8xs">
+                                            <rect key="frame" x="314" y="309" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="dET-Hk-4ri"/>
+                                                <constraint firstAttribute="width" constant="80" id="wSd-0h-X2e"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" image="pencil.and.ellipsis.rectangle" catalog="system"/>
+                                            <connections>
+                                                <action selector="goToComments:" destination="CVk-Ae-QGP" eventType="touchUpInside" id="45A-LI-deI"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="WK3-Yu-OT4" firstAttribute="leading" secondItem="0f9-Lk-1BD" secondAttribute="leading" id="6Iy-tl-eaI"/>
+                                        <constraint firstItem="FaI-Uf-8xs" firstAttribute="trailing" secondItem="0f9-Lk-1BD" secondAttribute="trailingMargin" id="6XI-ZC-knY"/>
                                         <constraint firstItem="hX7-Jy-V1K" firstAttribute="centerX" secondItem="WK3-Yu-OT4" secondAttribute="centerX" id="BjC-94-hj1"/>
                                         <constraint firstItem="WK3-Yu-OT4" firstAttribute="top" secondItem="0f9-Lk-1BD" secondAttribute="top" id="Ldk-Pb-brr"/>
                                         <constraint firstItem="hX7-Jy-V1K" firstAttribute="centerY" secondItem="WK3-Yu-OT4" secondAttribute="centerY" id="SsN-LY-Kt0"/>
+                                        <constraint firstItem="FaI-Uf-8xs" firstAttribute="bottom" secondItem="0f9-Lk-1BD" secondAttribute="bottomMargin" id="VSx-fP-wWg"/>
                                         <constraint firstAttribute="trailing" secondItem="WK3-Yu-OT4" secondAttribute="trailing" id="wEn-Wv-pPZ"/>
                                         <constraint firstAttribute="bottom" secondItem="WK3-Yu-OT4" secondAttribute="bottom" id="yVB-5k-Ayz"/>
                                     </constraints>
@@ -277,13 +292,46 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Albom" id="url-5M-vwV"/>
+                    <connections>
+                        <segue destination="iB9-Po-BVj" kind="show" identifier="CommentsSegue" id="KpQ-Qe-jl8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-wI-xMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1886.9565217391305" y="67.633928571428569"/>
         </scene>
+        <!--Comments View Controller-->
+        <scene sceneID="RG1-YI-m4v">
+            <objects>
+                <tableViewController id="iB9-Po-BVj" customClass="CommentsViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f59-68-hhW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="PK5-F6-e2f">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PK5-F6-e2f" id="PUD-bD-2p6">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iB9-Po-BVj" id="VaS-Iw-Wr8"/>
+                            <outlet property="delegate" destination="iB9-Po-BVj" id="7hK-7b-iRW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="WvO-hP-EuN"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4t-ki-Btz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2730" y="68"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Up" width="807" height="768"/>
+        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
     </resources>
 </document>

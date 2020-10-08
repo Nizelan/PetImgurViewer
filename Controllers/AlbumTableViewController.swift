@@ -14,10 +14,12 @@ class AlbumTableViewController: UITableViewController {
 
     var album: Post?
     let networkManager = NetworkManager()
+    var id: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
+        id = album!.id
         print("_________________________")
         print(album)
         print("_________________________")
@@ -81,5 +83,16 @@ class AlbumTableViewController: UITableViewController {
         } else {
             return
         }
+    }
+    
+    @IBAction func goToComments(_ sender: UIButton) {
+        performSegue(withIdentifier: "CommentsSegue", sender: Any?.self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "CommentsSegue" else { return }
+        guard let destination = segue.destination as? CommentsViewController else { return }
+        destination.album = id
+        
     }
 }

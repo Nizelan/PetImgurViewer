@@ -14,6 +14,7 @@ struct GalleryResponse: Codable {
 }
 
 struct Post: Codable {
+    let id: String
     let ups: Int?
     let downs: Int?
     let title: String?
