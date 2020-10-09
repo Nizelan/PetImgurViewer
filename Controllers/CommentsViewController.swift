@@ -9,25 +9,37 @@
 import UIKit
 
 class CommentsViewController: UITableViewController {
-        
-    var album: String?
+    private let networkManager = NetworkManager()
+    var albumID: String?
+    var comments = [CommentInfo]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(album)*******************************")
+        
+        if let albumID = albumID {
+            self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
+                self.comments = commentArray.data
+                self.tableView.reloadData()
+            }
+        }
+        print("\(albumID)*******************************")
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return comments.count
     }
 
-    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? UITableViewCell else {
+            return UITableViewCell()
+        }
+        
+        cell.textLabel?.text = self.comments[indexPath.row].author
+        cell.detailTextLabel?.text = self.comments[indexPath.row].comment
+        
+        return cell
+    }
 }

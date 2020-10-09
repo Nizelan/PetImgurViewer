@@ -92,7 +92,7 @@ class AlbumTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "CommentsSegue" else { return }
         guard let destination = segue.destination as? CommentsViewController else { return }
-        destination.album = id
+        destination.albumID = id
         
     }
 }

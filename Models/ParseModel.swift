@@ -31,7 +31,6 @@ struct Image: Codable {
     let height: Int?
 }
 
-
 extension Post {
     var coverImageLink: String? {
         if is_album {
