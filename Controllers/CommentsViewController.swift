@@ -28,18 +28,16 @@ class CommentsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return comments.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? UITableViewCell else {
-            return UITableViewCell()
+        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell()
         }
         
-        cell.textLabel?.text = self.comments[indexPath.row].author
-        cell.detailTextLabel?.text = self.comments[indexPath.row].comment
+        commentCell.textLabel?.text = self.comments[indexPath.row].author
+        commentCell.detailTextLabel?.text = self.comments[indexPath.row].comment
         
-        return cell
+        return commentCell
     }
 }
