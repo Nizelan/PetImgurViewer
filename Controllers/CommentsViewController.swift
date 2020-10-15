@@ -15,6 +15,7 @@ class CommentsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 300
         
         if let albumID = albumID {
             self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
@@ -35,8 +36,8 @@ class CommentsViewController: UITableViewController {
         guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell()
         }
         
-        commentCell.textLabel?.text = self.comments[indexPath.row].author
-        commentCell.detailTextLabel?.text = self.comments[indexPath.row].comment
+        commentCell.nameLabel.text = self.comments[indexPath.row].author
+        commentCell.commentLabel.text = self.comments[indexPath.row].comment
         
         return commentCell
     }

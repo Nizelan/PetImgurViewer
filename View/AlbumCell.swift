@@ -55,7 +55,12 @@ class AlbumCell: UITableViewCell {
 
         print("aspect ratio --- \(album.aspectRatio)")
         imageViewOutlet.translatesAutoresizingMaskIntoConstraints = false
-//        aspectRatioConstraint = NSLayoutConstraint(item: imageViewOutlet, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: imageViewOutlet, attribute: NSLayoutConstraint.Attribute.height, multiplier: album.aspectRatio, constant: 0.0)
+//        aspectRatioConstraint = NSLayoutConstraint(item: imageViewOutlet,
+//                                                   attribute: NSLayoutConstraint.Attribute.width,
+//                                                   relatedBy: NSLayoutConstraint.Relation.equal,
+//                                                   toItem: imageViewOutlet,
+//                                                   attribute: NSLayoutConstraint.Attribute.height,
+//                                                   multiplier: album.aspectRatio, constant: 0.0)
 
         imageViewOutlet.imageSize = album.coverSize
         self.setNeedsLayout()

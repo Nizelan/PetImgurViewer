@@ -25,7 +25,7 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
             
             self.albums = galleryArray.data
             self.tableView.reloadData()
-            print("\(self.albums[1].id)---------------------------")
+            print("\(self.albums[1].postId)---------------------------")
         }
     }
 

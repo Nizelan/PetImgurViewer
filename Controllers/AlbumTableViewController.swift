@@ -19,7 +19,7 @@ class AlbumTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
-        id = album!.id
+        id = album!.postId
         print("_________________________")
         print(album)
         print("_________________________")

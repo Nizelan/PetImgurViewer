@@ -14,15 +14,29 @@ struct GalleryResponse: Codable {
 }
 
 struct Post: Codable {
-    let id: String
+    let postId: String
     let ups: Int?
     let downs: Int?
     let title: String?
-    let is_album: Bool
+    let isAlbum: Bool
     let link: String?
     let images: [Image]?
-    let cover_width: Int?
-    let cover_height: Int?
+    let coverWidth: Int?
+    let coverHeight: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case postId = "id"
+        case ups
+        case downs
+        case title
+        case isAlbum = "is_album"
+        case link
+        case images
+        case coverWidth = "cover_width"
+        case coverHeight = "cover_height"
+        
+        
+    }
 }
 
 struct Image: Codable {
@@ -33,7 +47,7 @@ struct Image: Codable {
 
 extension Post {
     var coverImageLink: String? {
-        if is_album {
+        if isAlbum {
             return images?.first?.link
         } else {
             return link
@@ -41,17 +55,17 @@ extension Post {
     }
 
     var coverSize: CGSize {
-        return CGSize(width: cover_width ?? 0, height: cover_height ?? 0)
+        return CGSize(width: coverWidth ?? 0, height: coverHeight ?? 0)
     }
 
     var aspectRatio: CGFloat {
-        if is_album {
+        if isAlbum {
             guard let image = images?.first else {
                 return 1
             }
             return CGFloat(image.width ?? 1) / CGFloat(image.height ?? 1)
         } else {
-            return CGFloat(cover_width ?? 1) / CGFloat(cover_height ?? 1)
+            return CGFloat(coverWidth ?? 1) / CGFloat(coverHeight ?? 1)
         }
     }
 }
