@@ -15,5 +15,5 @@ struct GalleryCommentResponse: Codable {
 struct CommentInfo: Codable {
     let comment: String
     let author: String
-    let children: [CommentInfo]
+    let children: [CommentInfo]?
 }

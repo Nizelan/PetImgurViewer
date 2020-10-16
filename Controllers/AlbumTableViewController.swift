@@ -93,6 +93,5 @@ class AlbumTableViewController: UITableViewController {
         guard segue.identifier == "CommentsSegue" else { return }
         guard let destination = segue.destination as? CommentsViewController else { return }
         destination.albumID = id
-        
     }
 }
