@@ -9,5 +9,8 @@
 import UIKit
 
 class CommentCell: UITableViewCell {
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet weak var pts: UILabel!
+    
 }

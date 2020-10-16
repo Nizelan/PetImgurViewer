@@ -15,6 +15,7 @@ class CommentsViewController: UITableViewController {
     var authors = [String]()
     var comments = [String]()
     var commentLVLs = [Int]()
+    var points = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,11 +48,12 @@ class CommentsViewController: UITableViewController {
     
     func decomposeCommentInfo(commentsArray: [CommentInfo]) {
         var indentationLevel = 0
-        for comment in 0..<commentsArray.count {
-            authors.append(commentsArray[comment].author)
-            comments.append(commentsArray[comment].comment)
+        for index in 0..<commentsArray.count {
+            authors.append(commentsArray[index].author)
+            comments.append(commentsArray[index].comment)
             commentLVLs.append(indentationLevel)
-            if let children = commentsArray[comment].children {
+            points.append(commentsArray[index].points)
+            if let children = commentsArray[index].children {
                 indentationLevel += 1
                 decomposeCommentInfo(commentsArray: children)
             }

@@ -16,4 +16,5 @@ struct CommentInfo: Codable {
     let comment: String
     let author: String
     let children: [CommentInfo]?
+    let points: Int
 }
