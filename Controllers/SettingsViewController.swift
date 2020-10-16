@@ -18,16 +18,16 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
     ["viral", "top", "time", "rising"],
     ["week", "month", "year", "all"]]
     var settingsNames = [SettingsData.sectionsData, SettingsData.sortData, SettingsData.windowData]
-    
+
     var selectedRow = 0
     var selectedSettings = [SettingsData.sectionsData, SettingsData.sortData, SettingsData.windowData]
-    
+
     weak var delegate: SettingsControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         SettingsData.sectionsData = selectedSettings[0]
@@ -36,9 +36,9 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
         print("\(SettingsData.sectionsData)-------------------------------------")
         print("\(SettingsData.sortData)-----------------------------------")
         print("\(SettingsData.windowData)----------------------------------------")
-        delegate?.update(sectionsText: selectedSettings[0], sortText: selectedSettings[1], windowText: selectedSettings[2])
+    delegate?.update(sectionsText: selectedSettings[0], sortText: selectedSettings[1], windowText: selectedSettings[2])
     }
-    
+
     func updateSeting(selectedSetting: String) {
         self.selectedSettings[selectedRow] = selectedSetting
         self.tableView.reloadData()
@@ -61,7 +61,7 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectCell = arrayOfSetings[indexPath.row]
         selectedRow = indexPath.row
-        
+
         performSegue(withIdentifier: "SettingSegue", sender: selectCell)
     }
     

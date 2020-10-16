@@ -23,7 +23,7 @@ struct Post: Codable {
     let images: [Image]?
     let coverWidth: Int?
     let coverHeight: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case postId = "id"
         case ups
@@ -34,8 +34,8 @@ struct Post: Codable {
         case images
         case coverWidth = "cover_width"
         case coverHeight = "cover_height"
-        
-        
+
+    
     }
 }
 

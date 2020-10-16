@@ -16,10 +16,11 @@ class CommentsViewController: UITableViewController {
     var comments = [String]()
     var commentLVLs = [Int]()
     var points = [Int]()
-    
+    var indentationLevel = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let albumID = albumID {
             self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
                 self.commentsInfo = commentArray.data
@@ -27,9 +28,9 @@ class CommentsViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        print("\(albumID)*******************************")
+        print("\(String(describing: albumID))*******************************")
     }
-    
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,20 +43,20 @@ class CommentsViewController: UITableViewController {
         commentCell.indentationLevel = commentLVLs[indexPath.row]
         commentCell.textLabel?.text = authors[indexPath.row]
         commentCell.detailTextLabel?.text = comments[indexPath.row]
-        
+
         return commentCell
     }
-    
+
     func decomposeCommentInfo(commentsArray: [CommentInfo]) {
-        var indentationLevel = 0
         for index in 0..<commentsArray.count {
             authors.append(commentsArray[index].author)
             comments.append(commentsArray[index].comment)
-            commentLVLs.append(indentationLevel)
             points.append(commentsArray[index].points)
             if let children = commentsArray[index].children {
                 indentationLevel += 1
+                commentLVLs.append(indentationLevel)
                 decomposeCommentInfo(commentsArray: children)
+                indentationLevel -= 1
             }
         }
     }

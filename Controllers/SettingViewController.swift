@@ -17,7 +17,7 @@ class SettingViewController: UITableViewController {
     var settings = [String]()
     var selectedString = ""
     weak var settingDelegate: SettingViewControllerDelagate?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
@@ -36,11 +36,11 @@ class SettingViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath)
-        
+
         cell.textLabel?.text = settings[indexPath.row]
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedString = settings[indexPath.row]
     }
