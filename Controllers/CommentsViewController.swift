@@ -26,6 +26,7 @@ class CommentsViewController: UITableViewController {
                 self.commentsInfo = commentArray.data
                 self.decomposeCommentInfo(commentsArray: self.commentsInfo)
                 self.tableView.reloadData()
+
             }
         }
         print("\(String(describing: albumID))*******************************")
@@ -38,12 +39,12 @@ class CommentsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell()
-        }
-        commentCell.indentationLevel = commentLVLs[indexPath.row]
-        commentCell.textLabel?.text = authors[indexPath.row]
-        commentCell.detailTextLabel?.text = comments[indexPath.row]
+        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell() }
 
+        commentCell.indentationLevel = commentLVLs[indexPath.row]
+        commentCell.ptsLabel.text = String(points[indexPath.row]) + " " + "pts"
+        commentCell.nameLabel.text = authors[indexPath.row]
+        commentCell.commentLabel.text = comments[indexPath.row]
         return commentCell
     }
 
@@ -57,6 +58,8 @@ class CommentsViewController: UITableViewController {
                 commentLVLs.append(indentationLevel)
                 decomposeCommentInfo(commentsArray: children)
                 indentationLevel -= 1
+            } else {
+                commentLVLs.append(indentationLevel)
             }
         }
     }
