@@ -12,4 +12,10 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var ptsLabel: UILabel!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.contentView.layoutMargins.left = CGFloat(self.indentationLevel) * self.indentationWidth
+        self.contentView.layoutIfNeeded()
+    }
 }

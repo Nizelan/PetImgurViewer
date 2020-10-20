@@ -293,19 +293,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Albom" id="url-5M-vwV"/>
                     <connections>
-                        <segue destination="iB9-Po-BVj" kind="showDetail" identifier="CommentsSegue" id="KpQ-Qe-jl8"/>
+                        <segue destination="iB9-Po-BVj" kind="show" identifier="CommentsSegue" id="KpQ-Qe-jl8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-wI-xMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1886.9565217391305" y="67.633928571428569"/>
         </scene>
-        <!--Comments View Controller-->
+        <!--Comments-->
         <scene sceneID="RG1-YI-m4v">
             <objects>
                 <tableViewController id="iB9-Po-BVj" customClass="CommentsViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f59-68-hhW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -365,7 +365,7 @@
                             <outlet property="delegate" destination="iB9-Po-BVj" id="7hK-7b-iRW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="WvO-hP-EuN"/>
+                    <navigationItem key="navigationItem" title="Comments" id="WvO-hP-EuN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4t-ki-Btz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
