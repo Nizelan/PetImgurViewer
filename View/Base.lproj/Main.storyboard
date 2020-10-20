@@ -227,7 +227,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYs-ZS-owd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2761" y="-585"/>
+            <point key="canvasLocation" x="2729" y="-585"/>
         </scene>
         <!--Albom-->
         <scene sceneID="CAj-TX-Bp1">
@@ -254,12 +254,27 @@
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="hX7-Jy-V1K" userLabel="Activity Indicator">
                                             <rect key="frame" x="197" y="190" width="20" height="20"/>
                                         </activityIndicatorView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaI-Uf-8xs">
+                                            <rect key="frame" x="314" y="309" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="dET-Hk-4ri"/>
+                                                <constraint firstAttribute="width" constant="80" id="wSd-0h-X2e"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="tintColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" image="pencil.and.ellipsis.rectangle" catalog="system"/>
+                                            <connections>
+                                                <action selector="goToComments:" destination="CVk-Ae-QGP" eventType="touchUpInside" id="45A-LI-deI"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="WK3-Yu-OT4" firstAttribute="leading" secondItem="0f9-Lk-1BD" secondAttribute="leading" id="6Iy-tl-eaI"/>
+                                        <constraint firstItem="FaI-Uf-8xs" firstAttribute="trailing" secondItem="0f9-Lk-1BD" secondAttribute="trailingMargin" id="6XI-ZC-knY"/>
                                         <constraint firstItem="hX7-Jy-V1K" firstAttribute="centerX" secondItem="WK3-Yu-OT4" secondAttribute="centerX" id="BjC-94-hj1"/>
                                         <constraint firstItem="WK3-Yu-OT4" firstAttribute="top" secondItem="0f9-Lk-1BD" secondAttribute="top" id="Ldk-Pb-brr"/>
                                         <constraint firstItem="hX7-Jy-V1K" firstAttribute="centerY" secondItem="WK3-Yu-OT4" secondAttribute="centerY" id="SsN-LY-Kt0"/>
+                                        <constraint firstItem="FaI-Uf-8xs" firstAttribute="bottom" secondItem="0f9-Lk-1BD" secondAttribute="bottomMargin" id="VSx-fP-wWg"/>
                                         <constraint firstAttribute="trailing" secondItem="WK3-Yu-OT4" secondAttribute="trailing" id="wEn-Wv-pPZ"/>
                                         <constraint firstAttribute="bottom" secondItem="WK3-Yu-OT4" secondAttribute="bottom" id="yVB-5k-Ayz"/>
                                     </constraints>
@@ -277,13 +292,88 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Albom" id="url-5M-vwV"/>
+                    <connections>
+                        <segue destination="iB9-Po-BVj" kind="show" identifier="CommentsSegue" id="KpQ-Qe-jl8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-wI-xMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1886.9565217391305" y="67.633928571428569"/>
         </scene>
+        <!--Comments-->
+        <scene sceneID="RG1-YI-m4v">
+            <objects>
+                <tableViewController id="iB9-Po-BVj" customClass="CommentsViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f59-68-hhW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="PK5-F6-e2f" customClass="CommentCell" customModule="someAPIMadness" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="101"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PK5-F6-e2f" id="PUD-bD-2p6">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTY-ec-cda">
+                                            <rect key="frame" x="20" y="11" width="93.5" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="0ug-5Y-FhJ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="commentLabel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wen-HL-2tg">
+                                            <rect key="frame" x="20" y="40" width="374" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ptsLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bt-2Y-vJI">
+                                            <rect key="frame" x="20" y="69" width="66" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="AVZ-TZ-8ut"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="Wen-HL-2tg" firstAttribute="top" secondItem="uTY-ec-cda" secondAttribute="bottom" constant="8" id="6Pd-wP-5kS"/>
+                                        <constraint firstItem="1bt-2Y-vJI" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="F0S-lM-jeq"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Wen-HL-2tg" secondAttribute="trailing" id="H6n-1V-iRm"/>
+                                        <constraint firstItem="uTY-ec-cda" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="HoJ-QG-PDm"/>
+                                        <constraint firstItem="uTY-ec-cda" firstAttribute="top" secondItem="PUD-bD-2p6" secondAttribute="topMargin" id="Ocp-nr-oIF"/>
+                                        <constraint firstItem="Wen-HL-2tg" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="UEg-Fa-bZD"/>
+                                        <constraint firstItem="1bt-2Y-vJI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wen-HL-2tg" secondAttribute="bottom" constant="8" id="gTT-nZ-Jqr"/>
+                                        <constraint firstItem="1bt-2Y-vJI" firstAttribute="bottom" secondItem="PUD-bD-2p6" secondAttribute="bottomMargin" id="hvl-hO-fCa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="commentLabel" destination="Wen-HL-2tg" id="g83-J3-Jkn"/>
+                                    <outlet property="nameLabel" destination="uTY-ec-cda" id="HGT-hw-TDm"/>
+                                    <outlet property="ptsLabel" destination="1bt-2Y-vJI" id="6Kr-TB-rBF"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="iB9-Po-BVj" id="VaS-Iw-Wr8"/>
+                            <outlet property="delegate" destination="iB9-Po-BVj" id="7hK-7b-iRW"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Comments" id="WvO-hP-EuN"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4t-ki-Btz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2728.985507246377" y="67.633928571428569"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Up" width="807" height="768"/>
+        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
     </resources>
 </document>

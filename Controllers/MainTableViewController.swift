@@ -15,23 +15,24 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
     var window = "viral"
     var albums = [Post]()
     var imagesCount = Int()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
-        
+
         self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
-            
+
             self.albums = galleryArray.data
             self.tableView.reloadData()
+            print("\(self.albums[1].postId)---------------------------")
         }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albums.count
     }
-   
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AlbumCell else {
             return UITableViewCell()
@@ -41,10 +42,10 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
 
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedAlbum = albums[indexPath.row]
-        
+
         performSegue(withIdentifier: "AlbumSegue", sender: selectedAlbum)
     }
 
@@ -52,9 +53,9 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
         sections = sectionsText
         sort = sortText
         window = windowText
-        
+
         self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
-            
+
             self.albums = galleryArray.data
             self.tableView.reloadData()
         }
@@ -63,7 +64,7 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
     @IBAction func goToSetings(_ sender: UIButton) {
         performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AlbumSegue" {
             guard let destination = segue.destination as? AlbumTableViewController else { return }

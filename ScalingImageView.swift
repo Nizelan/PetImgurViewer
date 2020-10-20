@@ -24,7 +24,6 @@ class ScalingImageView: UIImageView {
             return CGSize(width: self.frame.width, height: size.height / scale)
         }
 
-
         return super.intrinsicContentSize
     }
 }
