@@ -42,9 +42,14 @@ class CommentsViewController: UITableViewController {
         guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell() }
 
         commentCell.indentationLevel = commentLVLs[indexPath.row]
-        commentCell.ptsLabel.text = String(points[indexPath.row]) + " " + "pts"
         commentCell.nameLabel.text = authors[indexPath.row]
         commentCell.commentLabel.text = comments[indexPath.row]
+        if let linc = lincFinder(string: comments[indexPath.row]) {
+            if linc.contains("gif") {
+                commentCell.commentImegeView.loadGif(url: linc)
+            }
+        }
+        commentCell.ptsLabel.text = String(points[indexPath.row]) + " " + "pts"
         return commentCell
     }
 
@@ -62,5 +67,20 @@ class CommentsViewController: UITableViewController {
                 commentLVLs.append(indentationLevel)
             }
         }
+    }
+
+    func lincFinder(string: String) -> String? {
+        let input = string
+        var urlString = String()
+
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let maches = detector?.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count)) {
+            for mach in maches {
+                guard let range = Range(mach.range, in: input) else { continue }
+                let url = input[range]
+                urlString = String(url)
+            }
+        }
+        return urlString
     }
 }

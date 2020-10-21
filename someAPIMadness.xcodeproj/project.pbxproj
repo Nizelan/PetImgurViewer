@@ -15,6 +15,7 @@
 		99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99616D8E252F5957001E8456 /* CommentsViewController.swift */; };
 		9961B5B124DB26530055E220 /* SubImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9961B5B024DB26530055E220 /* SubImageView.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
+		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
 		9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* SettingsViewController.swift */; };
 		9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SettingViewController.swift */; };
 		9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9999FF4A24CB5F85000F660A /* AlbumCell.swift */; };
@@ -58,6 +59,7 @@
 		99616D8E252F5957001E8456 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		9961B5B024DB26530055E220 /* SubImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubImageView.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
+		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		9975AA3824E2988400B418A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9975AA3A24E2B61400B418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		9999FF4A24CB5F85000F660A /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		99D1928F24B8A59400082D6A = {
 			isa = PBXGroup;
 			children = (
+				99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */,
 				97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */,
 				97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */,
 				99DE876C24C0819C0085DCE2 /* Controllers */,
@@ -361,6 +364,7 @@
 				99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */,
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
 				9901468C252B4C8B00BBF166 /* SettingsData.swift in Sources */,
+				99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */,
 				9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */,
 				99B4FF1024D95E2600BE8F60 /* SettingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,

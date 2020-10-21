@@ -309,11 +309,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="PK5-F6-e2f" customClass="CommentCell" customModule="someAPIMadness" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="101"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="271" id="PK5-F6-e2f" customClass="CommentCell" customModule="someAPIMadness" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="271"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PK5-F6-e2f" id="PUD-bD-2p6">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="101"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="271"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTY-ec-cda">
@@ -332,7 +332,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ptsLabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bt-2Y-vJI">
-                                            <rect key="frame" x="20" y="69" width="66" height="21"/>
+                                            <rect key="frame" x="20" y="239" width="66" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="AVZ-TZ-8ut"/>
                                             </constraints>
@@ -340,6 +340,13 @@
                                             <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IT3-ZJ-Zgj">
+                                            <rect key="frame" x="20" y="65" width="240" height="170"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="240" id="YM3-FA-bKE"/>
+                                                <constraint firstAttribute="height" constant="170" id="wOW-yW-S8e"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     <constraints>
@@ -347,13 +354,16 @@
                                         <constraint firstItem="1bt-2Y-vJI" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="F0S-lM-jeq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Wen-HL-2tg" secondAttribute="trailing" id="H6n-1V-iRm"/>
                                         <constraint firstItem="uTY-ec-cda" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="HoJ-QG-PDm"/>
+                                        <constraint firstItem="IT3-ZJ-Zgj" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wen-HL-2tg" secondAttribute="bottom" constant="4" id="JQX-Aw-GDl"/>
                                         <constraint firstItem="uTY-ec-cda" firstAttribute="top" secondItem="PUD-bD-2p6" secondAttribute="topMargin" id="Ocp-nr-oIF"/>
                                         <constraint firstItem="Wen-HL-2tg" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="UEg-Fa-bZD"/>
-                                        <constraint firstItem="1bt-2Y-vJI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Wen-HL-2tg" secondAttribute="bottom" constant="8" id="gTT-nZ-Jqr"/>
+                                        <constraint firstItem="1bt-2Y-vJI" firstAttribute="top" secondItem="IT3-ZJ-Zgj" secondAttribute="bottom" constant="4" id="b0s-ud-0TM"/>
                                         <constraint firstItem="1bt-2Y-vJI" firstAttribute="bottom" secondItem="PUD-bD-2p6" secondAttribute="bottomMargin" id="hvl-hO-fCa"/>
+                                        <constraint firstItem="IT3-ZJ-Zgj" firstAttribute="leading" secondItem="PUD-bD-2p6" secondAttribute="leadingMargin" id="t4k-F1-Dlj"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="commentImegeView" destination="IT3-ZJ-Zgj" id="4mE-LH-4zs"/>
                                     <outlet property="commentLabel" destination="Wen-HL-2tg" id="g83-J3-Jkn"/>
                                     <outlet property="nameLabel" destination="uTY-ec-cda" id="HGT-hw-TDm"/>
                                     <outlet property="ptsLabel" destination="1bt-2Y-vJI" id="6Kr-TB-rBF"/>

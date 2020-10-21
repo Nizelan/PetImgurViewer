@@ -34,7 +34,6 @@ class AlbumTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = album?.images?.count else { return 0 }
         return count
