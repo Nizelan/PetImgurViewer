@@ -41,15 +41,8 @@ class CommentsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell() }
 
-        commentCell.indentationLevel = commentLVLs[indexPath.row]
-        commentCell.nameLabel.text = authors[indexPath.row]
-        commentCell.commentLabel.text = comments[indexPath.row]
-        if let linc = lincFinder(string: comments[indexPath.row]) {
-            if linc.contains("gif") {
-                commentCell.commentImegeView.loadGif(url: linc)
-            }
-        }
-        commentCell.ptsLabel.text = String(points[indexPath.row]) + " " + "pts"
+        commentCell.setupCell(name: authors[indexPath.row], comment: comments[indexPath.row], pts: points[indexPath.row], indentLVL: commentLVLs[indexPath.row])
+
         return commentCell
     }
 
@@ -69,18 +62,5 @@ class CommentsViewController: UITableViewController {
         }
     }
 
-    func lincFinder(string: String) -> String? {
-        let input = string
-        var urlString = String()
 
-        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let maches = detector?.matches(in: input, options: [], range: NSRange(location: 0, length: input.utf16.count)) {
-            for mach in maches {
-                guard let range = Range(mach.range, in: input) else { continue }
-                let url = input[range]
-                urlString = String(url)
-            }
-        }
-        return urlString
-    }
 }
