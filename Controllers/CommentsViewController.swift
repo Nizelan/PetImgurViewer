@@ -39,11 +39,23 @@ class CommentsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else { return UITableViewCell() }
-
-        commentCell.setupCell(name: authors[indexPath.row], comment: comments[indexPath.row], pts: points[indexPath.row], indentLVL: commentLVLs[indexPath.row])
-
-        return commentCell
+        if lincFinder(string: comments[indexPath.row]) != nil {
+            guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
+                                                                  for: indexPath) as? CommentCell else { return UITableViewCell() }
+            commentCell.setupCell(name: authors[indexPath.row],
+                                  comment: comments[indexPath.row],
+                                  pts: points[indexPath.row],
+                                  indentLVL: commentLVLs[indexPath.row])
+            return commentCell
+        } else {
+            guard let commentCellWI = tableView.dequeueReusableCell(withIdentifier: "CommentCellWI",
+                                                                    for: indexPath) as? CommentCellWI else { return UITableViewCell() }
+            commentCellWI.setupCellWI(name: authors[indexPath.row],
+                                      comment: comments[indexPath.row],
+                                      pts: points[indexPath.row],
+                                      indentLVL: commentLVLs[indexPath.row])
+            return commentCellWI
+        }
     }
 
     func decomposeCommentInfo(commentsArray: [CommentInfo]) {
@@ -61,6 +73,20 @@ class CommentsViewController: UITableViewController {
             }
         }
     }
+    func lincFinder(string: String) -> String? {
+        let input = string
+        var urlString: String?
 
-
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        if let maches = detector?.matches(in: input,
+                                          options: [],
+                                          range: NSRange(location: 0, length: input.utf16.count)) {
+            for mach in maches {
+                guard let range = Range(mach.range, in: input) else { continue }
+                let url = input[range]
+                urlString = String(url)
+            }
+        }
+        return urlString
+    }
 }
