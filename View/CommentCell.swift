@@ -12,7 +12,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var ptsLabel: UILabel!
-    @IBOutlet weak var commentImageView: UIImageView!
+    @IBOutlet weak var commentImageView: ScalingImageView!
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -20,35 +20,24 @@ class CommentCell: UITableViewCell {
         self.contentView.layoutIfNeeded()
     }
 
-    func setupCell(name: String, comment: String, pts: Int, indentLVL: Int) {
+    func setupCell(comment: Comment, indentLVL: Int, urlString: String?) {
         self.indentationLevel = indentLVL
-        self.nameLabel.text = name
-        self.commentLabel.text = comment
-        self.ptsLabel.text = String(pts) + " " + "pts"
-        if let linc = lincFinder(string: comment) {
-            if linc.contains("gif") {
-                self.commentImageView.loadGif(url: linc)
-                print(linc)
-            } else if let imageLinc = lincFinder(string: linc) {
+        self.nameLabel.text = comment.author
+        self.commentLabel.text = comment.comment
+        self.ptsLabel.text = String(comment.points) + " " + "pts"
+        if let link = urlString {
+            if link.contains("gif") {
+                self.commentImageView.loadGif(url: link)
+                print(link)
+            } else if let imageLinc = urlString {
                 self.commentImageView.loadImage(from: imageLinc)
             }
+        } else {
+            commentImageView.translatesAutoresizingMaskIntoConstraints = false
+            print("==============> \(commentImageView)")
+            commentImageView.imageSize = CGSize(width: 0, height: 0)
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
         }
-    }
-
-    func lincFinder(string: String) -> String? {
-        let input = string
-        var urlString = String()
-
-        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let maches = detector?.matches(in: input,
-                                          options: [],
-                                          range: NSRange(location: 0, length: input.utf16.count)) {
-            for mach in maches {
-                guard let range = Range(mach.range, in: input) else { continue }
-                let url = input[range]
-                urlString = String(url)
-            }
-        }
-        return urlString
     }
 }

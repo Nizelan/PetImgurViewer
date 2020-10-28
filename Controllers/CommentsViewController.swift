@@ -11,20 +11,18 @@ import UIKit
 class CommentsViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var albumID: String?
-    var commentsInfo = [CommentInfo]()
-    var authors = [String]()
-    var comments = [String]()
-    var commentLVLs = [Int]()
-    var points = [Int]()
+    var comments = [Comment]()
+    var indentLVLs = [Int]()
     var indentationLevel = 0
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.estimatedRowHeight = 300
+        tableView.rowHeight = UITableView.automaticDimension
 
         if let albumID = albumID {
             self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
-                self.commentsInfo = commentArray.data
-                self.decomposeCommentInfo(commentsArray: self.commentsInfo)
+                self.comments = commentArray.data
+                self.createIndentArray(commentsArray: self.comments)
                 self.tableView.reloadData()
 
             }
@@ -35,58 +33,49 @@ class CommentsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return authors.count
+        return indentLVLs.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if lincFinder(string: comments[indexPath.row]) != nil {
-            guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
-                                                                  for: indexPath) as? CommentCell else { return UITableViewCell() }
-            commentCell.setupCell(name: authors[indexPath.row],
-                                  comment: comments[indexPath.row],
-                                  pts: points[indexPath.row],
-                                  indentLVL: commentLVLs[indexPath.row])
+        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
+                                                              for: indexPath) as? CommentCell else { return UITableViewCell() }
+        var dummy = 0
+        if let currentComment = cm(at: indexPath.row, currentIndex: &dummy, in: comments) {
+            commentCell.setupCell(comment: currentComment,
+                                  indentLVL: indentLVLs[indexPath.row],
+                                  urlString: currentComment.linkFinder())
+
             return commentCell
-        } else {
-            guard let commentCellWI = tableView.dequeueReusableCell(withIdentifier: "CommentCellWI",
-                                                                    for: indexPath) as? CommentCellWI else { return UITableViewCell() }
-            commentCellWI.setupCellWI(name: authors[indexPath.row],
-                                      comment: comments[indexPath.row],
-                                      pts: points[indexPath.row],
-                                      indentLVL: commentLVLs[indexPath.row])
-            return commentCellWI
         }
+        return commentCell
     }
 
-    func decomposeCommentInfo(commentsArray: [CommentInfo]) {
+    func createIndentArray(commentsArray: [Comment]) {
         for index in 0..<commentsArray.count {
-            authors.append(commentsArray[index].author)
-            comments.append(commentsArray[index].comment)
-            points.append(commentsArray[index].points)
             if let children = commentsArray[index].children {
                 indentationLevel += 1
-                commentLVLs.append(indentationLevel)
-                decomposeCommentInfo(commentsArray: children)
+                indentLVLs.append(indentationLevel)
+                createIndentArray(commentsArray: children)
                 indentationLevel -= 1
             } else {
-                commentLVLs.append(indentationLevel)
+                indentLVLs.append(indentationLevel)
             }
         }
     }
-    func lincFinder(string: String) -> String? {
-        let input = string
-        var urlString: String?
 
-        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let maches = detector?.matches(in: input,
-                                          options: [],
-                                          range: NSRange(location: 0, length: input.utf16.count)) {
-            for mach in maches {
-                guard let range = Range(mach.range, in: input) else { continue }
-                let url = input[range]
-                urlString = String(url)
+    func cm(at row: Int, currentIndex: inout Int, in array: [Comment]) -> Comment? {
+        for comment in array {
+            if currentIndex == row {
+                return comment
+            }
+            currentIndex += 1
+            print(currentIndex)
+            if comment.children!.count != 0,
+                let foundIt = cm(at: row, currentIndex: &currentIndex, in: comment.children!) {
+                return foundIt
             }
         }
-        return urlString
+
+        return nil
     }
 }

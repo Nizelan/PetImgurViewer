@@ -61,7 +61,7 @@ class AlbumCell: UITableViewCell {
 //                                                   toItem: imageViewOutlet,
 //                                                   attribute: NSLayoutConstraint.Attribute.height,
 //                                                   multiplier: album.aspectRatio, constant: 0.0)
-
+        print("===========>\(imageViewOutlet)")
         imageViewOutlet.imageSize = album.coverSize
         self.setNeedsLayout()
         self.layoutIfNeeded()

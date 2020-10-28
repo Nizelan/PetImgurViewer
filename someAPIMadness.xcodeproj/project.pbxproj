@@ -15,7 +15,6 @@
 		99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99616D8E252F5957001E8456 /* CommentsViewController.swift */; };
 		9961B5B124DB26530055E220 /* SubImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9961B5B024DB26530055E220 /* SubImageView.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
-		9973170E2542F7F000161E6C /* CommentCellWI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9973170D2542F7F000161E6C /* CommentCellWI.swift */; };
 		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
 		9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* SettingsViewController.swift */; };
 		9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SettingViewController.swift */; };
@@ -60,7 +59,6 @@
 		99616D8E252F5957001E8456 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		9961B5B024DB26530055E220 /* SubImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubImageView.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
-		9973170D2542F7F000161E6C /* CommentCellWI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCellWI.swift; sourceTree = "<group>"; };
 		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		9975AA3824E2988400B418A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9975AA3A24E2B61400B418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -191,7 +189,6 @@
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
 				9999FF4A24CB5F85000F660A /* AlbumCell.swift */,
 				995A26BE2538703B000093CB /* CommentCell.swift */,
-				9973170D2542F7F000161E6C /* CommentCellWI.swift */,
 				99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */,
 				9961B5B024DB26530055E220 /* SubImageView.swift */,
 			);
@@ -376,7 +373,6 @@
 				97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */,
 				9961B5B124DB26530055E220 /* SubImageView.swift in Sources */,
 				995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */,
-				9973170E2542F7F000161E6C /* CommentCellWI.swift in Sources */,
 				9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */,
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */,

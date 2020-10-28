@@ -34,8 +34,6 @@ struct Post: Codable {
         case images
         case coverWidth = "cover_width"
         case coverHeight = "cover_height"
-
-    
     }
 }
 
