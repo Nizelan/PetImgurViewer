@@ -34,7 +34,6 @@ class CommentCell: UITableViewCell {
             }
         } else {
             commentImageView.translatesAutoresizingMaskIntoConstraints = false
-            print("==============> \(commentImageView)")
             commentImageView.imageSize = CGSize(width: 0, height: 0)
             self.setNeedsLayout()
             self.layoutIfNeeded()

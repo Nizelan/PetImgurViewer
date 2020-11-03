@@ -12,8 +12,10 @@ class CommentsViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var albumID: String?
     var comments = [Comment]()
-    var indentLVLs = [Int]()
+    var countOfCells = Int()
     var indentationLevel = 0
+
+    var currentIndent = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300
@@ -22,7 +24,7 @@ class CommentsViewController: UITableViewController {
         if let albumID = albumID {
             self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
                 self.comments = commentArray.data
-                self.createIndentArray(commentsArray: self.comments)
+                self.createCountOfCells(commentsArray: self.comments)
                 self.tableView.reloadData()
 
             }
@@ -33,49 +35,72 @@ class CommentsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return indentLVLs.count
+        return countOfCells
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
                                                               for: indexPath) as? CommentCell else { return UITableViewCell() }
         var dummy = 0
-        if let currentComment = cm(at: indexPath.row, currentIndex: &dummy, in: comments) {
-            commentCell.setupCell(comment: currentComment,
-                                  indentLVL: indentLVLs[indexPath.row],
-                                  urlString: currentComment.linkFinder())
+        var lvlOfIndent = 0
+        if let comment = indentDetermine(at: indexPath.row, currentIndex: &dummy, indent: &lvlOfIndent, in: comments) {
+            commentCell.setupCell(comment: comment,
+                                  indentLVL: lvlOfIndent,
+                                  urlString: comment.linkFinder())
+            self.currentIndent = 0
 
             return commentCell
+
         }
         return commentCell
     }
 
-    func createIndentArray(commentsArray: [Comment]) {
+    func createCountOfCells(commentsArray: [Comment]) {
         for index in 0..<commentsArray.count {
             if let children = commentsArray[index].children {
                 indentationLevel += 1
-                indentLVLs.append(indentationLevel)
-                createIndentArray(commentsArray: children)
+                countOfCells += 1
+                createCountOfCells(commentsArray: children)
                 indentationLevel -= 1
             } else {
-                indentLVLs.append(indentationLevel)
+                countOfCells += 1
             }
         }
     }
 
-    func cm(at row: Int, currentIndex: inout Int, in array: [Comment]) -> Comment? {
+    func commentFind(at row: Int, currentIndex: inout Int, in array: [Comment]) -> Comment? {
         for comment in array {
             if currentIndex == row {
                 return comment
             }
             currentIndex += 1
             print(currentIndex)
-            if comment.children!.count != 0,
-                let foundIt = cm(at: row, currentIndex: &currentIndex, in: comment.children!) {
+            if comment.children!.count != 0, let foundIt = commentFind(at: row,
+                                                              currentIndex: &currentIndex,
+                                                              in: comment.children!) {
                 return foundIt
             }
         }
 
+        return nil
+    }
+
+    func indentDetermine(at row: Int, currentIndex: inout Int, indent: inout Int, in array: [Comment]) -> Comment? {
+        for comment in array {
+            if currentIndex == row {
+                return comment
+            }
+            currentIndex += 1
+            print(currentIndex)
+            if comment.children!.count != 0, let foundIt = indentDetermine(at: row,
+                                                                           currentIndex: &currentIndex,
+                                                                           indent: &indent,
+                                                                           in: comment.children!) {
+                indent += 1
+                self.currentIndent = indent
+                return foundIt
+            }
+        }
         return nil
     }
 }
