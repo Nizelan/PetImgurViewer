@@ -90,5 +90,20 @@ struct NetworkManager {
         }
         return nil
     }
+    func authorization() {
 
+        let urlString = "https://api.imgur.com/oauth2/authorize?client_id=094e934ce523296&response_type=token"
+        let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
+
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = httpHeaders
+                URLSession.shared.dataTask(with: request) { (data, response, error) in
+           if let response = response {
+               print(response)
+           }
+                    print(String(data: data!, encoding: .utf8))
+        }.resume()
+    }
 }
