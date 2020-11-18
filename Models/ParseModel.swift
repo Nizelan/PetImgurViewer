@@ -7,20 +7,63 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct GalleryResponse: Codable {
-    let data: [Porst]
+    let data: [Post]
 }
 
-struct Porst: Codable {
+struct Post: Codable {
+    let postId: String
     let ups: Int?
     let downs: Int?
     let title: String?
-    let is_album: Bool
+    let isAlbum: Bool
     let link: String?
     let images: [Image]?
+    let coverWidth: Int?
+    let coverHeight: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case postId = "id"
+        case ups
+        case downs
+        case title
+        case isAlbum = "is_album"
+        case link
+        case images
+        case coverWidth = "cover_width"
+        case coverHeight = "cover_height"
+    }
 }
 
 struct Image: Codable {
     let link: String
+    let width: Int?
+    let height: Int?
+}
+
+extension Post {
+    var coverImageLink: String? {
+        if isAlbum {
+            return images?.first?.link
+        } else {
+            return link
+        }
+    }
+
+    var coverSize: CGSize {
+        return CGSize(width: coverWidth ?? 0, height: coverHeight ?? 0)
+    }
+
+    var aspectRatio: CGFloat {
+        if isAlbum {
+            guard let image = images?.first else {
+                return 1
+            }
+            return CGFloat(image.width ?? 1) / CGFloat(image.height ?? 1)
+        } else {
+            return CGFloat(coverWidth ?? 1) / CGFloat(coverHeight ?? 1)
+        }
+    }
 }
