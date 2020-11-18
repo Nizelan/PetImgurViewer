@@ -120,6 +120,14 @@
 			path = "Settings data";
 			sourceTree = "<group>";
 		};
+		990CB22A2565B75200F6794B /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				99D192BD24B8A59E00082D6A /* someAPIMadnessUITests.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		99D1928F24B8A59400082D6A = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +139,6 @@
 				99DE876724C07EDB0085DCE2 /* Models */,
 				99D1929A24B8A59500082D6A /* someAPIMadness */,
 				99D192B124B8A59E00082D6A /* someAPIMadnessTests */,
-				99D192BC24B8A59E00082D6A /* someAPIMadnessUITests */,
 				99D1929924B8A59500082D6A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -320,7 +327,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				99D192A824B8A59D00082D6A /* LaunchScreen.storyboard in Resources */,
-				99F16E892552EB2600E9A1FF /* GoogleService-Info.plist in Resources */,
 				99D192A524B8A59D00082D6A /* Assets.xcassets in Resources */,
 				99D192A324B8A59500082D6A /* Main.storyboard in Resources */,
 			);
