@@ -26,6 +26,7 @@ class CommentCell: UITableViewCell {
         self.commentLabel.text = comment.comment
         self.ptsLabel.text = String(comment.points) + " " + "pts"
         if let link = urlString {
+            setupImageSize(width: 240, height: 170)
             if link.contains("gif") {
                 self.commentImageView.loadGif(url: link)
                 print(link)
@@ -33,10 +34,14 @@ class CommentCell: UITableViewCell {
                 self.commentImageView.loadImage(from: imageLinc)
             }
         } else {
-            commentImageView.translatesAutoresizingMaskIntoConstraints = false
-            commentImageView.imageSize = CGSize(width: 0, height: 0)
-            self.setNeedsLayout()
-            self.layoutIfNeeded()
+            setupImageSize(width: 0, height: 0)
         }
+    }
+
+    func setupImageSize(width: Int, height: Int) {
+        commentImageView.translatesAutoresizingMaskIntoConstraints = false
+        commentImageView.imageSize = CGSize(width: width, height: height)
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
     }
 }
