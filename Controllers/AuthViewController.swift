@@ -8,47 +8,38 @@
 
 import UIKit
 
-class AuthViewController: UIViewController {
+class AuthViewController: UIViewController, WebViewControllerDelegate {
     private let networkManager = NetworkManager()
     var urlRequest: URLRequest?
 
-    var signup = true {
-        willSet {
-            if newValue {
-                titelLabel.text = "Registration"
-                nameField.isHidden = false
-                enterButton.setTitle("Login", for: .normal)
-            } else {
-                titelLabel.text = "Login"
-                nameField.isHidden = true
-                enterButton.setTitle("Registraition", for: .normal)
-            }
-        }
-    }
-
     @IBOutlet weak var titelLabel: UILabel!
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var enterButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameField.delegate = self
-        emailField.delegate = self
-        passwordField.delegate = self
         authorization()
     }
 
-    @IBAction func switchToLogin(_ sender: UIButton) {
-        signup = !signup
+    func update(dict: [String: String]) {
+        AuthorizationData.authorizationData = dict
+        print("TESTING_OUTPUT\(String(describing: AuthorizationData.authorizationData))")
+    }
+
+    @IBAction func login(_ sender: UIButton) {
+        if AuthorizationData.authorizationData.isEmpty {
+            performSegue(withIdentifier: "ShowWebView", sender: Any?.self)
+        } else {
+            performSegue(withIdentifier: "ShowAccount", sender: Any?.self)
+        }
     }
 
     func authorization() {
 
-        let urlString = "https://api.imgur.com/oauth2/authorize?client_id=094e934ce523296&response_type=token"
-        let httpHeaders = ["Authorization": "Client-ID 094e934ce523296"]
+        let urlString = "https://api.imgur.com/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
+        let httpHeaders = ["Authorization": "Client-ID 960fe8e1862cf58"]
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
 
@@ -60,7 +51,7 @@ class AuthViewController: UIViewController {
            if let response = response {
                print(response)
            }
-                    print(String(data: data!, encoding: .utf8))
+                    //print(String(data: data!, encoding: .utf8))
         }.resume()
     }
 
@@ -71,32 +62,15 @@ class AuthViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "ShowWebView" else { return }
-        guard let destination = segue.destination as? WebViewController else { return }
-        destination.request = urlRequest
-    }
-}
-
-    // MARK: Extentions
-extension AuthViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let name = nameField.text
-        let email = emailField.text
-        let password = passwordField.text
-
-        if signup {
-            if name!.isEmpty || email!.isEmpty || password!.isEmpty {
-                showAlert()
-            } else {
-                print("Fields is not empty")
-            }
-        } else {
-            if email!.isEmpty || password!.isEmpty {
-                showAlert()
-            } else {
-                performSegue(withIdentifier: "ShowWebView", sender: Any?.self)
-            }
+        if segue.identifier == "ShowAccount" {
+            guard segue.identifier == "ShowAccount" else { return }
+            guard let destination = segue.destination as? AccountViewController else { return }
+            destination.accountData = AuthorizationData.authorizationData
+        } else if segue.identifier == "ShowWebView" {
+            guard segue.identifier == "ShowWebView" else { return }
+            guard let destination = segue.destination as? WebViewController else { return }
+            destination.request = urlRequest
+            destination.webDelegate = self
         }
-        return true
     }
 }

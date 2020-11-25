@@ -10,6 +10,8 @@
 		97961C3B24D860690054F9E7 /* UIImageView+ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */; };
 		97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */; };
 		9901468C252B4C8B00BBF166 /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9901468B252B4C8B00BBF166 /* SettingsData.swift */; };
+		9902D1C4256E94DF004F86FA /* AuthorizationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902D1C3256E94DF004F86FA /* AuthorizationData.swift */; };
+		9902D1C6256E9D98004F86FA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902D1C5256E9D98004F86FA /* AccountViewController.swift */; };
 		99100127254C564000A4F295 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99100126254C564000A4F295 /* AuthViewController.swift */; };
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
@@ -29,10 +31,10 @@
 		99D192A824B8A59D00082D6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */; };
 		99D192B324B8A59E00082D6A /* SomeAPIMadnessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D192B224B8A59E00082D6A /* SomeAPIMadnessTests.swift */; };
 		99D192BE24B8A59E00082D6A /* SomeAPIMadnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D192BD24B8A59E00082D6A /* SomeAPIMadnessUITests.swift */; };
+		99D96CAA256541D3008FF32B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D96CA9256541D3008FF32B /* WebViewController.swift */; };
 		99D9CA8624D2CA14009B0809 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D9CA8524D2CA14009B0809 /* MainViewController.swift */; };
 		99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DE876824C07F160085DCE2 /* ParseModel.swift */; };
 		99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DE877224C08D6D0085DCE2 /* NetworkManager.swift */; };
-		99D96CAA256541D3008FF32B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D96CA9256541D3008FF32B /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoading.swift"; sourceTree = "<group>"; };
 		97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingImageView.swift; sourceTree = "<group>"; };
 		9901468B252B4C8B00BBF166 /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
+		9902D1C3256E94DF004F86FA /* AuthorizationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationData.swift; sourceTree = "<group>"; };
+		9902D1C5256E9D98004F86FA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		99100126254C564000A4F295 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +84,6 @@
 		99D192B424B8A59E00082D6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99D192B924B8A59E00082D6A /* someAPIMadnessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = someAPIMadnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99D192BD24B8A59E00082D6A /* SomeAPIMadnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeAPIMadnessUITests.swift; sourceTree = "<group>"; };
-		99D192BF24B8A59E00082D6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99D96CA9256541D3008FF32B /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		99D9CA8524D2CA14009B0809 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		99DE876824C07F160085DCE2 /* ParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseModel.swift; sourceTree = "<group>"; };
@@ -112,20 +115,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9901468A252B4C4900BBF166 /* Settings data */ = {
+		9900F501256D1A720005714E /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				99D192BD24B8A59E00082D6A /* SomeAPIMadnessUITests.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		9901468A252B4C4900BBF166 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				9901468B252B4C8B00BBF166 /* SettingsData.swift */,
+				9902D1C3256E94DF004F86FA /* AuthorizationData.swift */,
 			);
-			path = "Settings data";
-			sourceTree = "<group>";
-		};
-		990CB22A2565B75200F6794B /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				99D192BD24B8A59E00082D6A /* someAPIMadnessUITests.swift */,
-			);
-			name = "Recovered References";
+			path = Data;
 			sourceTree = "<group>";
 		};
 		99D1928F24B8A59400082D6A = {
@@ -140,6 +144,7 @@
 				99D1929A24B8A59500082D6A /* someAPIMadness */,
 				99D192B124B8A59E00082D6A /* someAPIMadnessTests */,
 				99D1929924B8A59500082D6A /* Products */,
+				9900F501256D1A720005714E /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,19 +178,10 @@
 			path = someAPIMadnessTests;
 			sourceTree = "<group>";
 		};
-		99D192BC24B8A59E00082D6A /* someAPIMadnessUITests */ = {
-			isa = PBXGroup;
-			children = (
-				99D192BD24B8A59E00082D6A /* SomeAPIMadnessUITests.swift */,
-				99D192BF24B8A59E00082D6A /* Info.plist */,
-			);
-			path = someAPIMadnessUITests;
-			sourceTree = "<group>";
-		};
 		99DE876724C07EDB0085DCE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				9901468A252B4C4900BBF166 /* Settings data */,
+				9901468A252B4C4900BBF166 /* Data */,
 				99DE876824C07F160085DCE2 /* ParseModel.swift */,
 				9972EDE125307C850056E660 /* CommentParseModel.swift */,
 				99DE877224C08D6D0085DCE2 /* NetworkManager.swift */,
@@ -213,6 +209,7 @@
 				99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */,
 				99616D8E252F5957001E8456 /* CommentsViewController.swift */,
 				99100126254C564000A4F295 /* AuthViewController.swift */,
+				9902D1C5256E9D98004F86FA /* AccountViewController.swift */,
 				99D96CA9256541D3008FF32B /* WebViewController.swift */,
 				99D9CA8524D2CA14009B0809 /* MainViewController.swift */,
 				9975AA3824E2988400B418A7 /* SettingsViewController.swift */,
@@ -374,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				995A26BF2538703B000093CB /* CommentCell.swift in Sources */,
+				9902D1C6256E9D98004F86FA /* AccountViewController.swift in Sources */,
 				99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */,
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
 				9901468C252B4C8B00BBF166 /* SettingsData.swift in Sources */,
@@ -392,6 +390,7 @@
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */,
 				99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */,
+				9902D1C4256E94DF004F86FA /* AuthorizationData.swift in Sources */,
 				97961C3B24D860690054F9E7 /* UIImageView+ImageLoading.swift in Sources */,
 				99D9CA8624D2CA14009B0809 /* MainViewController.swift in Sources */,
 			);
