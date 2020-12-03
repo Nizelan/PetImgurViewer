@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController, SettingsControllerDelegate {
+class MainTableViewController: UITableViewController {
     private let networkManager = NetworkManager()
     var sections = "hot"
     var sort = "top"
@@ -21,7 +21,9 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
 
-        self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery(sections: SettingsData.sectionsData,
+                                         sort: SettingsData.sortData,
+                                         window: SettingsData.windowData) { (galleryArray: GalleryResponse) in
 
             self.albums = galleryArray.data
             self.tableView.reloadData()
@@ -49,30 +51,11 @@ class MainTableViewController: UITableViewController, SettingsControllerDelegate
         performSegue(withIdentifier: "AlbumSegue", sender: selectedAlbum)
     }
 
-    func update(sectionsText: String, sortText: String, windowText: String) {
-        sections = sectionsText
-        sort = sortText
-        window = windowText
-
-        self.networkManager.fetchGallery(sections: sections, sort: sort, window: window) { (galleryArray: GalleryResponse) in
-
-            self.albums = galleryArray.data
-            self.tableView.reloadData()
-        }
-    }
-
-    @IBAction func goToSetings(_ sender: UIButton) {
-        performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AlbumSegue" {
             guard let destination = segue.destination as? AlbumTableViewController else { return }
             guard let castedSender = sender as? Post else { return }
             destination.album = castedSender
-        } else if segue.identifier == "SetingsSegue" {
-            guard let destination = segue.destination as? SettingsViewController else { return }
-            destination.delegate = self
         }
     }
 }

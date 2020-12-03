@@ -20,7 +20,6 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        authorization()
     }
 
     func update(dict: [String: String]) {
@@ -30,29 +29,15 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
 
     @IBAction func login(_ sender: UIButton) {
         if AuthorizationData.authorizationData.isEmpty {
+            let urlString = "https://api.imgur.com/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
+            guard let url = URL(string: urlString) else { return }
+            let request = URLRequest(url: url)
+            urlRequest = request
             performSegue(withIdentifier: "ShowWebView", sender: Any?.self)
         } else {
+            networkManager.authorization()
             performSegue(withIdentifier: "ShowAccount", sender: Any?.self)
         }
-    }
-
-    func authorization() {
-
-        let urlString = "https://api.imgur.com/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
-        let httpHeaders = ["Authorization": "Client-ID 960fe8e1862cf58"]
-        guard let url = URL(string: urlString) else { return }
-        var request = URLRequest(url: url)
-
-        urlRequest = request
-
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = httpHeaders
-                URLSession.shared.dataTask(with: request) { (data, response, error) in
-           if let response = response {
-               print(response)
-           }
-                    //print(String(data: data!, encoding: .utf8))
-        }.resume()
     }
 
     func showAlert() {
@@ -63,11 +48,9 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowAccount" {
-            guard segue.identifier == "ShowAccount" else { return }
             guard let destination = segue.destination as? AccountViewController else { return }
             destination.accountData = AuthorizationData.authorizationData
         } else if segue.identifier == "ShowWebView" {
-            guard segue.identifier == "ShowWebView" else { return }
             guard let destination = segue.destination as? WebViewController else { return }
             destination.request = urlRequest
             destination.webDelegate = self

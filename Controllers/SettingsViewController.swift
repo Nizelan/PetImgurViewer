@@ -36,7 +36,9 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
         print("\(SettingsData.sectionsData)-------------------------------------")
         print("\(SettingsData.sortData)-----------------------------------")
         print("\(SettingsData.windowData)----------------------------------------")
-        delegate?.update(sectionsText: selectedSettings[0], sortText: selectedSettings[1], windowText: selectedSettings[2])
+        delegate?.update(sectionsText: selectedSettings[0],
+                         sortText: selectedSettings[1],
+                         windowText: selectedSettings[2])
     }
 
     func updateSeting(selectedSetting: String) {
