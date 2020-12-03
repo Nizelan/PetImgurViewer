@@ -11,11 +11,16 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         return true
+    }
+
+    func showModalAuth() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let newvc = storyboard.instantiateViewController(identifier: "AuthViewController") as? AuthViewController else { return }
+        self.window?.rootViewController?.present(newvc, animated: false, completion: nil)
     }
 
     // MARK: UISceneSession Lifecycle

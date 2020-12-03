@@ -1,0 +1,92 @@
+//
+//  AcountViewController.swift
+//  someAPIMadness
+//
+//  Created by Nizelan on 25.11.2020.
+//  Copyright © 2020 Nizelan. All rights reserved.
+//
+
+import UIKit
+
+class AccountViewController: UIViewController, SettingsControllerDelegate {
+
+    let networkManager = NetworkManager()
+    var accountData: [String: String]?
+    var tableViewDelegate: UITableViewDelegate?
+    var tableViewDataSorse: UITableViewDataSource?
+
+    var accountImages = [AccPost]()
+    var accFavorites = [FavoritePost]()
+    var accComments = [AccComment]()
+
+    @IBOutlet weak var accountAvatar: UIImageView!
+    @IBOutlet weak var accountName: UILabel!
+    @IBOutlet weak var pointsTrophy: UILabel!
+    @IBOutlet weak var timeOfCreation: UILabel!
+    @IBOutlet weak var tableViewSwitch: UISegmentedControl!
+    @IBOutlet weak var accountTableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    func update(sectionsText: String, sortText: String, windowText: String) {
+        SettingsData.sectionsData = sectionsText
+        SettingsData.sortData = sortText
+        SettingsData.windowData = windowText
+    }
+
+    @IBAction func goToSettings(_ sender: Any) {
+        performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
+    }
+    @IBAction func goToAlbums(_ sender: Any) {
+        performSegue(withIdentifier: "ShowAlboms", sender: Any?.self)
+    }
+    @IBAction func switchAction(_ sender: UISegmentedControl) {
+        switchChosen()
+    }
+
+    func switchChosen() {
+        guard let accName = AuthorizationData.authorizationData["account_username"] else { return }
+        guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
+        if tableViewSwitch.selectedSegmentIndex == 0 {
+            networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
+                self.accountImages = accGalleryResp.data
+                self.accountTableView.reloadData()
+                print("\(self.accountImages[0])--------------------")
+            }
+            accountTableView.reloadData()
+            tableViewDelegate = AccountPosts()
+            tableViewDataSorse = AccountPosts()
+            print("AccountPosts")
+        } else if tableViewSwitch.selectedSegmentIndex == 1 {
+            networkManager.fetchAccFavorites(name: accName,
+                                             accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
+                                                self.accFavorites = accFavoritesResp.data
+                                                print("\(self.accFavorites[0])--------------------")
+            }
+            tableViewDelegate = AccountFavorites()
+            tableViewDataSorse = AccountFavorites()
+            print("AccountFavorites")
+        } else if tableViewSwitch.selectedSegmentIndex == 2 {
+            tableViewDelegate = AccountFollowing()
+            tableViewDataSorse = AccountFollowing()
+            print("AccountFollowing")
+        } else if tableViewSwitch.selectedSegmentIndex == 3 {
+            networkManager.fetchAccComments(name: accName) { (accCommentsResp: AccCommentsResp) in
+                self.accComments = accCommentsResp.data
+                print("\(self.accComments[0])--------------------")
+            }
+            tableViewDelegate = AccountComments()
+            tableViewDataSorse = AccountComments()
+            print("AccountComments")
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SetingsSegue" {
+            guard let destination = segue.destination as? SettingsViewController else { return }
+            destination.delegate = self
+        }
+    }
+}

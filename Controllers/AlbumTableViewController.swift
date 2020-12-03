@@ -34,7 +34,6 @@ class AlbumTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let count = album?.images?.count else { return 0 }
         return count
@@ -43,7 +42,7 @@ class AlbumTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let album = album,
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as? AlbumCell else {
-            return UITableViewCell()
+                return UITableViewCell()
         }
         if album.images?[indexPath.row].link != nil {
             if album.images![indexPath.row].link.contains("mp4") {
