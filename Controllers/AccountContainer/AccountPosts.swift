@@ -11,16 +11,21 @@ import UIKit
 class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     let networkManager = NetworkManager()
-    var accountImages = [AccPost]()
+    var accountImages: [AccPost]
+
+    init(images: [AccPost]) {
+        accountImages = images
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return accountImages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AlbumCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccPostsCell", for: indexPath) as? AccPostsCell else {
             return UITableViewCell()
         }
+        cell.setup(with: accountImages[indexPath.row])
         return cell
     }
 }

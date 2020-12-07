@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct AccFavoritesResp: Codable {
     let data: [FavoritePost]
@@ -14,10 +15,12 @@ struct AccFavoritesResp: Codable {
 
 struct FavoritePost: Codable {
     let currentId: String
-    let title: String
+    let title: String?
     let points: Int
     let link: String
     let images: [Images]
+    let coverWidth: Int
+    let coverHeight: Int
 
     enum CodingKeys: String, CodingKey {
         case currentId = "id"
@@ -25,6 +28,8 @@ struct FavoritePost: Codable {
         case points
         case link
         case images
+        case coverWidth = "cover_width"
+        case coverHeight = "cover_height"
     }
 }
 
@@ -33,5 +38,15 @@ struct Images: Codable {
 
     enum CodingKeys: String, CodingKey {
         case imageId = "id"
+    }
+}
+
+extension FavoritePost {
+    var coverSize: CGSize {
+        return CGSize(width: coverWidth ?? 0, height: coverHeight ?? 0)
+    }
+
+    var aspectRatio: CGFloat {
+        return CGFloat(coverWidth ?? 1) / CGFloat(coverHeight ?? 1)
     }
 }

@@ -79,7 +79,7 @@ struct NetworkManager {
         }.resume()
     }
 
-    // Account conteinment block
+    // MARK: - Account conteinment block
 
     func authorization() {
         if let accessTokken = AuthorizationData.authorizationData["access_token"] {

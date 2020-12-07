@@ -13,10 +13,12 @@
 		9902D1C4256E94DF004F86FA /* AuthorizationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902D1C3256E94DF004F86FA /* AuthorizationData.swift */; };
 		9902D1C6256E9D98004F86FA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902D1C5256E9D98004F86FA /* AccountViewController.swift */; };
 		99100127254C564000A4F295 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99100126254C564000A4F295 /* AuthViewController.swift */; };
+		991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F931C257BAEA800786C68 /* AccPostsCell.swift */; };
+		991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F9322257BB8D200786C68 /* AccFavoritesCell.swift */; };
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
 		99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99616D8E252F5957001E8456 /* CommentsViewController.swift */; };
-		9961B5B124DB26530055E220 /* SubImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9961B5B024DB26530055E220 /* SubImageView.swift */; };
+		996ECAAC257A5B3200AC5CCE /* AccCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
 		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
 		9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* SettingsViewController.swift */; };
@@ -68,10 +70,12 @@
 		9902D1C3256E94DF004F86FA /* AuthorizationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationData.swift; sourceTree = "<group>"; };
 		9902D1C5256E9D98004F86FA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		99100126254C564000A4F295 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		991F931C257BAEA800786C68 /* AccPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccPostsCell.swift; sourceTree = "<group>"; };
+		991F9322257BB8D200786C68 /* AccFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccFavoritesCell.swift; sourceTree = "<group>"; };
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		99616D8E252F5957001E8456 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
-		9961B5B024DB26530055E220 /* SubImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubImageView.swift; sourceTree = "<group>"; };
+		996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccCommentsCell.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
 		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		9975AA3824E2988400B418A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,16 @@
 				9902D1C3256E94DF004F86FA /* AuthorizationData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		996ECAAA257A5AF000AC5CCE /* AccountCastomCells */ = {
+			isa = PBXGroup;
+			children = (
+				996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */,
+				991F931C257BAEA800786C68 /* AccPostsCell.swift */,
+				991F9322257BB8D200786C68 /* AccFavoritesCell.swift */,
+			);
+			path = AccountCastomCells;
 			sourceTree = "<group>";
 		};
 		997E37CE257262AB00DBF03A /* AccountContainer */ = {
@@ -233,7 +247,7 @@
 				9999FF4A24CB5F85000F660A /* AlbumCell.swift */,
 				995A26BE2538703B000093CB /* CommentCell.swift */,
 				99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */,
-				9961B5B024DB26530055E220 /* SubImageView.swift */,
+				996ECAAA257A5AF000AC5CCE /* AccountCastomCells */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -420,10 +434,11 @@
 				99B4FF1024D95E2600BE8F60 /* SettingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				99F55D7625790EAB00E3E03A /* AccCommentsResp.swift in Sources */,
+				991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */,
 				9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */,
+				991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */,
 				97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */,
-				9961B5B124DB26530055E220 /* SubImageView.swift in Sources */,
 				99100127254C564000A4F295 /* AuthViewController.swift in Sources */,
 				995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */,
 				9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */,
@@ -431,6 +446,7 @@
 				997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */,
 				997FEDE62577BD86005AACBF /* AccGalleryResp.swift in Sources */,
 				997E37D62572661900DBF03A /* AccountComments.swift in Sources */,
+				996ECAAC257A5B3200AC5CCE /* AccCommentsCell.swift in Sources */,
 				99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */,
 				99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */,
 				9902D1C4256E94DF004F86FA /* AuthorizationData.swift in Sources */,

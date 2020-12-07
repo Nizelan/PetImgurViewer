@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct AccGalleryResp: Codable {
     let data: [AccPost]
@@ -15,11 +16,25 @@ struct AccGalleryResp: Codable {
 struct AccPost: Codable {
     let postId: String
     let title: String?
-    let link: String?
+    let link: String
+    let width: Int
+    let height: Int
 
     enum CodingKeys: String, CodingKey {
         case postId = "id"
         case title
         case link
+        case width
+        case height
+    }
+}
+
+extension AccPost {
+    var coverSize: CGSize {
+        return CGSize(width: width ?? 0, height: height ?? 0)
+    }
+
+    var aspectRatio: CGFloat {
+        return CGFloat(width ?? 1) / CGFloat(height ?? 1)
     }
 }
