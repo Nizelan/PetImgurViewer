@@ -11,13 +11,10 @@ import UIKit
 class AccountViewController: UIViewController, SettingsControllerDelegate {
 
     let networkManager = NetworkManager()
+    var dataSource: (UITableViewDataSource & UITableViewDelegate)?
     var accountData: [String: String]?
-    var tableViewDelegate: UITableViewDelegate?
-    var tableViewDataSorse: UITableViewDataSource?
 
     var accountImages = [AccPost]()
-    var accFavorites = [FavoritePost]()
-    var accComments = [AccComment]()
 
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!
@@ -51,34 +48,25 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
-                self.accountImages = accGalleryResp.data
-                self.accountTableView.reloadData()
-                print("\(self.accountImages[0])--------------------")
+                self.dataSource = AccountPosts(images: accGalleryResp.data)
+                self.setupTableView()
             }
-            accountTableView.reloadData()
-            tableViewDelegate = AccountPosts()
-            tableViewDataSorse = AccountPosts()
             print("AccountPosts")
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
             networkManager.fetchAccFavorites(name: accName,
                                              accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
-                                                self.accFavorites = accFavoritesResp.data
-                                                print("\(self.accFavorites[0])--------------------")
+                                                self.dataSource = AccountFavorites(favorites: accFavoritesResp.data)
+                                                self.setupTableView()
+
             }
-            tableViewDelegate = AccountFavorites()
-            tableViewDataSorse = AccountFavorites()
             print("AccountFavorites")
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
-            tableViewDelegate = AccountFollowing()
-            tableViewDataSorse = AccountFollowing()
             print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
             networkManager.fetchAccComments(name: accName) { (accCommentsResp: AccCommentsResp) in
-                self.accComments = accCommentsResp.data
-                print("\(self.accComments[0])--------------------")
+                self.dataSource = AccountComments(comments: accCommentsResp.data)
+                self.setupTableView()
             }
-            tableViewDelegate = AccountComments()
-            tableViewDataSorse = AccountComments()
             print("AccountComments")
         }
     }
@@ -88,5 +76,14 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
             guard let destination = segue.destination as? SettingsViewController else { return }
             destination.delegate = self
         }
+    }
+}
+
+extension AccountViewController {
+
+    func setupTableView() {
+        self.accountTableView.delegate = self.dataSource
+        self.accountTableView.dataSource = self.dataSource
+        self.accountTableView.reloadData()
     }
 }

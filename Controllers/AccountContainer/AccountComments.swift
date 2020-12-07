@@ -10,14 +10,23 @@ import UIKit
 
 class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
 
+    var accComments: [AccComment]
+
+    init(comments: [AccComment]) {
+        accComments = comments
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return accComments.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AlbumCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccCommentsCell", for: indexPath) as? AccCommentsCell else {
             return UITableViewCell()
         }
+        cell.accAuthorName.text = accComments[indexPath.row].author
+        cell.accComment.text = accComments[indexPath.row].comment
+        cell.accCommPts.text = String(accComments[indexPath.row].points)
         return cell
     }
 }
