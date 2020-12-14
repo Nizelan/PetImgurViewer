@@ -15,6 +15,8 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
     var accountData: [String: String]?
 
     var accountImages = [AccPost]()
+    var link = String()
+    var name = String()
 
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!
@@ -34,13 +36,16 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
     }
 
     @IBAction func goToSettings(_ sender: Any) {
-        performSegue(withIdentifier: "SetingsSegue", sender: Any?.self)
     }
+
     @IBAction func goToAlbums(_ sender: Any) {
-        performSegue(withIdentifier: "ShowAlboms", sender: Any?.self)
     }
+
     @IBAction func switchAction(_ sender: UISegmentedControl) {
         switchChosen()
+    }
+
+    @IBAction func goToVideo(_ sender: Any) {
     }
 
     func switchChosen() {
@@ -48,6 +53,12 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
+                self.link = accGalleryResp.data[0].link
+                if let name = accGalleryResp.data[0].title {
+                    self.name = name
+                } else {
+                    self.name = ""
+                }
                 self.dataSource = AccountPosts(images: accGalleryResp.data)
                 self.setupTableView()
             }
@@ -55,9 +66,14 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
             networkManager.fetchAccFavorites(name: accName,
                                              accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
+                                                if let link = accFavoritesResp.data[0].images[0].mp4 {
+                                                    self.link = link
+                                                }
+                                                if let name = accFavoritesResp.data[0].title {
+                                                    self.name = name
+                                                }
                                                 self.dataSource = AccountFavorites(favorites: accFavoritesResp.data)
                                                 self.setupTableView()
-
             }
             print("AccountFavorites")
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
@@ -75,6 +91,14 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         if segue.identifier == "SetingsSegue" {
             guard let destination = segue.destination as? SettingsViewController else { return }
             destination.delegate = self
+        } else if segue.identifier == "PushFavorites" {
+            guard let destination = segue.destination as? VideoViewController else { return }
+            destination.link = link
+            destination.name = name
+        } else if segue.identifier == "PushPost" {
+            guard let destination = segue.destination as? VideoViewController else { return }
+            destination.name = name
+            destination.link = link
         }
     }
 }

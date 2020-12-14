@@ -35,9 +35,11 @@ struct FavoritePost: Codable {
 
 struct Images: Codable {
     let imageId: String
+    let mp4: String?
 
     enum CodingKeys: String, CodingKey {
         case imageId = "id"
+        case mp4
     }
 }
 
