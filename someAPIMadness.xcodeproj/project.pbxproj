@@ -18,6 +18,7 @@
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
 		99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99616D8E252F5957001E8456 /* CommentsViewController.swift */; };
+		996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EC9AC25878DBA00A3D123 /* VideoViewController.swift */; };
 		996ECAAC257A5B3200AC5CCE /* AccCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
 		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
@@ -75,6 +76,7 @@
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		99616D8E252F5957001E8456 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		996EC9AC25878DBA00A3D123 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccCommentsCell.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
 		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				99616D8E252F5957001E8456 /* CommentsViewController.swift */,
 				99100126254C564000A4F295 /* AuthViewController.swift */,
 				9902D1C5256E9D98004F86FA /* AccountViewController.swift */,
+				996EC9AC25878DBA00A3D123 /* VideoViewController.swift */,
 				997E37CE257262AB00DBF03A /* AccountContainer */,
 				99D96CA9256541D3008FF32B /* WebViewController.swift */,
 				99D9CA8524D2CA14009B0809 /* MainViewController.swift */,
@@ -436,6 +439,7 @@
 				99F55D7625790EAB00E3E03A /* AccCommentsResp.swift in Sources */,
 				991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */,
 				9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */,
+				996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* AlbumCell.swift in Sources */,
 				991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */,
 				97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */,
