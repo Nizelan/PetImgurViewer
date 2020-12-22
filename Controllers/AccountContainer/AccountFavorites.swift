@@ -25,6 +25,10 @@ class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.setup(with: accFavorites[indexPath.row])
+
+        func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+            cell.favoritesVideo.player?.play()
+        }
         return cell
     }
 }
