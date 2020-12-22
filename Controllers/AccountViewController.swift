@@ -45,7 +45,10 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         switchChosen()
     }
 
-    @IBAction func goToVideo(_ sender: Any) {
+    @IBAction func playFavorites(_ sender: UIButton) {
+    }
+
+    @IBAction func playPost(_ sender: UIButton) {
     }
 
     func switchChosen() {
@@ -77,6 +80,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
             }
             print("AccountFavorites")
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
+            self.accountTableView.reloadData()
             print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
             networkManager.fetchAccComments(name: accName) { (accCommentsResp: AccCommentsResp) in

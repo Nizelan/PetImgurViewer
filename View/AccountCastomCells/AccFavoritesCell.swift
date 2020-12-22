@@ -14,7 +14,8 @@ class AccFavoritesCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var ups: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var goToVideos: UIButton!
+    @IBOutlet weak var favoritesVideo: CustomVideoPlayer!
+    @IBOutlet weak var playFavorites: UIButton!
 
     func setup(with album: FavoritePost) {
         setupImage(with: album)
@@ -37,11 +38,13 @@ class AccFavoritesCell: UITableViewCell {
         self.setNeedsLayout()
         self.layoutIfNeeded()
 
-        if album.images[0].mp4 != nil {
-            favoriteImageView.image = UIImage(named: "playVideo")
+        if let videoLink = album.images[0].mp4 {
+            favoritesVideo.playWithLink(videoLink, ofType: "mp4")
+            self.playFavorites.isHidden = true
             stopActivity()
         } else {
-            self.goToVideos.isHidden = true
+            self.favoritesVideo.isHidden = true
+            self.playFavorites.isHidden = true
             self.startActivity()
             favoriteImageView.loadImage(from: imageLink, completion: { (success) in
                 self.stopActivity()

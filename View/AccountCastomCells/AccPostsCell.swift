@@ -13,6 +13,8 @@ class AccPostsCell: UITableViewCell {
     @IBOutlet weak var postImage: ScalingImageView!
     @IBOutlet weak var postTitle: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var postVideo: CustomVideoPlayer!
+    @IBOutlet weak var playPost: UIButton!
 
     func setup(with album: AccPost) {
         setupImage(with: album)
@@ -35,8 +37,12 @@ class AccPostsCell: UITableViewCell {
         self.layoutIfNeeded()
 
         if imageLink.contains("mp4") {
-            postImage.image = UIImage(named: "placeholder")
+            postVideo.playWithLink(imageLink, ofType: "mp4")
+            playPost.isHidden = true
+            stopActivity()
         } else {
+            self.postVideo.isHidden = true
+            self.playPost.isHidden = true
             self.startActivity()
             postImage.loadImage(from: imageLink, completion: { (success) in
                 self.stopActivity()
