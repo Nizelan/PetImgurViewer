@@ -45,7 +45,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         switchChosen()
     }
 
-    @IBAction func playFavorites(_ sender: UIButton) {
+    @IBAction func goToVideos(_ sender: UIButton) {
     }
 
     @IBAction func playPost(_ sender: UIButton) {
@@ -54,6 +54,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
     func switchChosen() {
         guard let accName = AuthorizationData.authorizationData["account_username"] else { return }
         guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
+
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
                 self.link = accGalleryResp.data[0].link
@@ -95,11 +96,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         if segue.identifier == "SetingsSegue" {
             guard let destination = segue.destination as? SettingsViewController else { return }
             destination.delegate = self
-        } else if segue.identifier == "PushFavorites" {
-            guard let destination = segue.destination as? VideoViewController else { return }
-            destination.link = link
-            destination.name = name
-        } else if segue.identifier == "PushPost" {
+        } else if segue.identifier == "ShowVideo" {
             guard let destination = segue.destination as? VideoViewController else { return }
             destination.name = name
             destination.link = link

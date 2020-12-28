@@ -16,13 +16,12 @@ class VideoViewController: UIViewController {
     var link: String?
 
     @IBOutlet weak var titleLable: UILabel!
-    @IBOutlet weak var imageViewOutlet: ScalingImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var playVideoButton: UIButton!
+    @IBOutlet weak var videoPlayer: CustomVideoPlayer!
+    @IBOutlet weak var playButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupImage(with: link)
+        videoPlayer.videoLink = link
         setupTitle(title: name)
     }
 
@@ -41,7 +40,13 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func playButtonAction(_ sender: Any) {
-        playVideo()
+        if videoPlayer.player!.timeControlStatus == .playing {
+            playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+            videoPlayer.pause()
+        } else {
+            playButton.setImage(UIImage(named: "PauseButton"), for: .normal)
+            videoPlayer.play()
+        }
     }
 
     func setupTitle(title: String?) {
@@ -50,36 +55,5 @@ class VideoViewController: UIViewController {
         } else {
             titleLable.text = name
         }
-    }
-
-    func setupImage(with link: String?) {
-        guard let imageLink = link else { return }
-
-        if imageLink.contains("mp4") {
-            playVideoButton.isHidden = false
-            imageViewOutlet.image = UIImage(named: "placeholder")
-            stopActivity()
-        } else {
-            playVideoButton.isHidden = true
-            self.startActivity()
-            imageViewOutlet.loadImage(from: imageLink, completion: { (success) in
-                self.stopActivity()
-                if success {
-                    print("successfully loaded image with url: \(imageLink)")
-                } else {
-                    print("failed to load image with url: \(imageLink)")
-                }
-            })
-        }
-    }
-
-    func startActivity() {
-        activityIndicator.startAnimating()
-        activityIndicator.isHidden = false
-    }
-
-    func stopActivity() {
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
     }
 }

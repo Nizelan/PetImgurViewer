@@ -193,7 +193,7 @@
 				99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */,
 				97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */,
 				97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */,
-				99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */,
+				99E3ACA02594B01300A680FE /* CustomPlayer */,
 				99DE876C24C0819C0085DCE2 /* Controllers */,
 				99DE876A24C0815A0085DCE2 /* View */,
 				99DE876724C07EDB0085DCE2 /* Models */,
@@ -273,6 +273,14 @@
 				9975AA3A24E2B61400B418A7 /* SettingViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		99E3ACA02594B01300A680FE /* CustomPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */,
+			);
+			path = CustomPlayer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
