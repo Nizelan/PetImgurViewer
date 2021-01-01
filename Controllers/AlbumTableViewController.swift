@@ -15,6 +15,8 @@ class AlbumTableViewController: UITableViewController {
     var album: Post?
     let networkManager = NetworkManager()
     var id: String?
+    var name: String?
+    var link = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,17 +71,11 @@ class AlbumTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if album!.images![indexPath.row].link.contains("mp4") {
-
-            let url = URL(string: album!.images![indexPath.row].link)
-            let player = AVPlayer(url: url!)
-            let vc = AVPlayerViewController()
-            vc.player = player
-
-            present(vc, animated: true) {
-                vc.player?.play()
-            }
-        } else {
-            return
+            let url = album!.images![indexPath.row].link
+            let title = album!.title
+            link = url
+            name = title
+            performSegue(withIdentifier: "ShowVideo", sender: Any?.self)
         }
     }
 
@@ -88,8 +84,13 @@ class AlbumTableViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CommentsSegue" else { return }
-        guard let destination = segue.destination as? CommentsViewController else { return }
-        destination.albumID = id
+        if segue.identifier == "CommentsSegue" {
+            guard let destination = segue.destination as? CommentsViewController else { return }
+            destination.albumID = id
+        } else if segue.identifier == "ShowVideo" {
+            guard let destination = segue.destination as? VideoViewController else { return }
+            destination.name = name
+            destination.link = link
+        }
     }
 }

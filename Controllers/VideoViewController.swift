@@ -13,7 +13,7 @@ import AVFoundation
 class VideoViewController: UIViewController {
 
     var name: String?
-    var link: String?
+    var link = "https://i.imgur.com/duy0rqX.mp4"
     var isFirst = true
 
     @IBOutlet weak var titleLable: UILabel!
@@ -32,7 +32,7 @@ class VideoViewController: UIViewController {
         })
     }
 
-    @IBAction func playButtonAction(_ sender: Any) {
+    @IBAction func playPauseButtonAction(_ sender: Any) {
         if videoProgresSlider.value == videoProgresSlider.maximumValue {
             videoPlayer.player?.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
         }
@@ -51,7 +51,7 @@ class VideoViewController: UIViewController {
 
     @IBAction func playFaster(_ sender: Any) {
         if videoPlayer.player?.currentItem?.currentTime() == videoPlayer.player?.currentItem?.duration {
-            videoPlayer.player?.currentItem?.seek(to: .zero)
+            videoPlayer.player?.currentItem?.seek(to: .zero, completionHandler: nil)
         }
         videoPlayer.player?.rate = min(videoPlayer.player!.rate + 2.0, 2.0)
     }
@@ -59,7 +59,7 @@ class VideoViewController: UIViewController {
     @IBAction func playBackward(_ sender: Any) {
         if videoPlayer.player?.currentItem?.currentTime() == .zero {
             if let itemDuration = videoPlayer.player?.currentItem?.duration {
-                videoPlayer.player?.currentItem?.seek(to: itemDuration)
+                videoPlayer.player?.currentItem?.seek(to: itemDuration, completionHandler: nil)
             }
         }
         videoPlayer.player?.rate = max(videoPlayer.player!.rate - 2.0, -2.0)

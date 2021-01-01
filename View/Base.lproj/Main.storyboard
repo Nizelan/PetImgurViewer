@@ -506,7 +506,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urs-Oz-gie" customClass="CustomVideoPlayer" customModule="someAPIMadness" customModuleProvider="target">
+                            <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urs-Oz-gie" customClass="CustomVideoPlayer" customModule="someAPIMadness" customModuleProvider="target">
                                 <rect key="frame" x="20" y="117" width="374" height="648"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -521,7 +521,7 @@
                                         </constraints>
                                         <state key="normal" image="PlayButton"/>
                                         <connections>
-                                            <action selector="playButtonAction:" destination="VmE-Ck-bCh" eventType="touchUpInside" id="PJ9-UV-Ah0"/>
+                                            <action selector="playPauseButtonAction:" destination="VmE-Ck-bCh" eventType="touchUpInside" id="PJ9-UV-Ah0"/>
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="QMJ-pE-Nwv">
@@ -588,10 +588,10 @@
                             <constraint firstItem="urs-Oz-gie" firstAttribute="leading" secondItem="7nd-Dc-qHn" secondAttribute="leading" constant="20" id="Vkt-nS-4pL"/>
                             <constraint firstItem="G70-HA-2sf" firstAttribute="top" secondItem="7nd-Dc-qHn" secondAttribute="top" id="Yx6-TS-Zoh"/>
                             <constraint firstItem="cdh-V3-HRU" firstAttribute="bottom" secondItem="7nd-Dc-qHn" secondAttribute="bottom" id="gR7-02-nNX"/>
+                            <constraint firstItem="jEe-j3-Jmo" firstAttribute="leading" secondItem="G70-HA-2sf" secondAttribute="trailing" constant="8" id="nHH-aa-LhK"/>
                             <constraint firstItem="cdh-V3-HRU" firstAttribute="leading" secondItem="7nd-Dc-qHn" secondAttribute="leading" constant="20" id="o99-Ut-CLf"/>
                             <constraint firstItem="7nd-Dc-qHn" firstAttribute="trailing" secondItem="urs-Oz-gie" secondAttribute="trailing" constant="20" id="ox9-uz-3sl"/>
                             <constraint firstItem="urs-Oz-gie" firstAttribute="top" secondItem="G70-HA-2sf" secondAttribute="bottom" constant="8" id="pxv-sm-naC"/>
-                            <constraint firstItem="jEe-j3-Jmo" firstAttribute="leading" secondItem="G70-HA-2sf" secondAttribute="trailing" constant="8" id="tUN-ON-PGM"/>
                             <constraint firstItem="jEe-j3-Jmo" firstAttribute="trailing" secondItem="7nd-Dc-qHn" secondAttribute="trailing" id="yWE-dG-7hT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7nd-Dc-qHn"/>
@@ -884,6 +884,7 @@
                     <navigationItem key="navigationItem" title="Albom" id="url-5M-vwV"/>
                     <connections>
                         <segue destination="iB9-Po-BVj" kind="show" identifier="CommentsSegue" id="KpQ-Qe-jl8"/>
+                        <segue destination="VmE-Ck-bCh" kind="show" identifier="ShowVideo" id="Onq-b6-q3P"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-wI-xMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -985,4 +986,7 @@
         <image name="settings" width="240" height="240"/>
         <image name="starsky" width="616" height="411"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Onq-b6-q3P"/>
+    </inferredMetricsTieBreakers>
 </document>

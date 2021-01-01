@@ -13,6 +13,7 @@
 		9902D1C4256E94DF004F86FA /* AuthorizationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902D1C3256E94DF004F86FA /* AuthorizationData.swift */; };
 		9902D1C6256E9D98004F86FA /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9902D1C5256E9D98004F86FA /* AccountViewController.swift */; };
 		99100127254C564000A4F295 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99100126254C564000A4F295 /* AuthViewController.swift */; };
+		991A415C259F5AE3002AA2C1 /* ClientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A415B259F5AE3002AA2C1 /* ClientData.swift */; };
 		991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F931C257BAEA800786C68 /* AccPostsCell.swift */; };
 		991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F9322257BB8D200786C68 /* AccFavoritesCell.swift */; };
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
@@ -72,6 +73,7 @@
 		9902D1C3256E94DF004F86FA /* AuthorizationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationData.swift; sourceTree = "<group>"; };
 		9902D1C5256E9D98004F86FA /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		99100126254C564000A4F295 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		991A415B259F5AE3002AA2C1 /* ClientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientData.swift; sourceTree = "<group>"; };
 		991F931C257BAEA800786C68 /* AccPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccPostsCell.swift; sourceTree = "<group>"; };
 		991F9322257BB8D200786C68 /* AccFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccFavoritesCell.swift; sourceTree = "<group>"; };
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			children = (
 				9901468B252B4C8B00BBF166 /* SettingsData.swift */,
 				9902D1C3256E94DF004F86FA /* AuthorizationData.swift */,
+				991A415B259F5AE3002AA2C1 /* ClientData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -469,6 +472,7 @@
 				97961C3B24D860690054F9E7 /* UIImageView+ImageLoading.swift in Sources */,
 				99D9CA8624D2CA14009B0809 /* MainViewController.swift in Sources */,
 				997E37D22572657400DBF03A /* AccountPosts.swift in Sources */,
+				991A415C259F5AE3002AA2C1 /* ClientData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

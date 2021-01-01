@@ -9,6 +9,6 @@
 import Foundation
 
 struct AuthorizationData {
-    static var clientId = "960fe8e1862cf58"
+    static var clientId = "b3ab9b41bebc961"
     static var authorizationData = [String: String]()
 }

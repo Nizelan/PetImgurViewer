@@ -11,13 +11,14 @@ import UIKit
 
 struct NetworkManager {
     var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
+    let clientID = ClientData.clientId
     //Fetch data
 
     func fetchGallery(sections: String, sort: String, window: String, closure: @escaping (GalleryResponse) -> ()) {
 
     let urlString = "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
         print(urlString)
-        let httpHeaders = ["Authorization": "Client-ID 960fe8e1862cf58"]
+        let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -56,7 +57,7 @@ struct NetworkManager {
     func fetchComment(sort: String, id: String, closure: @escaping (GalleryCommentResponse) -> ()) {
 
         let urlString = "https://api.imgur.com/3/gallery/\(id)/comments/\(sort)"
-        let httpHeaders = ["Authorization": "Client-ID 960fe8e1862cf58"]
+        let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
 
         guard let url = URL(string: urlString) else { return }
 
@@ -130,7 +131,7 @@ struct NetworkManager {
     func fetchAccComments(name: String, closure: @escaping (AccCommentsResp) -> ()) {
 
         let urlString = "https://api.imgur.com/3/account/\(name)/comments/newest/0"
-        let httpHeaders = ["Authorization": "Client-ID 960fe8e1862cf58"]
+        let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
