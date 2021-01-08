@@ -81,6 +81,9 @@ class AlbumCell: UITableViewCell {
         }
     }
 
+    @IBAction func goToComments(_ sender: UIButton) {
+    }
+
     private func setupUps(_ album: Post) {
         guard let ups = album.ups,
               let downs = album.downs else {

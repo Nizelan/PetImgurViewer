@@ -17,6 +17,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
     var accountImages = [AccPost]()
     var link = String()
     var name = String()
+    static var cellIsSelected = false
 
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!
@@ -27,6 +28,8 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(recognizer))
+//        self.view.addGestureRecognizer(tap)
     }
 
     func update(sectionsText: String, sortText: String, windowText: String) {
@@ -45,10 +48,13 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         switchChosen()
     }
 
-    @IBAction func goToVideos(_ sender: UIButton) {
+    @IBAction func playPost(_ sender: UIButton) {
     }
 
-    @IBAction func playPost(_ sender: UIButton) {
+    @objc func recognizer() {
+        if AccountViewController.cellIsSelected == true {
+            performSegue(withIdentifier: "ShowVideo", sender: Any?.self)
+        }
     }
 
     func switchChosen() {

@@ -28,8 +28,9 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     }
 
     @IBAction func login(_ sender: UIButton) {
+        let clientID = ClientData.clientId
         if AuthorizationData.authorizationData.isEmpty {
-            let urlString = "https://api.imgur.com/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
+            let urlString = "https://api.imgur.com/oauth2/authorize?client_id=\(clientID)&response_type=token"
             guard let url = URL(string: urlString) else { return }
             let request = URLRequest(url: url)
             urlRequest = request

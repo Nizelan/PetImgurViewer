@@ -54,6 +54,9 @@ class AccFavoritesCell: UITableViewCell {
             }
         }
 
+    @IBAction func goToVideo(_ sender: Any) {
+    }
+
         private func startActivity() {
             activityIndicator.startAnimating()
             activityIndicator.isHidden = false

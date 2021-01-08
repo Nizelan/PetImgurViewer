@@ -21,6 +21,7 @@ class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.register(UINib(nibName: "AccFavoritesCell", bundle: nil), forCellReuseIdentifier: "AccFavoritesCell")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccFavoritesCell",
                                                        for: indexPath) as? AccFavoritesCell else {
             return UITableViewCell()
@@ -30,6 +31,10 @@ class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? AccFavoritesCell else { return }
+        AccountViewController.cellIsSelected = true
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        AccountViewController.cellIsSelected = false
     }
 }
