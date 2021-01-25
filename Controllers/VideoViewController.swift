@@ -13,7 +13,7 @@ import AVFoundation
 class VideoViewController: UIViewController {
 
     var name: String?
-    var link = "https://i.imgur.com/duy0rqX.mp4"
+    var link: String?
     var isFirst = true
 
     @IBOutlet weak var titleLable: UILabel!
@@ -30,6 +30,10 @@ class VideoViewController: UIViewController {
                                                     queue: .main, using: { (time) in
                                                         self.videoProgresSlider.value = Float(time.seconds)
         })
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        videoPlayer.pause()
     }
 
     @IBAction func playPauseButtonAction(_ sender: Any) {

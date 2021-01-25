@@ -8,12 +8,27 @@
 
 import UIKit
 
-class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource {
+protocol AccountFavoritesDelegate {
+    func playButtonPressed(post: FavoritePost)
+}
 
+class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource, AccFavoritesCellDelegate {
     var accFavorites: [FavoritePost]
+    var delegate: AccountFavoritesDelegate?
+    var tableView: UITableView
 
-    init(favorites: [FavoritePost]) {
+    init(favorites: [FavoritePost], tableView: UITableView, delegate: AccountFavoritesDelegate) {
+        self.delegate = delegate
+        self.tableView = tableView
         accFavorites = favorites
+    }
+
+    func playButtonPressed(cell: UITableViewCell) {
+        guard let indexPathRow = tableView.indexPath(for: cell)?.row else {
+            print("\(Self.self) now have cell")
+            return
+        }
+        delegate?.playButtonPressed(post: accFavorites[indexPathRow])
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -26,15 +41,8 @@ class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource {
                                                        for: indexPath) as? AccFavoritesCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         cell.setup(with: accFavorites[indexPath.row])
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AccountViewController.cellIsSelected = true
-    }
-
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        AccountViewController.cellIsSelected = false
     }
 }

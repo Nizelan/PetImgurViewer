@@ -9,26 +9,17 @@
 import UIKit
 
 class AuthViewController: UIViewController, WebViewControllerDelegate {
+
     private let networkManager = NetworkManager()
     var urlRequest: URLRequest?
-
-    @IBOutlet weak var titelLabel: UILabel!
-    @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var enterButton: UIButton!
+    let clientID = ClientData.clientId
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
-    func update(dict: [String: String]) {
-        AuthorizationData.authorizationData = dict
-        print("TESTING_OUTPUT\(String(describing: AuthorizationData.authorizationData))")
-    }
+    override func viewWillAppear(_ animated: Bool) {
 
-    @IBAction func login(_ sender: UIButton) {
-        let clientID = ClientData.clientId
         if AuthorizationData.authorizationData.isEmpty {
             let urlString = "https://api.imgur.com/oauth2/authorize?client_id=\(clientID)&response_type=token"
             guard let url = URL(string: urlString) else { return }
@@ -39,6 +30,11 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
             networkManager.authorization()
             performSegue(withIdentifier: "ShowAccount", sender: Any?.self)
         }
+    }
+
+    func update(dict: [String: String]) {
+        AuthorizationData.authorizationData = dict
+        print("TESTING_OUTPUT\(String(describing: AuthorizationData.authorizationData))")
     }
 
     func showAlert() {
