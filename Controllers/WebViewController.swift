@@ -18,6 +18,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     var request: URLRequest?
     var testArray = [String]()
     var testDictionary = [String: String]()
+    var scheme = String()
 
     weak var webDelegate: WebViewControllerDelegate?
 
@@ -45,7 +46,9 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 testArray = uRLString.split(separator: "&").map({ (substring) -> String in
                     String(substring)
                 })
-                testArray[0].removeFirst(40)
+                self.scheme = String(testArray[0].prefix(12))
+                testArray[0].removeFirst(12)
+                print("~~~~~~~~~~~~~~~~~\(scheme)")
                 print("==============\(uRLString)")
                 testDictionary = testArray.reduce(into: testDictionary) { (into, string) in
                     let callbackData = string.split(separator: "=").map { (substring) -> String in
@@ -56,6 +59,10 @@ class WebViewController: UIViewController, WKNavigationDelegate {
             }
             print("-------------------------\(testDictionary)")
             print("&&&&&&&&&&&&&&&&&&\(testArray)")
+            if scheme.isEmpty == false {
+                self.navigationController?.popViewController(animated: true)
+                dismiss(animated: true, completion: nil)
+            }
         }
     }
 }
