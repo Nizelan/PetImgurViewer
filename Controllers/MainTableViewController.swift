@@ -22,9 +22,11 @@ class MainTableViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: "AlbumsCell", bundle: nil), forCellReuseIdentifier: "MainAlbumCell")
 
-        self.networkManager.fetchGallery(sections: SettingsData.sectionsData,
-                                         sort: SettingsData.sortData,
-                                         window: SettingsData.windowData) { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery(
+            sections: SettingsData.sectionsData,
+            sort: SettingsData.sortData,
+            window: SettingsData.windowData
+        ) { (galleryArray: GalleryResponse) in
 
             self.albums = galleryArray.data
             self.tableView.reloadData()
@@ -42,6 +44,11 @@ class MainTableViewController: UITableViewController {
         }
 
         cell.setup(with: albums[indexPath.row])
+
+        UIView.performWithoutAnimation {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
 
         return cell
     }

@@ -149,6 +149,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		972FCC8325C0DBBC0032F425 /* AlbumsCell */ = {
+			isa = PBXGroup;
+			children = (
+				9980567325A87E8E00B0A000 /* AlbumsCell.xib */,
+				9999FF4A24CB5F85000F660A /* AlbumsCell.swift */,
+			);
+			path = AlbumsCell;
+			sourceTree = "<group>";
+		};
+		972FCC8425C0DE070032F425 /* AlbumCell */ = {
+			isa = PBXGroup;
+			children = (
+				9980566F25A8749000B0A000 /* AlbumCell.xib */,
+				997E4AF625B0927400EAD653 /* AlbumCell.swift */,
+			);
+			path = AlbumCell;
+			sourceTree = "<group>";
+		};
 		9900F501256D1A720005714E /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,9 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9913876C25A3454A007466C8 /* AccFavoritesCell.xib */,
-				9980566F25A8749000B0A000 /* AlbumCell.xib */,
 				9980567125A87B0C00B0A000 /* CommentCell.xib */,
-				9980567325A87E8E00B0A000 /* AlbumsCell.xib */,
 			);
 			path = CellXib;
 			sourceTree = "<group>";
@@ -217,7 +233,6 @@
 				99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */,
 				97961C3A24D860690054F9E7 /* UIImageView+ImageLoading.swift */,
 				97961D8924DDC98A0054F9E7 /* ScalingImageView.swift */,
-				9913876A25A344F3007466C8 /* CellXib */,
 				99E3ACA02594B01300A680FE /* CustomPlayer */,
 				99DE876C24C0819C0085DCE2 /* Controllers */,
 				99DE876A24C0815A0085DCE2 /* View */,
@@ -274,8 +289,9 @@
 			children = (
 				99D192A124B8A59500082D6A /* Main.storyboard */,
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
-				9999FF4A24CB5F85000F660A /* AlbumsCell.swift */,
-				997E4AF625B0927400EAD653 /* AlbumCell.swift */,
+				9913876A25A344F3007466C8 /* CellXib */,
+				972FCC8425C0DE070032F425 /* AlbumCell */,
+				972FCC8325C0DBBC0032F425 /* AlbumsCell */,
 				995A26BE2538703B000093CB /* CommentCell.swift */,
 				99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */,
 				996ECAAA257A5AF000AC5CCE /* AccountCastomCells */,

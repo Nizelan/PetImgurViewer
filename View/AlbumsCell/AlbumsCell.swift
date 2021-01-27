@@ -8,6 +8,8 @@
 
 import UIKit
 
+// TODO: awfull name, needs changing
+// TODO: reuse identifier of this cell makes no sense either
 class AlbumsCell: UITableViewCell {
     @IBOutlet weak var imageViewOutlet: ScalingImageView!
     @IBOutlet weak var upsLabel: UILabel!
@@ -15,30 +17,12 @@ class AlbumsCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var upsImage: UIImageView!
 
-    var aspectRatioConstraint: NSLayoutConstraint? {
-        didSet {
-            if let old = oldValue {
-                imageViewOutlet.removeConstraint(old)
-                //NSLayoutConstraint.deactivate([old])
-            }
-            if let constraint = aspectRatioConstraint {
-                imageViewOutlet.addConstraint(constraint)
-                //NSLayoutConstraint.activate([constraint])
-            }
-        }
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        aspectRatioConstraint = nil
+        super.setSelected(false, animated: animated)
     }
 
     func setup(with album: Post) {
@@ -57,12 +41,7 @@ class AlbumsCell: UITableViewCell {
             return
         }
 
-        print("aspect ratio --- \(album.aspectRatio)")
-        imageViewOutlet.translatesAutoresizingMaskIntoConstraints = false
-        print("===========>\(imageViewOutlet)")
         imageViewOutlet.imageSize = album.coverSize
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
 
         if imageLink.contains("mp4") {
             imageViewOutlet.image = UIImage(named: "placeholder")

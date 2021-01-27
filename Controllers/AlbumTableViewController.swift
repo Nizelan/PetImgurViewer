@@ -25,8 +25,12 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         print("_________________________")
         print(album)
         print("_________________________")
-        self.tableView.reloadData()
+
+
+        tableView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellReuseIdentifier: "SecondCell")
+        tableView.reloadData()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("_________________________")
@@ -42,11 +46,13 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellReuseIdentifier: "SecondCell")
         guard let album = album,
             let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as? AlbumCell else {
                 return UITableViewCell()
         }
+
+        
+
 //        if album.images?[indexPath.row].link != nil {
 //            if album.images![indexPath.row].link.contains("mp4") {
 //                cell.imageViewOutlet.image = UIImage(named: "playVideo")
@@ -87,7 +93,6 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     func goToCommentButtonPrassed(cell: UITableViewCell) {
         performSegue(withIdentifier: "CommentsSegue", sender: Any?.self)
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentsSegue" {

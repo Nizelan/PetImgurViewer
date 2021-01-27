@@ -174,7 +174,7 @@ struct NetworkManager {
     }
 
     // Parse JSON
-    func parseJSON<T>(withData data: Data) -> T? where T:Codable {
+    func parseJSON<T>(withData data: Data) -> T? where T : Codable {
         let decoder = JSONDecoder()
         do {
             let galleryData = try decoder.decode(T.self, from: data)
