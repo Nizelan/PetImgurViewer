@@ -18,7 +18,7 @@ class VideoViewController: UIViewController {
 
     @IBOutlet weak var titleLable: UILabel!
     @IBOutlet weak var videoPlayer: CustomVideoPlayer!
-    @IBOutlet weak var playButton: UIButton!
+    var playButton: UIButton!
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var videoProgresSlider: UISlider!
 
@@ -26,9 +26,46 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         videoPlayer.videoLink = link
         setupTitle(title: name)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        //PlayBtton
+        playButton = UIButton(type: UIButton.ButtonType.system) as UIButton
+        let xPostion: CGFloat = (self.videoPlayer.bounds.width / 2) - 25
+        let yPostion: CGFloat = self.videoPlayer.bounds.height - 50
+        let buttonWidth: CGFloat = 50
+        let buttonHeight: CGFloat = 50
+        playButton!.frame = CGRect(x: xPostion, y: yPostion, width: buttonWidth, height: buttonHeight)
+        playButton!.backgroundColor = UIColor.lightGray
+        playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+        playButton!.tintColor = UIColor.black
+        playButton!.addTarget(self, action: #selector(self.playButtonTapped(_:)), for: .touchUpInside)
+
+        videoPlayer.addSubview(playButton!)
+
+        //Slider
+        let playbackSlider = UISlider(frame: CGRect(x: 10, y: 300, width: 300, height: 20))
+        playbackSlider.frame = CGRect(x: (self.videoPlayer.bounds.width / 2) - 135,
+                                      y: self.videoPlayer.bounds.height - 10,
+                                      width: 300, height: 20)
+        playbackSlider.minimumValue = 0
+
+        if let itemDuration = videoPlayer.player?.currentItem?.duration {
+            let seconds: Float64 = CMTimeGetSeconds(itemDuration)
+            playbackSlider.maximumValue = Float(seconds)
+        }
+
+        playbackSlider.isContinuous = true
+        playbackSlider.tintColor = UIColor.red
+
+        playbackSlider.addTarget(self, action: #selector(self.playbackSliderValueChanged(_:)), for: .valueChanged)
+        self.view.addSubview(playbackSlider)
+
         videoPlayer.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 10000),
                                                     queue: .main, using: { (time) in
-                                                        self.videoProgresSlider.value = Float(time.seconds)
+                                                        playbackSlider.value = Float(time.seconds)
         })
     }
 
@@ -94,5 +131,34 @@ extension VideoViewController {
             return
         }
         self.videoProgresSlider.maximumValue = Float(duration)
+    }
+
+    @objc func playButtonTapped(_ sender:UIButton) {
+        if videoProgresSlider.value == videoProgresSlider.maximumValue {
+            videoPlayer.player?.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
+        }
+
+        if videoPlayer.player!.timeControlStatus == .playing {
+            playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+            videoPlayer.pause()
+        } else {
+            playButton.setImage(UIImage(named: "PauseButton"), for: .normal)
+            videoPlayer.play()
+            if isFirst {
+                setupProgressVideoSlider()
+            }
+        }
+    }
+
+    @objc func playbackSliderValueChanged(_ playbackSlider:UISlider){
+
+        let seconds : Int64 = Int64(playbackSlider.value)
+        let targetTime:CMTime = CMTimeMake(value: seconds, timescale: 1)
+
+        videoPlayer.player?.seek(to: targetTime)
+
+        if videoPlayer.player?.rate == 0 {
+            videoPlayer?.play()
+        }
     }
 }

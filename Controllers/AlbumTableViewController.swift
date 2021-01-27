@@ -21,6 +21,7 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
+        tableView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellReuseIdentifier: "SecondCell")
         id = album!.postId
         print("_________________________")
         print(album)
@@ -81,13 +82,11 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
             print("\(Self.self) now have cell")
             return
         }
-        if album!.images![indexPathRow].link.contains("mp4") {
-            let url = album!.images![indexPathRow].link
-            let title = album!.title
-            link = url
-            name = title
-            performSegue(withIdentifier: "ShowVideo", sender: Any?.self)
-        }
+        let url = album!.images![indexPathRow].link
+        let title = album!.title
+        link = url
+        name = title
+        performSegue(withIdentifier: "ShowVideo", sender: Any?.self)
     }
 
     func goToCommentButtonPrassed(cell: UITableViewCell) {

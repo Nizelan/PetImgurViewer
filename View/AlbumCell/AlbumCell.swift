@@ -48,6 +48,7 @@ class AlbumCell: UITableViewCell {
 
     func setup(with album: Post) {
         setupImage(with: album)
+        setupButtons(with: album)
     }
 
     private func setupImage(with album: Post) {
@@ -77,7 +78,14 @@ class AlbumCell: UITableViewCell {
         }
     }
 
-    private func setupButtons() {
+    private func setupButtons(with album: Post) {
+        guard let imageLink = album.coverImageLink else {
+            return
+        }
+
+        if imageLink.contains("mp4") {
+            goToVideoButton.isHidden = true
+        }
     }
 
     private func startActivity() {

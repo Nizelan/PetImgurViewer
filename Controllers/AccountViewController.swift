@@ -15,8 +15,6 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
     var accountData: [String: String]?
 
     var accountImages = [AccPost]()
-    var link = String()
-    var name = String()
 
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!
@@ -52,8 +50,8 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
 
     func playButtonPressed(post: FavoritePost) {
         let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
-        videoViewC?.link = link
-        videoViewC?.name = name
+        videoViewC?.link = post.images[0].mp4
+        videoViewC?.name = post.title
         self.present(videoViewC!, animated: true)
     }
 
@@ -63,12 +61,6 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
 
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
-                self.link = accGalleryResp.data[0].link
-                if let name = accGalleryResp.data[0].title {
-                    self.name = name
-                } else {
-                    self.name = ""
-                }
                 self.dataSource = AccountPosts(images: accGalleryResp.data)
                 self.setupTableView()
             }
@@ -77,12 +69,6 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
             networkManager.fetchAccFavorites(
                 name: accName,
                 accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
-                    if let link = accFavoritesResp.data[0].images[0].mp4 {
-                        self.link = link
-                    }
-                    if let name = accFavoritesResp.data[0].title {
-                        self.name = name
-                    }
                     self.dataSource = AccountFavorites(favorites: accFavoritesResp.data,
                                                        tableView: self.accountTableView,
                                                        delegate: self)

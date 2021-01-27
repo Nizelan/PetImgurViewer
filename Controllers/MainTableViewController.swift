@@ -44,6 +44,7 @@ class MainTableViewController: UITableViewController {
         }
 
         cell.setup(with: albums[indexPath.row])
+        tableView.sizeThatFits(albums[indexPath.row].coverSize)
 
         UIView.performWithoutAnimation {
             tableView.beginUpdates()
