@@ -20,7 +20,7 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(UINib(nibName: "AlbumsCell", bundle: nil), forCellReuseIdentifier: "MainAlbumCell")
+        tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
         self.networkManager.fetchGallery(
             sections: SettingsData.sectionsData,
@@ -39,7 +39,7 @@ class MainTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainAlbumCell", for: indexPath) as? AlbumsCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FirstAlbumCell", for: indexPath) as? FirstAlbumCell else {
             return UITableViewCell()
         }
 

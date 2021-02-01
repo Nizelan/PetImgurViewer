@@ -31,12 +31,13 @@
 		997E37D22572657400DBF03A /* AccountPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D12572657400DBF03A /* AccountPosts.swift */; };
 		997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D3257265C300DBF03A /* AccountFollowing.swift */; };
 		997E37D62572661900DBF03A /* AccountComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D52572661900DBF03A /* AccountComments.swift */; };
-		997E4AF725B0927400EAD653 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E4AF625B0927400EAD653 /* AlbumCell.swift */; };
+		997E4AF725B0927400EAD653 /* SecongAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E4AF625B0927400EAD653 /* SecongAlbumCell.swift */; };
 		997FEDE62577BD86005AACBF /* AccGalleryResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997FEDE52577BD86005AACBF /* AccGalleryResp.swift */; };
-		9980567025A8749000B0A000 /* AlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9980566F25A8749000B0A000 /* AlbumCell.xib */; };
+		9980567025A8749000B0A000 /* SecongAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9980566F25A8749000B0A000 /* SecongAlbumCell.xib */; };
 		9980567225A87B0C00B0A000 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9980567125A87B0C00B0A000 /* CommentCell.xib */; };
-		9980567425A87E8E00B0A000 /* AlbumsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9980567325A87E8E00B0A000 /* AlbumsCell.xib */; };
-		9999FF4B24CB5F85000F660A /* AlbumsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9999FF4A24CB5F85000F660A /* AlbumsCell.swift */; };
+		9980567425A87E8E00B0A000 /* FirstAlbumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9980567325A87E8E00B0A000 /* FirstAlbumCell.xib */; };
+		9999FF4B24CB5F85000F660A /* FirstAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9999FF4A24CB5F85000F660A /* FirstAlbumCell.swift */; };
+		99A9F2A025C593B200F95F3A /* AccCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A9F29F25C593B200F95F3A /* AccCommentsCell.xib */; };
 		99AEDAA124CF0AA700B266A6 /* AlbumTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */; };
 		99B4FF1024D95E2600BE8F60 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */; };
 		99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D1929B24B8A59500082D6A /* AppDelegate.swift */; };
@@ -96,12 +97,13 @@
 		997E37D12572657400DBF03A /* AccountPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPosts.swift; sourceTree = "<group>"; };
 		997E37D3257265C300DBF03A /* AccountFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFollowing.swift; sourceTree = "<group>"; };
 		997E37D52572661900DBF03A /* AccountComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComments.swift; sourceTree = "<group>"; };
-		997E4AF625B0927400EAD653 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
+		997E4AF625B0927400EAD653 /* SecongAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecongAlbumCell.swift; sourceTree = "<group>"; };
 		997FEDE52577BD86005AACBF /* AccGalleryResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccGalleryResp.swift; sourceTree = "<group>"; };
-		9980566F25A8749000B0A000 /* AlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCell.xib; sourceTree = "<group>"; };
+		9980566F25A8749000B0A000 /* SecongAlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecongAlbumCell.xib; sourceTree = "<group>"; };
 		9980567125A87B0C00B0A000 /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
-		9980567325A87E8E00B0A000 /* AlbumsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumsCell.xib; sourceTree = "<group>"; };
-		9999FF4A24CB5F85000F660A /* AlbumsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsCell.swift; sourceTree = "<group>"; };
+		9980567325A87E8E00B0A000 /* FirstAlbumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstAlbumCell.xib; sourceTree = "<group>"; };
+		9999FF4A24CB5F85000F660A /* FirstAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstAlbumCell.swift; sourceTree = "<group>"; };
+		99A9F29F25C593B200F95F3A /* AccCommentsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccCommentsCell.xib; sourceTree = "<group>"; };
 		99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewController.swift; sourceTree = "<group>"; };
 		99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		99D1929824B8A59500082D6A /* someAPIMadness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = someAPIMadness.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,8 +154,8 @@
 		972FCC8325C0DBBC0032F425 /* AlbumsCell */ = {
 			isa = PBXGroup;
 			children = (
-				9980567325A87E8E00B0A000 /* AlbumsCell.xib */,
-				9999FF4A24CB5F85000F660A /* AlbumsCell.swift */,
+				9980567325A87E8E00B0A000 /* FirstAlbumCell.xib */,
+				9999FF4A24CB5F85000F660A /* FirstAlbumCell.swift */,
 			);
 			path = AlbumsCell;
 			sourceTree = "<group>";
@@ -161,8 +163,8 @@
 		972FCC8425C0DE070032F425 /* AlbumCell */ = {
 			isa = PBXGroup;
 			children = (
-				9980566F25A8749000B0A000 /* AlbumCell.xib */,
-				997E4AF625B0927400EAD653 /* AlbumCell.swift */,
+				9980566F25A8749000B0A000 /* SecongAlbumCell.xib */,
+				997E4AF625B0927400EAD653 /* SecongAlbumCell.swift */,
 			);
 			path = AlbumCell;
 			sourceTree = "<group>";
@@ -185,21 +187,12 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		9913876A25A344F3007466C8 /* CellXib */ = {
-			isa = PBXGroup;
-			children = (
-				9913876C25A3454A007466C8 /* AccFavoritesCell.xib */,
-				9980567125A87B0C00B0A000 /* CommentCell.xib */,
-			);
-			path = CellXib;
-			sourceTree = "<group>";
-		};
 		996ECAAA257A5AF000AC5CCE /* AccountCastomCells */ = {
 			isa = PBXGroup;
 			children = (
-				996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */,
+				99A9F29E25C5935000F95F3A /* AccFavoritesCell */,
+				99A9F29D25C5930600F95F3A /* AccCommentCell */,
 				991F931C257BAEA800786C68 /* AccPostsCell.swift */,
-				991F9322257BB8D200786C68 /* AccFavoritesCell.swift */,
 			);
 			path = AccountCastomCells;
 			sourceTree = "<group>";
@@ -225,6 +218,33 @@
 				99F55D7725791A1D00E3E03A /* AccFavoritesResp.swift */,
 			);
 			path = ParseModels;
+			sourceTree = "<group>";
+		};
+		99A9F29C25C592EB00F95F3A /* CommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				9980567125A87B0C00B0A000 /* CommentCell.xib */,
+				995A26BE2538703B000093CB /* CommentCell.swift */,
+			);
+			path = CommentCell;
+			sourceTree = "<group>";
+		};
+		99A9F29D25C5930600F95F3A /* AccCommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */,
+				99A9F29F25C593B200F95F3A /* AccCommentsCell.xib */,
+			);
+			path = AccCommentCell;
+			sourceTree = "<group>";
+		};
+		99A9F29E25C5935000F95F3A /* AccFavoritesCell */ = {
+			isa = PBXGroup;
+			children = (
+				991F9322257BB8D200786C68 /* AccFavoritesCell.swift */,
+				9913876C25A3454A007466C8 /* AccFavoritesCell.xib */,
+			);
+			path = AccFavoritesCell;
 			sourceTree = "<group>";
 		};
 		99D1928F24B8A59400082D6A = {
@@ -289,10 +309,9 @@
 			children = (
 				99D192A124B8A59500082D6A /* Main.storyboard */,
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
-				9913876A25A344F3007466C8 /* CellXib */,
 				972FCC8425C0DE070032F425 /* AlbumCell */,
 				972FCC8325C0DBBC0032F425 /* AlbumsCell */,
-				995A26BE2538703B000093CB /* CommentCell.swift */,
+				99A9F29C25C592EB00F95F3A /* CommentCell */,
 				99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */,
 				996ECAAA257A5AF000AC5CCE /* AccountCastomCells */,
 			);
@@ -430,11 +449,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9980567425A87E8E00B0A000 /* AlbumsCell.xib in Resources */,
+				9980567425A87E8E00B0A000 /* FirstAlbumCell.xib in Resources */,
 				99D192A824B8A59D00082D6A /* LaunchScreen.storyboard in Resources */,
-				9980567025A8749000B0A000 /* AlbumCell.xib in Resources */,
+				9980567025A8749000B0A000 /* SecongAlbumCell.xib in Resources */,
 				9913876D25A3454A007466C8 /* AccFavoritesCell.xib in Resources */,
 				9980567225A87B0C00B0A000 /* CommentCell.xib in Resources */,
+				99A9F2A025C593B200F95F3A /* AccCommentsCell.xib in Resources */,
 				99D192A524B8A59D00082D6A /* Assets.xcassets in Resources */,
 				99D192A324B8A59500082D6A /* Main.storyboard in Resources */,
 			);
@@ -498,7 +518,7 @@
 				991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */,
 				9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */,
 				996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */,
-				9999FF4B24CB5F85000F660A /* AlbumsCell.swift in Sources */,
+				9999FF4B24CB5F85000F660A /* FirstAlbumCell.swift in Sources */,
 				991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */,
 				97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */,
 				99100127254C564000A4F295 /* AuthViewController.swift in Sources */,
@@ -516,7 +536,7 @@
 				99D9CA8624D2CA14009B0809 /* MainViewController.swift in Sources */,
 				997E37D22572657400DBF03A /* AccountPosts.swift in Sources */,
 				991A415C259F5AE3002AA2C1 /* ClientData.swift in Sources */,
-				997E4AF725B0927400EAD653 /* AlbumCell.swift in Sources */,
+				997E4AF725B0927400EAD653 /* SecongAlbumCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

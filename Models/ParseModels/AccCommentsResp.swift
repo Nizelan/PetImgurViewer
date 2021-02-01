@@ -17,7 +17,7 @@ struct AccComment: Codable {
     let comment: String
     let author: String
     let points: Int
-    let children: [AccCommentsResp]?
+    let children: [AccComment]?
 
     enum CodingKeys: String, CodingKey {
         case commentId = "id"

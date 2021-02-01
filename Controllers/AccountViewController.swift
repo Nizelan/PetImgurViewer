@@ -56,7 +56,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
     }
 
     func switchChosen() {
-        guard let accName = AuthorizationData.authorizationData["account_username"] else { return }
+        guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
         guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
 
         if tableViewSwitch.selectedSegmentIndex == 0 {
@@ -67,7 +67,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
             print("AccountPosts")
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
             networkManager.fetchAccFavorites(
-                name: accName,
+                name: userName,
                 accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
                     self.dataSource = AccountFavorites(favorites: accFavoritesResp.data,
                                                        tableView: self.accountTableView,
@@ -79,8 +79,8 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
             self.accountTableView.reloadData()
             print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
-            networkManager.fetchAccComments(name: accName) { (accCommentsResp: AccCommentsResp) in
-                self.dataSource = AccountComments(comments: accCommentsResp.data)
+            networkManager.fetchAccComment(userName: userName, page: 0, sort: "newest") { (accCommentsResp: AccCommentsResp) in
+                self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }
             print("AccountComments")

@@ -2,20 +2,24 @@
 //  AlbumCell.swift
 //  someAPIMadness
 //
-//  Created by Nizelan on 24.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
+//  Created by Nizelan on 14.01.2021.
+//  Copyright © 2021 Nizelan. All rights reserved.
 //
 
 import UIKit
 
-// TODO: awfull name, needs changing
-// TODO: reuse identifier of this cell makes no sense either
-class AlbumsCell: UITableViewCell {
-    @IBOutlet weak var imageViewOutlet: ScalingImageView!
-    @IBOutlet weak var upsLabel: UILabel!
-    @IBOutlet weak var imageNamelable: UILabel!
+protocol AlbumCellDelegate {
+    func goToVideoButtonPrassed(cell: UITableViewCell)
+    func goToCommentButtonPrassed(cell: UITableViewCell)
+}
+
+class SecongAlbumCell: UITableViewCell {
+
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var upsImage: UIImageView!
+    @IBOutlet weak var albumImageView: ScalingImageView!
+    @IBOutlet weak var goToVideoButton: UIButton!
+    @IBOutlet weak var goToComments: UIButton!
+    var delegate: AlbumCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,13 +31,7 @@ class AlbumsCell: UITableViewCell {
 
     func setup(with album: Post) {
         setupImage(with: album)
-        setupUps(album)
-
-        if let title = album.title {
-            imageNamelable.text = title
-        } else {
-            imageNamelable.isHidden = true
-        }
+        setupButtons(with: album)
     }
 
     private func setupImage(with album: Post) {
@@ -41,13 +39,14 @@ class AlbumsCell: UITableViewCell {
             return
         }
 
-        imageViewOutlet.imageSize = album.coverSize
+        albumImageView.imageSize = album.coverSize
 
         if imageLink.contains("mp4") {
-            imageViewOutlet.image = UIImage(named: "placeholder")
+            albumImageView.image = UIImage(named: "playVideo")
+            stopActivity()
         } else {
             self.startActivity()
-            imageViewOutlet.loadImage(from: imageLink, completion: { (success) in
+            albumImageView.loadImage(from: imageLink, completion: { (success) in
                 self.stopActivity()
                 if success {
                     print("successfully loaded image with url: \(imageLink)")
@@ -58,15 +57,12 @@ class AlbumsCell: UITableViewCell {
         }
     }
 
-    private func setupUps(_ album: Post) {
-        guard let ups = album.ups,
-              let downs = album.downs else {
-            upsLabel.isHidden = true
-            upsImage.isHidden = true
-            return
+    private func setupButtons(with album: Post) {
+        if album.coverImageLink!.contains("mp4") {
+            goToVideoButton.isHidden = false
+        } else {
+            goToVideoButton.isHidden = true
         }
-
-        upsLabel.text = String(ups - downs) + " " + "points"
     }
 
     private func startActivity() {
@@ -78,4 +74,13 @@ class AlbumsCell: UITableViewCell {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
     }
+
+    @IBAction func goToComments(_ sender: UIButton) {
+        delegate?.goToCommentButtonPrassed(cell: self)
+    }
+
+    @IBAction func goToVideo(_ sender: Any) {
+        delegate?.goToVideoButtonPrassed(cell: self)
+    }
+
 }

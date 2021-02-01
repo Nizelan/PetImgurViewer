@@ -21,14 +21,9 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
-        tableView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellReuseIdentifier: "SecondCell")
         id = album!.postId
-        print("_________________________")
-        print(album)
-        print("_________________________")
 
-
-        tableView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellReuseIdentifier: "SecondCell")
+        tableView.register(UINib(nibName: "SecongAlbumCell", bundle: nil), forCellReuseIdentifier: "SecongAlbumCell")
         tableView.reloadData()
     }
 
@@ -48,31 +43,13 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let album = album,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as? AlbumCell else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SecongAlbumCell",
+                                                     for: indexPath) as? SecongAlbumCell else {
                 return UITableViewCell()
         }
 
-        
-
-//        if album.images?[indexPath.row].link != nil {
-//            if album.images![indexPath.row].link.contains("mp4") {
-//                cell.imageViewOutlet.image = UIImage(named: "playVideo")
-//                cell.activityIndicator.stopAnimating()
-//                cell.activityIndicator.isHidden = true
-//            } else {
-//                cell.imageViewOutlet.loadImage(from: album.images![indexPath.row].link, completion: { (success) in
-//                    if success {
-//                        cell.activityIndicator.stopAnimating()
-//                        cell.activityIndicator.isHidden = true
-//                        print("successfully loaded image with url: \(album.images![indexPath.row].link)")
-//                    } else {
-//                        cell.activityIndicator.stopAnimating()
-//                        cell.activityIndicator.isHidden = true
-//                        print("failed to load image with url: \(album.images![indexPath.row].link)")
-//                    }
-//                })
-//            }
-//        }
+        cell.delegate = self
+        cell.setup(with: album)
 
         return cell
     }
