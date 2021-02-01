@@ -20,11 +20,13 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(UINib(nibName: "AlbumsCell", bundle: nil), forCellReuseIdentifier: "MainAlbumCell")
+        tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
-        self.networkManager.fetchGallery(sections: SettingsData.sectionsData,
-                                         sort: SettingsData.sortData,
-                                         window: SettingsData.windowData) { (galleryArray: GalleryResponse) in
+        self.networkManager.fetchGallery(
+            sections: SettingsData.sectionsData,
+            sort: SettingsData.sortData,
+            window: SettingsData.windowData
+        ) { (galleryArray: GalleryResponse) in
 
             self.albums = galleryArray.data
             self.tableView.reloadData()
@@ -37,11 +39,17 @@ class MainTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainAlbumCell", for: indexPath) as? AlbumsCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FirstAlbumCell", for: indexPath) as? FirstAlbumCell else {
             return UITableViewCell()
         }
 
         cell.setup(with: albums[indexPath.row])
+        tableView.sizeThatFits(albums[indexPath.row].coverSize)
+
+        UIView.performWithoutAnimation {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
 
         return cell
     }

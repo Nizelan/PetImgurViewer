@@ -41,7 +41,6 @@ class CustomVideoPlayer: UIView {
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
         playerLayer.videoGravity = .resizeAspectFill
-        //view.layer.addSublayer(playerLayer)
         view.layer.insertSublayer(playerLayer, at: 0)
         self.playerLayer = playerLayer
         NotificationCenter.default.addObserver(self, selector: #selector(playerEndPlay),

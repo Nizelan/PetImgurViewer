@@ -22,11 +22,11 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         super.viewDidLoad()
         tableView.rowHeight = 400
         id = album!.postId
-        print("_________________________")
-        print(album)
-        print("_________________________")
-        self.tableView.reloadData()
+
+        tableView.register(UINib(nibName: "SecongAlbumCell", bundle: nil), forCellReuseIdentifier: "SecongAlbumCell")
+        tableView.reloadData()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("_________________________")
@@ -42,30 +42,14 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.register(UINib(nibName: "AlbumCell", bundle: nil), forCellReuseIdentifier: "SecondCell")
         guard let album = album,
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SecondCell", for: indexPath) as? AlbumCell else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SecongAlbumCell",
+                                                     for: indexPath) as? SecongAlbumCell else {
                 return UITableViewCell()
         }
-//        if album.images?[indexPath.row].link != nil {
-//            if album.images![indexPath.row].link.contains("mp4") {
-//                cell.imageViewOutlet.image = UIImage(named: "playVideo")
-//                cell.activityIndicator.stopAnimating()
-//                cell.activityIndicator.isHidden = true
-//            } else {
-//                cell.imageViewOutlet.loadImage(from: album.images![indexPath.row].link, completion: { (success) in
-//                    if success {
-//                        cell.activityIndicator.stopAnimating()
-//                        cell.activityIndicator.isHidden = true
-//                        print("successfully loaded image with url: \(album.images![indexPath.row].link)")
-//                    } else {
-//                        cell.activityIndicator.stopAnimating()
-//                        cell.activityIndicator.isHidden = true
-//                        print("failed to load image with url: \(album.images![indexPath.row].link)")
-//                    }
-//                })
-//            }
-//        }
+
+        cell.delegate = self
+        cell.setup(with: album)
 
         return cell
     }
@@ -75,19 +59,16 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
             print("\(Self.self) now have cell")
             return
         }
-        if album!.images![indexPathRow].link.contains("mp4") {
-            let url = album!.images![indexPathRow].link
-            let title = album!.title
-            link = url
-            name = title
-            performSegue(withIdentifier: "ShowVideo", sender: Any?.self)
-        }
+        let url = album!.images![indexPathRow].link
+        let title = album!.title
+        link = url
+        name = title
+        performSegue(withIdentifier: "ShowVideo", sender: Any?.self)
     }
 
     func goToCommentButtonPrassed(cell: UITableViewCell) {
         performSegue(withIdentifier: "CommentsSegue", sender: Any?.self)
     }
-
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentsSegue" {

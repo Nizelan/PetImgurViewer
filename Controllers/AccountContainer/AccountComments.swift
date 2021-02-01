@@ -11,9 +11,13 @@ import UIKit
 class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     var accComments: [AccComment]
+    var tableView: UITableView
+    var indentationLevel = 0
+    var currentIndent = 0
 
-    init(comments: [AccComment]) {
+    init(comments: [AccComment], tableView: UITableView) {
         accComments = comments
+        self.tableView = tableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -21,12 +25,40 @@ class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.register(UINib(nibName: "AccCommentsCell", bundle: nil), forCellReuseIdentifier: "AccCommentsCell")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccCommentsCell", for: indexPath) as? AccCommentsCell else {
             return UITableViewCell()
         }
-        cell.accAuthorName.text = accComments[indexPath.row].author
-        cell.accComment.text = accComments[indexPath.row].comment
-        cell.accCommPts.text = String(accComments[indexPath.row].points)
+
+        var dummy = 0
+        var lvlOfIndent = 0
+        if let comment = indentDetermine(at: indexPath.row, currentIndex: &dummy,
+                                         indent: &lvlOfIndent, in: accComments) {
+            cell.setup(comment: comment, indentLVL: lvlOfIndent)
+            self.currentIndent = 0
+
+            return cell
+        }
         return cell
+    }
+
+    func indentDetermine(at row: Int, currentIndex: inout Int,
+                         indent: inout Int, in array: [AccComment]) -> AccComment? {
+        for comment in array {
+            if currentIndex == row {
+                return comment
+            }
+            currentIndex += 1
+            print(currentIndex)
+            if comment.children!.count != 0, let foundIt = indentDetermine(at: row,
+                                                                           currentIndex: &currentIndex,
+                                                                           indent: &indent,
+                                                                           in: comment.children!) {
+                indent += 1
+                self.currentIndent = indent
+                return foundIt
+            }
+        }
+        return nil
     }
 }

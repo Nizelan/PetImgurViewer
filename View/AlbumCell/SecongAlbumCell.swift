@@ -13,41 +13,25 @@ protocol AlbumCellDelegate {
     func goToCommentButtonPrassed(cell: UITableViewCell)
 }
 
-class AlbumCell: UITableViewCell {
+class SecongAlbumCell: UITableViewCell {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var albumImageView: ScalingImageView!
     @IBOutlet weak var goToVideoButton: UIButton!
+    @IBOutlet weak var goToComments: UIButton!
     var delegate: AlbumCellDelegate?
-
-    var aspectRatioConstraint: NSLayoutConstraint? {
-        didSet {
-            if let old = oldValue {
-                albumImageView.removeConstraint(old)
-                //NSLayoutConstraint.deactivate([old])
-            }
-            if let constraint = aspectRatioConstraint {
-                albumImageView.addConstraint(constraint)
-                //NSLayoutConstraint.activate([constraint])
-            }
-        }
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        aspectRatioConstraint = nil
+        super.setSelected(false, animated: animated)
     }
 
     func setup(with album: Post) {
         setupImage(with: album)
+        setupButtons(with: album)
     }
 
     private func setupImage(with album: Post) {
@@ -55,15 +39,11 @@ class AlbumCell: UITableViewCell {
             return
         }
 
-        print("aspect ratio --- \(album.aspectRatio)")
-        albumImageView.translatesAutoresizingMaskIntoConstraints = false
-        print("===========>\(albumImageView)")
         albumImageView.imageSize = album.coverSize
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
 
         if imageLink.contains("mp4") {
-            albumImageView.image = UIImage(named: "placeholder")
+            albumImageView.image = UIImage(named: "playVideo")
+            stopActivity()
         } else {
             self.startActivity()
             albumImageView.loadImage(from: imageLink, completion: { (success) in
@@ -77,7 +57,12 @@ class AlbumCell: UITableViewCell {
         }
     }
 
-    private func setupButtons() {
+    private func setupButtons(with album: Post) {
+        if album.coverImageLink!.contains("mp4") {
+            goToVideoButton.isHidden = false
+        } else {
+            goToVideoButton.isHidden = true
+        }
     }
 
     private func startActivity() {

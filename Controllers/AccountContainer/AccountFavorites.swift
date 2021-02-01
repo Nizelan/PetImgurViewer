@@ -37,6 +37,7 @@ class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource, Ac
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.register(UINib(nibName: "AccFavoritesCell", bundle: nil), forCellReuseIdentifier: "AccFavoritesCell")
+        tableView.rowHeight = 400
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccFavoritesCell",
                                                        for: indexPath) as? AccFavoritesCell else {
             return UITableViewCell()

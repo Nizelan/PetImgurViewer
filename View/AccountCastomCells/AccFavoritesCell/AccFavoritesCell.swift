@@ -13,7 +13,7 @@ protocol AccFavoritesCellDelegate {
 }
 
 class AccFavoritesCell: UITableViewCell {
-    
+
     @IBOutlet weak var favoriteImageView: ScalingImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var ups: UILabel!
