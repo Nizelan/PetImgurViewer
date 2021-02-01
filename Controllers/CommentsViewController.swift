@@ -14,12 +14,13 @@ class CommentsViewController: UITableViewController {
     var comments = [Comment]()
     var countOfCells = Int()
     var indentationLevel = 0
-
     var currentIndent = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
 
         if let albumID = albumID {
             self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
