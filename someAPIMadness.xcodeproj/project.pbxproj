@@ -190,11 +190,19 @@
 		996ECAAA257A5AF000AC5CCE /* AccountCastomCells */ = {
 			isa = PBXGroup;
 			children = (
+				997A9A1C25C975AC0077484F /* AccPostCell */,
 				99A9F29E25C5935000F95F3A /* AccFavoritesCell */,
 				99A9F29D25C5930600F95F3A /* AccCommentCell */,
-				991F931C257BAEA800786C68 /* AccPostsCell.swift */,
 			);
 			path = AccountCastomCells;
+			sourceTree = "<group>";
+		};
+		997A9A1C25C975AC0077484F /* AccPostCell */ = {
+			isa = PBXGroup;
+			children = (
+				991F931C257BAEA800786C68 /* AccPostsCell.swift */,
+			);
+			path = AccPostCell;
 			sourceTree = "<group>";
 		};
 		997E37CE257262AB00DBF03A /* AccountContainer */ = {
