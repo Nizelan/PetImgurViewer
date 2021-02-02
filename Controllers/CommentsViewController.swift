@@ -9,7 +9,7 @@
 import UIKit
 
 class CommentsViewController: UITableViewController {
-    private let networkManager = NetworkManager()
+    let networkManager = NetworkManager()
     var albumID: String?
     var comments = [Comment]()
     var countOfCells = Int()
@@ -27,7 +27,6 @@ class CommentsViewController: UITableViewController {
                 self.comments = commentArray.data
                 self.createCountOfCells(commentsArray: self.comments)
                 self.tableView.reloadData()
-
             }
         }
         print("\(String(describing: albumID))*******************************")

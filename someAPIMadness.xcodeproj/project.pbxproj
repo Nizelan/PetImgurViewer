@@ -15,7 +15,7 @@
 		99100127254C564000A4F295 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99100126254C564000A4F295 /* AuthViewController.swift */; };
 		9913876D25A3454A007466C8 /* AccFavoritesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9913876C25A3454A007466C8 /* AccFavoritesCell.xib */; };
 		991A415C259F5AE3002AA2C1 /* ClientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A415B259F5AE3002AA2C1 /* ClientData.swift */; };
-		991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F931C257BAEA800786C68 /* AccPostsCell.swift */; };
+		991F931D257BAEA800786C68 /* AccPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F931C257BAEA800786C68 /* AccPostCell.swift */; };
 		991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F9322257BB8D200786C68 /* AccFavoritesCell.swift */; };
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
 		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
@@ -27,6 +27,7 @@
 		9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* SettingsViewController.swift */; };
 		9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SettingViewController.swift */; };
 		99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */; };
+		997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997A9A1D25C976D90077484F /* AccPostCell.xib */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
 		997E37D22572657400DBF03A /* AccountPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D12572657400DBF03A /* AccountPosts.swift */; };
 		997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D3257265C300DBF03A /* AccountFollowing.swift */; };
@@ -81,7 +82,7 @@
 		99100126254C564000A4F295 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		9913876C25A3454A007466C8 /* AccFavoritesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccFavoritesCell.xib; sourceTree = "<group>"; };
 		991A415B259F5AE3002AA2C1 /* ClientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientData.swift; sourceTree = "<group>"; };
-		991F931C257BAEA800786C68 /* AccPostsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccPostsCell.swift; sourceTree = "<group>"; };
+		991F931C257BAEA800786C68 /* AccPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccPostCell.swift; sourceTree = "<group>"; };
 		991F9322257BB8D200786C68 /* AccFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccFavoritesCell.swift; sourceTree = "<group>"; };
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +94,7 @@
 		9975AA3824E2988400B418A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9975AA3A24E2B61400B418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
+		997A9A1D25C976D90077484F /* AccPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccPostCell.xib; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
 		997E37D12572657400DBF03A /* AccountPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPosts.swift; sourceTree = "<group>"; };
 		997E37D3257265C300DBF03A /* AccountFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFollowing.swift; sourceTree = "<group>"; };
@@ -200,7 +202,8 @@
 		997A9A1C25C975AC0077484F /* AccPostCell */ = {
 			isa = PBXGroup;
 			children = (
-				991F931C257BAEA800786C68 /* AccPostsCell.swift */,
+				991F931C257BAEA800786C68 /* AccPostCell.swift */,
+				997A9A1D25C976D90077484F /* AccPostCell.xib */,
 			);
 			path = AccPostCell;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				9980567025A8749000B0A000 /* SecongAlbumCell.xib in Resources */,
 				9913876D25A3454A007466C8 /* AccFavoritesCell.xib in Resources */,
 				9980567225A87B0C00B0A000 /* CommentCell.xib in Resources */,
+				997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */,
 				99A9F2A025C593B200F95F3A /* AccCommentsCell.xib in Resources */,
 				99D192A524B8A59D00082D6A /* Assets.xcassets in Resources */,
 				99D192A324B8A59500082D6A /* Main.storyboard in Resources */,
@@ -523,7 +527,7 @@
 				99B4FF1024D95E2600BE8F60 /* SettingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				99F55D7625790EAB00E3E03A /* AccCommentsResp.swift in Sources */,
-				991F931D257BAEA800786C68 /* AccPostsCell.swift in Sources */,
+				991F931D257BAEA800786C68 /* AccPostCell.swift in Sources */,
 				9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */,
 				996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* FirstAlbumCell.swift in Sources */,

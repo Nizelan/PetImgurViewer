@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, SettingsControllerDelegate, AccountFavoritesDelegate {
+class AccountViewController: UIViewController, SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     let networkManager = NetworkManager()
     var dataSource: (UITableViewDataSource & UITableViewDelegate)?
@@ -45,14 +45,31 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
         switchChosen()
     }
 
-    @IBAction func playPost(_ sender: UIButton) {
-    }
-
     func playButtonPressed(post: FavoritePost) {
         let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
         videoViewC?.link = post.images[0].mp4
         videoViewC?.name = post.title
         self.present(videoViewC!, animated: true)
+    }
+
+    func playButtonPressed(post: AccPost) {
+        let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
+        videoViewC?.link = post.link
+        videoViewC?.name = post.title
+        self.present(videoViewC!, animated: true)
+    }
+
+    func commentButtonPressed(post: AccPost) {
+        let commentVC = storyboard?.instantiateViewController(identifier: "CommentVC") as? CommentsViewController
+        commentVC?.albumID = post.postId
+        commentVC?.networkManager.fetchComment(sort: "best",
+                                               id: commentVC!.albumID!,
+                                               closure: { (commentArray: GalleryCommentResponse) in
+            commentVC?.comments = commentArray.data
+            commentVC?.createCountOfCells(commentsArray: commentVC!.comments)
+            commentVC?.tableView.reloadData()
+        })
+        self.present(commentVC!, animated: true)
     }
 
     func switchChosen() {
@@ -61,7 +78,9 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
 
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
-                self.dataSource = AccountPosts(images: accGalleryResp.data)
+                self.dataSource = AccountPosts(images: accGalleryResp.data,
+                                               tableView: self.accountTableView,
+                                               delegate: self)
                 self.setupTableView()
             }
             print("AccountPosts")
@@ -91,12 +110,6 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
         if segue.identifier == "SetingsSegue" {
             guard let destination = segue.destination as? SettingsViewController else { return }
             destination.delegate = self
-        } else if segue.identifier == "ShowVideo" {
-            guard let destination = segue.destination as? VideoViewController, let post = sender as? FavoritePost else { return }
-            destination.name = post.title
-            if let link = post.images[0].mp4 {
-                destination.link = link
-            }
         }
     }
 }

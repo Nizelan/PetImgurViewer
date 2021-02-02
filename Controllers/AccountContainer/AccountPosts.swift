@@ -8,13 +8,37 @@
 
 import UIKit
 
-class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource {
+protocol AccountPostDelegate {
+    func playButtonPressed(post: AccPost)
+    func commentButtonPressed(post: AccPost)
+}
 
-    let networkManager = NetworkManager()
+class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource, AccPostCellDelegate {
+
+    var delegate: AccountPostDelegate
     var accountImages: [AccPost]
+    var tableView: UITableView
 
-    init(images: [AccPost]) {
+    init(images: [AccPost], tableView: UITableView, delegate: AccountPostDelegate) {
+        self.delegate = delegate
+        self.tableView = tableView
         accountImages = images
+    }
+
+    func playButtonPrassed(cell: UITableViewCell) {
+        guard let indexPathRow = tableView.indexPath(for: cell)?.row else {
+            print("\(Self.self) now have cell")
+            return
+        }
+        delegate.playButtonPressed(post: accountImages[indexPathRow])
+    }
+
+    func commentButtomPrassed(cell: UITableViewCell) {
+        guard let indexPathRow = tableView.indexPath(for: cell)?.row else {
+            print("\(Self.self) now have cell")
+            return
+        }
+        delegate.commentButtonPressed(post: accountImages[indexPathRow])
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,9 +46,11 @@ class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccPostsCell", for: indexPath) as? AccPostsCell else {
+        tableView.register(UINib(nibName: "AccPostCell", bundle: nil), forCellReuseIdentifier: "AccPostCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccPostCell", for: indexPath) as? AccPostCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         cell.setup(with: accountImages[indexPath.row])
         return cell
     }
