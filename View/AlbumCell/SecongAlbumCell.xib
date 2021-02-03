@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SecongAlbumCell" rowHeight="300" id="4Hp-cS-Iva" customClass="SecongAlbumCell" customModule="someAPIMadness" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Hp-cS-Iva" id="LBG-mA-dMO">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPH-mR-zcM">
+                        <rect key="frame" x="8" y="8" width="398" height="284"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="prF-Qd-K7j" customClass="ScalingImageView" customModule="someAPIMadness" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="398" height="284"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="k50-wA-j7Q">
+                                <rect key="frame" x="189" y="132" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Oxk-oa-ohI"/>
+                                    <constraint firstAttribute="height" constant="20" id="SBj-71-MCm"/>
+                                </constraints>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbH-4R-bEc">
+                                <rect key="frame" x="8" y="226" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7i9-7g-Zwk"/>
+                                    <constraint firstAttribute="width" constant="50" id="LL0-Lw-LRA"/>
+                                </constraints>
+                                <state key="normal" image="PlayButton"/>
+                                <connections>
+                                    <action selector="goToVideo:" destination="4Hp-cS-Iva" eventType="touchUpInside" id="gLv-WJ-xuP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AdS-kI-AUU">
+                                <rect key="frame" x="340" y="226" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AIo-ON-Etc"/>
+                                    <constraint firstAttribute="height" constant="50" id="eVW-jY-DLV"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="pencil.and.ellipsis.rectangle" catalog="system"/>
+                                <connections>
+                                    <action selector="goToComments:" destination="4Hp-cS-Iva" eventType="touchUpInside" id="poq-XW-oh9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.27953603859999998" green="0.28986340760000001" blue="0.31786510350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="prF-Qd-K7j" firstAttribute="leading" secondItem="yPH-mR-zcM" secondAttribute="leading" id="8am-Mv-Osz"/>
+                            <constraint firstItem="k50-wA-j7Q" firstAttribute="centerX" secondItem="prF-Qd-K7j" secondAttribute="centerX" id="L07-no-AMo"/>
+                            <constraint firstAttribute="trailing" secondItem="AdS-kI-AUU" secondAttribute="trailing" constant="8" id="Ted-XX-vJR"/>
+                            <constraint firstAttribute="bottom" secondItem="NbH-4R-bEc" secondAttribute="bottom" constant="8" id="c2w-Nl-l6y"/>
+                            <constraint firstItem="k50-wA-j7Q" firstAttribute="centerY" secondItem="prF-Qd-K7j" secondAttribute="centerY" id="gc5-g3-XUf"/>
+                            <constraint firstAttribute="bottom" secondItem="prF-Qd-K7j" secondAttribute="bottom" id="juA-BZ-EKf"/>
+                            <constraint firstItem="NbH-4R-bEc" firstAttribute="leading" secondItem="yPH-mR-zcM" secondAttribute="leading" constant="8" id="vBW-YR-Ym9"/>
+                            <constraint firstItem="prF-Qd-K7j" firstAttribute="top" secondItem="yPH-mR-zcM" secondAttribute="top" id="vOz-EZ-5BA"/>
+                            <constraint firstAttribute="trailing" secondItem="prF-Qd-K7j" secondAttribute="trailing" id="wYS-lx-z1M"/>
+                            <constraint firstAttribute="bottom" secondItem="AdS-kI-AUU" secondAttribute="bottom" constant="8" id="xsC-EC-kXr"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="yPH-mR-zcM" secondAttribute="trailing" constant="8" id="Lvu-Z6-esk"/>
+                    <constraint firstItem="yPH-mR-zcM" firstAttribute="leading" secondItem="LBG-mA-dMO" secondAttribute="leading" constant="8" id="krA-Zs-n6f"/>
+                    <constraint firstItem="yPH-mR-zcM" firstAttribute="top" secondItem="LBG-mA-dMO" secondAttribute="top" constant="8" id="vK8-bn-mrr"/>
+                    <constraint firstAttribute="bottom" secondItem="yPH-mR-zcM" secondAttribute="bottom" constant="8" id="zY5-Rq-58F"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+            <connections>
+                <outlet property="activityIndicator" destination="k50-wA-j7Q" id="nlo-Ug-lzW"/>
+                <outlet property="albumImageView" destination="prF-Qd-K7j" id="ugy-sb-0W4"/>
+                <outlet property="goToComments" destination="AdS-kI-AUU" id="B61-cH-YSv"/>
+                <outlet property="goToVideoButton" destination="NbH-4R-bEc" id="TiU-32-QUm"/>
+            </connections>
+            <point key="canvasLocation" x="-246" y="-135"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="PlayButton" width="21" height="22"/>
+        <image name="pencil.and.ellipsis.rectangle" catalog="system" width="64" height="40"/>
+    </resources>
+</document>

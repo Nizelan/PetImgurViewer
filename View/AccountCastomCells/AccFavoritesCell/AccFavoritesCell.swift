@@ -8,14 +8,18 @@
 
 import UIKit
 
+protocol AccFavoritesCellDelegate {
+    func playButtonPressed(cell: UITableViewCell)
+}
+
 class AccFavoritesCell: UITableViewCell {
 
     @IBOutlet weak var favoriteImageView: ScalingImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var ups: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var favoritesVideo: CustomVideoPlayer!
-    @IBOutlet weak var playFavorites: UIButton!
+    @IBOutlet weak var goToVideos: UIButton!
+    var delegate: AccFavoritesCellDelegate?
 
     func setup(with album: FavoritePost) {
         setupImage(with: album)
@@ -39,12 +43,10 @@ class AccFavoritesCell: UITableViewCell {
         self.layoutIfNeeded()
 
         if let videoLink = album.images[0].mp4 {
-            favoritesVideo.playWithLink(videoLink, ofType: "mp4")
-            self.playFavorites.isHidden = true
+            goToVideos.isHidden = false
             stopActivity()
         } else {
-            self.favoritesVideo.isHidden = true
-            self.playFavorites.isHidden = true
+            goToVideos.isHidden = true
             self.startActivity()
             favoriteImageView.loadImage(from: imageLink, completion: { (success) in
                 self.stopActivity()
@@ -55,6 +57,10 @@ class AccFavoritesCell: UITableViewCell {
                 }
             })
         }
+    }
+
+    @IBAction func goToVideo(_ sender: Any) {
+        delegate?.playButtonPressed(cell: self)
     }
 
     private func startActivity() {

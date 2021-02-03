@@ -8,15 +8,13 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, SettingsControllerDelegate {
+class AccountViewController: UIViewController, SettingsControllerDelegate, AccountFavoritesDelegate {
 
     let networkManager = NetworkManager()
     var dataSource: (UITableViewDataSource & UITableViewDelegate)?
     var accountData: [String: String]?
 
     var accountImages = [AccPost]()
-    var link = String()
-    var name = String()
 
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!
@@ -27,6 +25,8 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.backItem?.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
     }
 
     func update(sectionsText: String, sortText: String, windowText: String) {
@@ -45,46 +45,42 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         switchChosen()
     }
 
-    @IBAction func playFavorites(_ sender: UIButton) {
-    }
-
     @IBAction func playPost(_ sender: UIButton) {
     }
 
+    func playButtonPressed(post: FavoritePost) {
+        let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
+        videoViewC?.link = post.images[0].mp4
+        videoViewC?.name = post.title
+        self.present(videoViewC!, animated: true)
+    }
+
     func switchChosen() {
-        guard let accName = AuthorizationData.authorizationData["account_username"] else { return }
+        guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
         guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
+
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
-                self.link = accGalleryResp.data[0].link
-                if let name = accGalleryResp.data[0].title {
-                    self.name = name
-                } else {
-                    self.name = ""
-                }
                 self.dataSource = AccountPosts(images: accGalleryResp.data)
                 self.setupTableView()
             }
             print("AccountPosts")
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
-            networkManager.fetchAccFavorites(name: accName,
-                                             accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
-                                                if let link = accFavoritesResp.data[0].images[0].mp4 {
-                                                    self.link = link
-                                                }
-                                                if let name = accFavoritesResp.data[0].title {
-                                                    self.name = name
-                                                }
-                                                self.dataSource = AccountFavorites(favorites: accFavoritesResp.data)
-                                                self.setupTableView()
+            networkManager.fetchAccFavorites(
+                name: userName,
+                accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
+                    self.dataSource = AccountFavorites(favorites: accFavoritesResp.data,
+                                                       tableView: self.accountTableView,
+                                                       delegate: self)
+                    self.setupTableView()
             }
             print("AccountFavorites")
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
             self.accountTableView.reloadData()
             print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
-            networkManager.fetchAccComments(name: accName) { (accCommentsResp: AccCommentsResp) in
-                self.dataSource = AccountComments(comments: accCommentsResp.data)
+            networkManager.fetchAccComment(userName: userName, page: 0, sort: "newest") { (accCommentsResp: AccCommentsResp) in
+                self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }
             print("AccountComments")
@@ -95,14 +91,12 @@ class AccountViewController: UIViewController, SettingsControllerDelegate {
         if segue.identifier == "SetingsSegue" {
             guard let destination = segue.destination as? SettingsViewController else { return }
             destination.delegate = self
-        } else if segue.identifier == "PushFavorites" {
-            guard let destination = segue.destination as? VideoViewController else { return }
-            destination.link = link
-            destination.name = name
-        } else if segue.identifier == "PushPost" {
-            guard let destination = segue.destination as? VideoViewController else { return }
-            destination.name = name
-            destination.link = link
+        } else if segue.identifier == "ShowVideo" {
+            guard let destination = segue.destination as? VideoViewController, let post = sender as? FavoritePost else { return }
+            destination.name = post.title
+            if let link = post.images[0].mp4 {
+                destination.link = link
+            }
         }
     }
 }

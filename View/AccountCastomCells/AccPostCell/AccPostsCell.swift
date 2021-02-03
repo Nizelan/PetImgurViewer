@@ -37,7 +37,6 @@ class AccPostsCell: UITableViewCell {
         self.layoutIfNeeded()
 
         if imageLink.contains("mp4") {
-            postVideo.playWithLink(imageLink, ofType: "mp4")
             playPost.isHidden = true
             stopActivity()
         } else {
