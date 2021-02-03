@@ -29,15 +29,16 @@ class SecongAlbumCell: UITableViewCell {
         super.setSelected(false, animated: animated)
     }
 
-    func setup(with album: Post) {
-        setupImage(with: album)
-        setupButtons(with: album)
+    func setup(with album: Post, index: Int) {
+        setupImage(with: album, index: index)
+        setupButtons(with: album, index: index)
     }
 
-    private func setupImage(with album: Post) {
-        guard let imageLink = album.coverImageLink else {
+    private func setupImage(with album: Post, index: Int) {
+        guard let imageLink = album.coverLink(index: index) else {
             return
         }
+        print("\(imageLink)")
 
         albumImageView.imageSize = album.coverSize
 
@@ -57,8 +58,8 @@ class SecongAlbumCell: UITableViewCell {
         }
     }
 
-    private func setupButtons(with album: Post) {
-        if album.coverImageLink!.contains("mp4") {
+    private func setupButtons(with album: Post, index: Int) {
+        if album.coverLink(index: index)!.contains("mp4") {
             goToVideoButton.isHidden = false
         } else {
             goToVideoButton.isHidden = true

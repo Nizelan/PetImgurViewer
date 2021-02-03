@@ -8,13 +8,19 @@
 
 import UIKit
 
-class AccPostsCell: UITableViewCell {
+protocol AccPostCellDelegate {
+    func playButtonPrassed(cell: UITableViewCell)
+    func commentButtomPrassed(cell: UITableViewCell)
+}
+
+class AccPostCell: UITableViewCell {
 
     @IBOutlet weak var postImage: ScalingImageView!
     @IBOutlet weak var postTitle: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var postVideo: CustomVideoPlayer!
-    @IBOutlet weak var playPost: UIButton!
+    @IBOutlet weak var shoveVideo: UIButton!
+    @IBOutlet weak var shoveComment: UIButton!
+    var delegate: AccPostCellDelegate?
 
     func setup(with album: AccPost) {
         setupImage(with: album)
@@ -31,17 +37,15 @@ class AccPostsCell: UITableViewCell {
 
         print("aspect ratio --- \(album.aspectRatio)")
         postImage.translatesAutoresizingMaskIntoConstraints = false
-        print("===========>\(postImage)")
         postImage.imageSize = album.coverSize
         self.setNeedsLayout()
         self.layoutIfNeeded()
 
         if imageLink.contains("mp4") {
-            playPost.isHidden = true
+            shoveVideo.isHidden = true
             stopActivity()
         } else {
-            self.postVideo.isHidden = true
-            self.playPost.isHidden = true
+            self.shoveVideo.isHidden = true
             self.startActivity()
             postImage.loadImage(from: imageLink, completion: { (success) in
                 self.stopActivity()
@@ -52,6 +56,14 @@ class AccPostsCell: UITableViewCell {
                 }
             })
         }
+    }
+
+    @IBAction func playButtonAction(_ sender: UIButton) {
+        delegate?.playButtonPrassed(cell: self)
+    }
+
+    @IBAction func commentsButtonAction(_ sender: UIButton) {
+        delegate?.commentButtomPrassed(cell: self)
     }
 
     private func startActivity() {
