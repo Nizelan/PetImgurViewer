@@ -95,29 +95,32 @@
                                             <segue destination="vWJ-8R-0BP" kind="show" identifier="ShowAlboms" id="i9q-bg-D6a"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-fu-Qv7">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AiI-fu-Qv7">
                                         <rect key="frame" x="81" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="QI0-YK-KBQ"/>
                                             <constraint firstAttribute="width" constant="50" id="xQK-Q6-uSz"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="square.split.2x2.fill" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAK-Jd-1yH">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAK-Jd-1yH">
                                         <rect key="frame" x="162" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="85a-0d-gaG"/>
                                             <constraint firstAttribute="height" constant="50" id="FT1-kP-YiO"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="square.grid.2x2.fill" catalog="system"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcB-0i-dFf">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcB-0i-dFf">
                                         <rect key="frame" x="243" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="5lr-Bj-zdk"/>
                                             <constraint firstAttribute="width" constant="50" id="Gzp-bN-uf9"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="square.grid.2x2.fill" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ewq-tw-Mvc">
                                         <rect key="frame" x="324" y="0.0" width="50" height="50"/>
@@ -282,7 +285,7 @@
             <objects>
                 <navigationController id="zII-7F-TcP" customClass="MainViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="4d1-hM-wcG">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="nGi-Ah-MpW">
+                        <barButtonItem key="rightBarButtonItem" id="nGi-Ah-MpW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pao-oh-zOX">
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
@@ -339,7 +342,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ups" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoL-Lr-zRz">
-                                                    <rect key="frame" x="32" y="257.5" width="30" height="21.5"/>
+                                                    <rect key="frame" x="32" y="257.5" width="116" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -360,6 +363,7 @@
                                                 <constraint firstItem="v8o-5v-Nh9" firstAttribute="centerY" secondItem="4td-Bf-SOm" secondAttribute="centerY" id="CPG-vg-hZJ"/>
                                                 <constraint firstItem="4td-Bf-SOm" firstAttribute="top" secondItem="Ni3-9I-f95" secondAttribute="top" id="IeD-sC-Msh"/>
                                                 <constraint firstAttribute="bottom" secondItem="I8G-Hx-Spt" secondAttribute="bottom" constant="8" id="TgX-Hu-dkQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="xoL-Lr-zRz" secondAttribute="trailing" constant="250" id="Xuu-ve-ece"/>
                                                 <constraint firstItem="cci-jn-Ojm" firstAttribute="top" secondItem="4td-Bf-SOm" secondAttribute="bottom" constant="8" id="YO0-0h-cgL"/>
                                                 <constraint firstItem="I8G-Hx-Spt" firstAttribute="leading" secondItem="Ni3-9I-f95" secondAttribute="leading" constant="8" id="Zvc-7Y-q8R"/>
                                                 <constraint firstItem="v8o-5v-Nh9" firstAttribute="centerX" secondItem="4td-Bf-SOm" secondAttribute="centerX" id="faF-gF-oQL"/>
@@ -535,6 +539,8 @@
         <image name="accountIcon" width="841" height="980"/>
         <image name="homePage" width="1042" height="939"/>
         <image name="settings" width="240" height="240"/>
+        <image name="square.grid.2x2.fill" catalog="system" width="64" height="56"/>
+        <image name="square.split.2x2.fill" catalog="system" width="64" height="56"/>
         <image name="starsky" width="616" height="411"/>
     </resources>
 </document>

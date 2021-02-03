@@ -31,10 +31,10 @@ struct AccPost: Codable {
 
 extension AccPost {
     var coverSize: CGSize {
-        return CGSize(width: width ?? 0, height: height ?? 0)
+        return CGSize(width: width, height: height)
     }
 
     var aspectRatio: CGFloat {
-        return CGFloat(width ?? 1) / CGFloat(height ?? 1)
+        return CGFloat(width) / CGFloat(height)
     }
 }

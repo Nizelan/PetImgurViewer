@@ -15,7 +15,7 @@ protocol AccountPostDelegate {
 
 class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource, AccPostCellDelegate {
 
-    var delegate: AccountPostDelegate
+    var delegate: AccountPostDelegate?
     var accountImages: [AccPost]
     var tableView: UITableView
 
@@ -30,7 +30,7 @@ class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource, AccPos
             print("\(Self.self) now have cell")
             return
         }
-        delegate.playButtonPressed(post: accountImages[indexPathRow])
+        delegate?.playButtonPressed(post: accountImages[indexPathRow])
     }
 
     func commentButtomPrassed(cell: UITableViewCell) {
@@ -38,7 +38,7 @@ class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource, AccPos
             print("\(Self.self) now have cell")
             return
         }
-        delegate.commentButtonPressed(post: accountImages[indexPathRow])
+        delegate?.commentButtonPressed(post: accountImages[indexPathRow])
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,7 +47,8 @@ class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource, AccPos
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.register(UINib(nibName: "AccPostCell", bundle: nil), forCellReuseIdentifier: "AccPostCell")
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccPostCell", for: indexPath) as? AccPostCell else {
+        guard let cell =
+            tableView.dequeueReusableCell(withIdentifier: "AccPostCell", for: indexPath) as? AccPostCell else {
             return UITableViewCell()
         }
         cell.delegate = self

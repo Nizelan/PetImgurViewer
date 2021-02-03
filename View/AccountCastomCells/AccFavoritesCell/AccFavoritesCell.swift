@@ -37,12 +37,11 @@ class AccFavoritesCell: UITableViewCell {
 
         print("aspect ratio --- \(album.aspectRatio)")
         favoriteImageView.translatesAutoresizingMaskIntoConstraints = false
-        print("===========>\(favoriteImageView)")
         favoriteImageView.imageSize = album.coverSize
         self.setNeedsLayout()
         self.layoutIfNeeded()
 
-        if let videoLink = album.images[0].mp4 {
+        if album.images[0].mp4 != nil {
             goToVideos.isHidden = false
             stopActivity()
         } else {

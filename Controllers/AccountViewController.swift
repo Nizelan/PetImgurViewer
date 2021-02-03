@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
+class AccountViewController: UIViewController,
+SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     let networkManager = NetworkManager()
     var dataSource: (UITableViewDataSource & UITableViewDelegate)?
@@ -63,7 +64,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
         let commentVC = storyboard?.instantiateViewController(identifier: "CommentVC") as? CommentsViewController
         commentVC?.albumID = post.postId
         commentVC?.networkManager.fetchComment(sort: "best",
-                                               id: commentVC!.albumID!,
+                                               albumId: commentVC!.albumID!,
                                                closure: { (commentArray: GalleryCommentResponse) in
             commentVC?.comments = commentArray.data
             commentVC?.createCountOfCells(commentsArray: commentVC!.comments)
@@ -98,7 +99,9 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
             self.accountTableView.reloadData()
             print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
-            networkManager.fetchAccComment(userName: userName, page: 0, sort: "newest") { (accCommentsResp: AccCommentsResp) in
+            networkManager.fetchAccComment(userName: userName,
+                                           page: 0,
+                                           sort: "newest") { (accCommentsResp: AccCommentsResp) in
                 self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }

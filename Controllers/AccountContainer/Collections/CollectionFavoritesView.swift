@@ -12,7 +12,6 @@ private let reuseIdentifier = "CollFavoritesCell"
 private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
 private let itemsPerRow: CGFloat = 3
 
-
 class CollectionFavoritesView: UICollectionView {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
