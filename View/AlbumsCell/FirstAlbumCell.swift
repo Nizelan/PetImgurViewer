@@ -8,8 +8,6 @@
 
 import UIKit
 
-// TODO: awfull name, needs changing
-// TODO: reuse identifier of this cell makes no sense either
 class FirstAlbumCell: UITableViewCell {
     @IBOutlet weak var imageViewOutlet: ScalingImageView!
     @IBOutlet weak var upsLabel: UILabel!
@@ -37,7 +35,7 @@ class FirstAlbumCell: UITableViewCell {
     }
 
     private func setupImage(with album: Post) {
-        guard let imageLink = album.coverImageLink else {
+        guard let imageLink = album.coverLink(index: 0) else {
             return
         }
 

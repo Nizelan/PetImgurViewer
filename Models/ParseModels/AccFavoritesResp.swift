@@ -45,10 +45,10 @@ struct Images: Codable {
 
 extension FavoritePost {
     var coverSize: CGSize {
-        return CGSize(width: coverWidth ?? 0, height: coverHeight ?? 0)
+        return CGSize(width: coverWidth, height: coverHeight)
     }
 
     var aspectRatio: CGFloat {
-        return CGFloat(coverWidth ?? 1) / CGFloat(coverHeight ?? 1)
+        return CGFloat(coverWidth) / CGFloat(coverHeight)
     }
 }
