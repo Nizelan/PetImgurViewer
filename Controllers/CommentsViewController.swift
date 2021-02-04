@@ -9,7 +9,7 @@
 import UIKit
 
 class CommentsViewController: UITableViewController {
-    private let networkManager = NetworkManager()
+    let networkManager = NetworkManager()
     var albumID: String?
     var comments = [Comment]()
     var countOfCells = Int()
@@ -23,11 +23,10 @@ class CommentsViewController: UITableViewController {
         tableView.register(UINib(nibName: "CommentCell", bundle: nil), forCellReuseIdentifier: "CommentCell")
 
         if let albumID = albumID {
-            self.networkManager.fetchComment(sort: "best", id: albumID) { (commentArray: GalleryCommentResponse) in
+            self.networkManager.fetchComment(sort: "best", albumId: albumID) { (commentArray: GalleryCommentResponse) in
                 self.comments = commentArray.data
                 self.createCountOfCells(commentsArray: self.comments)
                 self.tableView.reloadData()
-
             }
         }
         print("\(String(describing: albumID))*******************************")
@@ -40,8 +39,10 @@ class CommentsViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
-                                                              for: indexPath) as? CommentCell else { return UITableViewCell() }
+        guard let commentCell =
+            tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell else {
+                return UITableViewCell()
+        }
         var dummy = 0
         var lvlOfIndent = 0
         if let comment = indentDetermine(at: indexPath.row, currentIndex: &dummy, indent: &lvlOfIndent, in: comments) {

@@ -26,7 +26,8 @@ class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.register(UINib(nibName: "AccCommentsCell", bundle: nil), forCellReuseIdentifier: "AccCommentsCell")
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AccCommentsCell", for: indexPath) as? AccCommentsCell else {
+        guard let cell =
+            tableView.dequeueReusableCell(withIdentifier: "AccCommentsCell", for: indexPath) as? AccCommentsCell else {
             return UITableViewCell()
         }
 

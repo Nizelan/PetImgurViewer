@@ -14,14 +14,14 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     var album: Post?
     let networkManager = NetworkManager()
-    var id: String?
+    var albumId: String?
     var name: String?
     var link = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
-        id = album!.postId
+        albumId = album!.postId
 
         tableView.register(UINib(nibName: "SecongAlbumCell", bundle: nil), forCellReuseIdentifier: "SecongAlbumCell")
         tableView.reloadData()
@@ -29,9 +29,6 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("_________________________")
-        print(album)
-        print("_________________________")
     }
 
     // MARK: - Table view data source
@@ -49,7 +46,7 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         }
 
         cell.delegate = self
-        cell.setup(with: album)
+        cell.setup(with: album, index: indexPath.row)
 
         return cell
     }
@@ -73,7 +70,7 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CommentsSegue" {
             guard let destination = segue.destination as? CommentsViewController else { return }
-            destination.albumID = id
+            destination.albumID = albumId
         } else if segue.identifier == "ShowVideo" {
             guard let destination = segue.destination as? VideoViewController else { return }
             destination.name = name

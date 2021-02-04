@@ -48,7 +48,7 @@
                         <rect key="frame" x="232.5" y="168" width="20" height="20"/>
                     </activityIndicatorView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkF-Ou-cxX">
-                        <rect key="frame" x="415" y="295" width="50" height="50"/>
+                        <rect key="frame" x="20" y="295" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="dWE-n8-r9l"/>
                             <constraint firstAttribute="height" constant="50" id="ic1-SW-vE7"/>
@@ -66,7 +66,7 @@
                     <constraint firstItem="dkp-En-heJ" firstAttribute="trailing" secondItem="cPd-a4-GRz" secondAttribute="trailingMargin" id="Jnx-Nh-GPY"/>
                     <constraint firstItem="dl2-Z5-bAV" firstAttribute="leading" secondItem="cPd-a4-GRz" secondAttribute="leadingMargin" id="Jqa-H6-wOs"/>
                     <constraint firstItem="dkp-En-heJ" firstAttribute="leading" secondItem="cPd-a4-GRz" secondAttribute="leadingMargin" id="Qdt-3M-y50"/>
-                    <constraint firstItem="gkF-Ou-cxX" firstAttribute="trailing" secondItem="cPd-a4-GRz" secondAttribute="trailingMargin" id="WFI-Ou-uxV"/>
+                    <constraint firstItem="gkF-Ou-cxX" firstAttribute="leading" secondItem="cPd-a4-GRz" secondAttribute="leadingMargin" id="RTn-md-jCa"/>
                     <constraint firstItem="8RX-ZX-WMx" firstAttribute="leading" secondItem="SRw-oq-Mnv" secondAttribute="trailing" constant="8" id="YB2-2z-5Kw"/>
                     <constraint firstItem="dl2-Z5-bAV" firstAttribute="top" secondItem="dkp-En-heJ" secondAttribute="bottom" constant="8" id="YWL-Ir-3Au"/>
                     <constraint firstItem="ZWj-BO-Cv5" firstAttribute="centerX" secondItem="dkp-En-heJ" secondAttribute="centerX" id="gyd-Yt-rxU"/>
