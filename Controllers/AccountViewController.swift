@@ -23,6 +23,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     @IBOutlet weak var timeOfCreation: UILabel!
     @IBOutlet weak var tableViewSwitch: UISegmentedControl!
     @IBOutlet weak var accountTableView: UITableView!
+    @IBOutlet weak var acountExitButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,12 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     }
 
     @IBAction func goToAlbums(_ sender: Any) {
+    }
+
+    @IBAction func exitButtonAction(_ sender: UIButton) {
+        UserDefaults.standard.removeObject(forKey: "UserAuthorizationData")
+        AuthorizationData.authorizationData.removeAll()
+        navigationController?.popViewController(animated: true)
     }
 
     @IBAction func switchAction(_ sender: UISegmentedControl) {
@@ -111,7 +118,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SetingsSegue" {
-            guard let destination = segue.destination as? SettingsViewController else { return }
+            guard let destination = segue.destination as? FirstSettingViewController else { return }
             destination.delegate = self
         }
     }

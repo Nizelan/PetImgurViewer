@@ -24,8 +24,8 @@
 		996ECAAC257A5B3200AC5CCE /* AccCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
 		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
-		9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* SettingsViewController.swift */; };
-		9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SettingViewController.swift */; };
+		9975AA3924E2988400B418A7 /* FirstSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */; };
+		9975AA3B24E2B61400B418A7 /* SecondSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */; };
 		99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */; };
 		997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997A9A1D25C976D90077484F /* AccPostCell.xib */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
@@ -91,8 +91,8 @@
 		996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccCommentsCell.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
 		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
-		9975AA3824E2988400B418A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		9975AA3A24E2B61400B418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSettingViewController.swift; sourceTree = "<group>"; };
+		9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSettingViewController.swift; sourceTree = "<group>"; };
 		99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		997A9A1D25C976D90077484F /* AccPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccPostCell.xib; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
@@ -341,8 +341,8 @@
 				997E37CE257262AB00DBF03A /* AccountContainer */,
 				99D96CA9256541D3008FF32B /* WebViewController.swift */,
 				99D9CA8524D2CA14009B0809 /* MainViewController.swift */,
-				9975AA3824E2988400B418A7 /* SettingsViewController.swift */,
-				9975AA3A24E2B61400B418A7 /* SettingViewController.swift */,
+				9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */,
+				9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -523,12 +523,12 @@
 				9901468C252B4C8B00BBF166 /* SettingsData.swift in Sources */,
 				99D96CAA256541D3008FF32B /* WebViewController.swift in Sources */,
 				99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */,
-				9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */,
+				9975AA3924E2988400B418A7 /* FirstSettingViewController.swift in Sources */,
 				99B4FF1024D95E2600BE8F60 /* SettingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				99F55D7625790EAB00E3E03A /* AccCommentsResp.swift in Sources */,
 				991F931D257BAEA800786C68 /* AccPostCell.swift in Sources */,
-				9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */,
+				9975AA3B24E2B61400B418A7 /* SecondSettingViewController.swift in Sources */,
 				996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* FirstAlbumCell.swift in Sources */,
 				991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */,

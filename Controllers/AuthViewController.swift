@@ -13,6 +13,7 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     private let networkManager = NetworkManager()
     var urlRequest: URLRequest?
     let clientID = ClientData.clientId
+    let defaults = UserDefaults.standard
     let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,
                                                    FileManager.SearchPathDomainMask.allDomainsMask,
                                                    true)
@@ -22,7 +23,10 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-
+        if let unwraptDict = defaults.dictionary(forKey: "UserAuthorizationData") as? [String: String] {
+            AuthorizationData.authorizationData = unwraptDict
+            print(unwraptDict)
+        }
         if AuthorizationData.authorizationData.isEmpty {
             let urlString = "https://api.imgur.com/oauth2/authorize?client_id=\(clientID)&response_type=token"
             guard let url = URL(string: urlString) else { return }
@@ -30,13 +34,18 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
             urlRequest = request
             performSegue(withIdentifier: "ShowWebView", sender: Any?.self)
         } else {
-            networkManager.authorization()
+            guard let accessTokken = AuthorizationData.authorizationData["access_token"] else {
+                print("\(Self.self) Access token is not be finded")
+                return
+            }
+            networkManager.authorization(accessTokken: accessTokken)
             performSegue(withIdentifier: "ShowAccount", sender: Any?.self)
         }
     }
 
     func update(dict: [String: String]) {
         AuthorizationData.authorizationData = dict
+        defaults.set(dict, forKey: "UserAuthorizationData")
         print("TESTING_OUTPUT\(String(describing: AuthorizationData.authorizationData))")
     }
 
