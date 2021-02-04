@@ -89,7 +89,9 @@
                                             <constraint firstAttribute="width" constant="50" id="c79-Sk-lb2"/>
                                             <constraint firstAttribute="height" constant="50" id="d1K-9S-TGe"/>
                                         </constraints>
-                                        <state key="normal" image="homePage"/>
+                                        <state key="normal" image="homePage">
+                                            <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="goToAlbums:" destination="vtl-3t-tzX" eventType="touchUpInside" id="obV-m9-Jfd"/>
                                             <segue destination="vWJ-8R-0BP" kind="show" identifier="ShowAlboms" id="i9q-bg-D6a"/>
@@ -136,9 +138,21 @@
                                     <constraint firstAttribute="height" constant="50" id="yUo-ZS-nA1"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGJ-pg-fwx">
+                                <rect key="frame" x="10" y="98" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8e7-cr-rl3"/>
+                                    <constraint firstAttribute="width" constant="40" id="UXp-U0-Bd3"/>
+                                </constraints>
+                                <state key="normal" image="exit"/>
+                                <connections>
+                                    <action selector="exitButtonAction:" destination="vtl-3t-tzX" eventType="touchUpInside" id="FCO-da-e9s"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="qGJ-pg-fwx" firstAttribute="top" secondItem="tQE-I6-kqV" secondAttribute="top" constant="10" id="2mt-EO-j9b"/>
                             <constraint firstItem="tQE-I6-kqV" firstAttribute="trailing" secondItem="rKF-2j-UKB" secondAttribute="trailing" constant="10" id="8F1-AD-A6b"/>
                             <constraint firstItem="u8h-cj-HnA" firstAttribute="leading" secondItem="tQE-I6-kqV" secondAttribute="leading" id="8o7-dR-wOB"/>
                             <constraint firstItem="tQE-I6-kqV" firstAttribute="trailing" secondItem="aXh-hb-W7o" secondAttribute="trailing" constant="20" id="8oA-6A-lvg"/>
@@ -153,6 +167,7 @@
                             <constraint firstItem="u8h-cj-HnA" firstAttribute="top" secondItem="lm7-g8-ITg" secondAttribute="bottom" id="fjB-3b-PBA"/>
                             <constraint firstItem="aXh-hb-W7o" firstAttribute="leading" secondItem="tQE-I6-kqV" secondAttribute="leading" constant="20" id="gwL-HC-7cm"/>
                             <constraint firstItem="z53-SL-K77" firstAttribute="top" secondItem="tQE-I6-kqV" secondAttribute="top" id="hf2-wL-yIt"/>
+                            <constraint firstItem="qGJ-pg-fwx" firstAttribute="leading" secondItem="tQE-I6-kqV" secondAttribute="leading" constant="10" id="iYS-H1-jFb"/>
                             <constraint firstItem="KkX-Cl-cTc" firstAttribute="leading" secondItem="tQE-I6-kqV" secondAttribute="leading" id="lw5-2M-4FJ"/>
                             <constraint firstItem="aXh-hb-W7o" firstAttribute="top" secondItem="KkX-Cl-cTc" secondAttribute="bottom" constant="8" id="m7K-cA-Xjq"/>
                             <constraint firstItem="bAk-Bb-toI" firstAttribute="top" secondItem="ZAk-9y-x25" secondAttribute="top" id="pJh-2M-yJH"/>
@@ -168,6 +183,7 @@
                         <outlet property="accountAvatar" destination="z53-SL-K77" id="Zxd-v2-fPA"/>
                         <outlet property="accountName" destination="2nv-94-tay" id="ZCI-Cn-Ekn"/>
                         <outlet property="accountTableView" destination="KkX-Cl-cTc" id="mRt-0t-1Oq"/>
+                        <outlet property="acountExitButton" destination="qGJ-pg-fwx" id="h2y-W9-yXc"/>
                         <outlet property="pointsTrophy" destination="COG-zL-GuS" id="ss5-K8-Hoa"/>
                         <outlet property="tableViewSwitch" destination="u8h-cj-HnA" id="71F-VO-jbC"/>
                         <outlet property="timeOfCreation" destination="nnU-EG-zOB" id="kZV-oa-eWR"/>
@@ -407,7 +423,7 @@
         <!--Setings-->
         <scene sceneID="Jle-91-Tdn">
             <objects>
-                <tableViewController id="Spf-Yv-dno" customClass="SettingsViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Spf-Yv-dno" customClass="FirstSettingViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="arW-x4-1KM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -456,7 +472,7 @@
         <!--Seting Cell-->
         <scene sceneID="LQR-OO-SeR">
             <objects>
-                <tableViewController id="Cj2-vv-9AB" customClass="SettingViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Cj2-vv-9AB" customClass="SecondSettingViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="2ca-tx-gdB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -537,6 +553,7 @@
     <resources>
         <image name="Up" width="807" height="768"/>
         <image name="accountIcon" width="841" height="980"/>
+        <image name="exit" width="1600" height="1600"/>
         <image name="homePage" width="1042" height="939"/>
         <image name="settings" width="240" height="240"/>
         <image name="square.grid.2x2.fill" catalog="system" width="64" height="56"/>
