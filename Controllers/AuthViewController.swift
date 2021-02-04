@@ -13,6 +13,9 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     private let networkManager = NetworkManager()
     var urlRequest: URLRequest?
     let clientID = ClientData.clientId
+    let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,
+                                                   FileManager.SearchPathDomainMask.allDomainsMask,
+                                                   true)
 
     override func viewDidLoad() {
         super.viewDidLoad()
