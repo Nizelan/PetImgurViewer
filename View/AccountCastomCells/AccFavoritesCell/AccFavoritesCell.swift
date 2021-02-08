@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AccFavoritesCellDelegate {
+protocol AccFavoritesCellDelegate: class {
     func playButtonPressed(cell: UITableViewCell)
 }
 
@@ -19,7 +19,7 @@ class AccFavoritesCell: UITableViewCell {
     @IBOutlet weak var ups: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var goToVideos: UIButton!
-    var delegate: AccFavoritesCellDelegate?
+    weak var delegate: AccFavoritesCellDelegate?
 
     func setup(with album: FavoritePost) {
         setupImage(with: album)

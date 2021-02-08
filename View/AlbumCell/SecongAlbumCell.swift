@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AlbumCellDelegate {
+protocol AlbumCellDelegate: class {
     func goToVideoButtonPrassed(cell: UITableViewCell)
     func goToCommentButtonPrassed(cell: UITableViewCell)
 }
@@ -19,7 +19,7 @@ class SecongAlbumCell: UITableViewCell {
     @IBOutlet weak var albumImageView: ScalingImageView!
     @IBOutlet weak var goToVideoButton: UIButton!
     @IBOutlet weak var goToComments: UIButton!
-    var delegate: AlbumCellDelegate?
+    weak var delegate: AlbumCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
