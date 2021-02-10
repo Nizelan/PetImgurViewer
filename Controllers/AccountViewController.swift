@@ -8,7 +8,8 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, SettingsControllerDelegate, AccountFavoritesDelegate {
+class AccountViewController: UIViewController,
+SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     let networkManager = NetworkManager()
     var dataSource: (UITableViewDataSource & UITableViewDelegate)?
@@ -22,6 +23,7 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
     @IBOutlet weak var timeOfCreation: UILabel!
     @IBOutlet weak var tableViewSwitch: UISegmentedControl!
     @IBOutlet weak var accountTableView: UITableView!
+    @IBOutlet weak var acountExitButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +43,14 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
     @IBAction func goToAlbums(_ sender: Any) {
     }
 
-    @IBAction func switchAction(_ sender: UISegmentedControl) {
-        switchChosen()
+    @IBAction func exitButtonAction(_ sender: UIButton) {
+        UserDefaults.standard.removeObject(forKey: "UserAuthorizationData")
+        AuthorizationData.authorizationData.removeAll()
+        navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func playPost(_ sender: UIButton) {
+    @IBAction func switchAction(_ sender: UISegmentedControl) {
+        switchChosen()
     }
 
     func playButtonPressed(post: FavoritePost) {
@@ -55,13 +60,35 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
         self.present(videoViewC!, animated: true)
     }
 
+    func playButtonPressed(post: AccPost) {
+        let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
+        videoViewC?.link = post.link
+        videoViewC?.name = post.title
+        self.present(videoViewC!, animated: true)
+    }
+
+    func commentButtonPressed(post: AccPost) {
+        let commentVC = storyboard?.instantiateViewController(identifier: "CommentVC") as? CommentsViewController
+        commentVC?.albumID = post.postId
+        commentVC?.networkManager.fetchComment(sort: "best",
+                                               albumId: commentVC!.albumID!,
+                                               closure: { (commentArray: GalleryCommentResponse) in
+            commentVC?.comments = commentArray.data
+            commentVC?.createCountOfCells(commentsArray: commentVC!.comments)
+            commentVC?.tableView.reloadData()
+        })
+        self.present(commentVC!, animated: true)
+    }
+
     func switchChosen() {
         guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
         guard let accesToken = AuthorizationData.authorizationData["access_token"] else { return }
 
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
-                self.dataSource = AccountPosts(images: accGalleryResp.data)
+                self.dataSource = AccountPosts(images: accGalleryResp.data,
+                                               tableView: self.accountTableView,
+                                               delegate: self)
                 self.setupTableView()
             }
             print("AccountPosts")
@@ -79,7 +106,9 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
             self.accountTableView.reloadData()
             print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
-            networkManager.fetchAccComment(userName: userName, page: 0, sort: "newest") { (accCommentsResp: AccCommentsResp) in
+            networkManager.fetchAccComment(userName: userName,
+                                           page: 0,
+                                           sort: "newest") { (accCommentsResp: AccCommentsResp) in
                 self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }
@@ -89,14 +118,8 @@ class AccountViewController: UIViewController, SettingsControllerDelegate, Accou
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SetingsSegue" {
-            guard let destination = segue.destination as? SettingsViewController else { return }
+            guard let destination = segue.destination as? FirstSettingViewController else { return }
             destination.delegate = self
-        } else if segue.identifier == "ShowVideo" {
-            guard let destination = segue.destination as? VideoViewController, let post = sender as? FavoritePost else { return }
-            destination.name = post.title
-            if let link = post.images[0].mp4 {
-                destination.link = link
-            }
         }
     }
 }

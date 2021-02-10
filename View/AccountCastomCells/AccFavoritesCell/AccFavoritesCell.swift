@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AccFavoritesCellDelegate {
+protocol AccFavoritesCellDelegate: class {
     func playButtonPressed(cell: UITableViewCell)
 }
 
@@ -19,7 +19,7 @@ class AccFavoritesCell: UITableViewCell {
     @IBOutlet weak var ups: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var goToVideos: UIButton!
-    var delegate: AccFavoritesCellDelegate?
+    weak var delegate: AccFavoritesCellDelegate?
 
     func setup(with album: FavoritePost) {
         setupImage(with: album)
@@ -37,12 +37,11 @@ class AccFavoritesCell: UITableViewCell {
 
         print("aspect ratio --- \(album.aspectRatio)")
         favoriteImageView.translatesAutoresizingMaskIntoConstraints = false
-        print("===========>\(favoriteImageView)")
         favoriteImageView.imageSize = album.coverSize
         self.setNeedsLayout()
         self.layoutIfNeeded()
 
-        if let videoLink = album.images[0].mp4 {
+        if album.images[0].mp4 != nil {
             goToVideos.isHidden = false
             stopActivity()
         } else {

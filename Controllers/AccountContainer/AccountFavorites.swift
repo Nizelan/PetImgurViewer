@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol AccountFavoritesDelegate {
+protocol AccountFavoritesDelegate: class {
     func playButtonPressed(post: FavoritePost)
 }
 
 class AccountFavorites: NSObject, UITableViewDelegate, UITableViewDataSource, AccFavoritesCellDelegate {
     var accFavorites: [FavoritePost]
-    var delegate: AccountFavoritesDelegate?
+    weak var delegate: AccountFavoritesDelegate?
     var tableView: UITableView
 
     init(favorites: [FavoritePost], tableView: UITableView, delegate: AccountFavoritesDelegate) {

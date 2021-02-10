@@ -12,7 +12,7 @@ protocol SettingsControllerDelegate: class {
     func update(sectionsText: String, sortText: String, windowText: String)
 }
 
-class SettingsViewController: UITableViewController, SettingViewControllerDelagate {
+class FirstSettingViewController: UITableViewController, SettingViewControllerDelagate {
 
     var arrayOfSetings = [["hot", "top", "user"],
     ["viral", "top", "time", "rising"],
@@ -69,7 +69,7 @@ class SettingsViewController: UITableViewController, SettingViewControllerDelaga
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SettingSegue" {
-            guard let destination = segue.destination as? SettingViewController else { return }
+            guard let destination = segue.destination as? SecondSettingViewController else { return }
             guard let castedSender = sender as? [String] else { return }
             destination.settings = castedSender
             destination.settingDelegate = self

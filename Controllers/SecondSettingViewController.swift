@@ -9,10 +9,10 @@
 import UIKit
 
 protocol SettingViewControllerDelagate: class {
-    func updateSeting(selectedSetting: String) 
+    func updateSeting(selectedSetting: String)
 }
 
-class SettingViewController: UITableViewController {
+class SecondSettingViewController: UITableViewController {
 
     var settings = [String]()
     var selectedString = ""
