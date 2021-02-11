@@ -22,11 +22,16 @@ class VideoViewController: UIViewController {
     var playButton = UIButton()
     var videoProgresSlider = UISlider()
     var controlsBar = UIView()
+    var tap = UITapGestureRecognizer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         videoPlayer.videoLink = link
         setupTitle(title: name)
+
+        //Gesters
+        tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        videoPlayer.addGestureRecognizer(tap)
 
         //VolumeSlider
         volumeSlider.frame.size = CGSize(width: 100, height: 33)
@@ -117,6 +122,7 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func playPauseButtonAction(_ sender: Any) {
+        setControlsVisibility()
         if videoProgresSlider.value == videoProgresSlider.maximumValue {
             videoPlayer.player?.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
         }
@@ -134,10 +140,12 @@ class VideoViewController: UIViewController {
     }
 
     @IBAction func volumeAction(_ sender: UISlider) {
+        setControlsVisibility()
         videoPlayer.player?.volume = volumeSlider.value
     }
 
     @IBAction func videoProgresSliderAction(_ sender: Any) {
+        setControlsVisibility()
         videoPlayer.player?.seek(to: CMTime(seconds: Double(videoProgresSlider.value), preferredTimescale: 1000))
     }
 
@@ -158,5 +166,24 @@ extension VideoViewController {
             return
         }
         self.videoProgresSlider.maximumValue = Float(duration)
+    }
+
+    @objc func tapHandler() {
+        setControlsVisibility()
+    }
+
+    func setControlsVisibility() {
+        self.controlsBar.isHidden = false
+        self.videoProgresSlider.isHidden = false
+        self.playButton.isHidden = false
+        self.titleLable.isHidden = false
+        self.volumeSlider.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.controlsBar.isHidden = true
+            self.videoProgresSlider.isHidden = true
+            self.playButton.isHidden = true
+            self.titleLable.isHidden = true
+            self.volumeSlider.isHidden = true
+        }
     }
 }
