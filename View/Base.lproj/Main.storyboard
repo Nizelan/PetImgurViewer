@@ -139,12 +139,13 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGJ-pg-fwx">
-                                <rect key="frame" x="10" y="98" width="40" height="40"/>
+                                <rect key="frame" x="10" y="98" width="50" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="8e7-cr-rl3"/>
-                                    <constraint firstAttribute="width" constant="40" id="UXp-U0-Bd3"/>
+                                    <constraint firstAttribute="height" constant="50" id="8e7-cr-rl3"/>
+                                    <constraint firstAttribute="width" constant="50" id="UXp-U0-Bd3"/>
                                 </constraints>
-                                <state key="normal" image="exit"/>
+                                <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="multiply.square.fill" catalog="system"/>
                                 <connections>
                                     <action selector="exitButtonAction:" destination="vtl-3t-tzX" eventType="touchUpInside" id="FCO-da-e9s"/>
                                 </connections>
@@ -525,8 +526,8 @@
     <resources>
         <image name="Up" width="807" height="768"/>
         <image name="accountIcon" width="841" height="980"/>
-        <image name="exit" width="1600" height="1600"/>
         <image name="homePage" width="1042" height="939"/>
+        <image name="multiply.square.fill" catalog="system" width="64" height="56"/>
         <image name="settings" width="240" height="240"/>
         <image name="square.grid.2x2.fill" catalog="system" width="64" height="56"/>
         <image name="square.split.2x2.fill" catalog="system" width="64" height="56"/>
