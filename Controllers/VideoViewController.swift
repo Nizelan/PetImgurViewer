@@ -22,38 +22,51 @@ class VideoViewController: UIViewController {
     var playButton = UIButton()
     var videoProgresSlider = UISlider()
     var controlsBar = UIView()
+    let blur = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+    var tap = UITapGestureRecognizer()
+    var timer = Timer()
+    var muteUnmuteButton = UIButton()
+    var timeGone = UILabel()
+    var timeLeft = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         videoPlayer.videoLink = link
         setupTitle(title: name)
 
-        //VolumeSlider
-        volumeSlider.frame.size = CGSize(width: 100, height: 33)
-        volumeSlider.transform = CGAffineTransform.init( rotationAngle: CGFloat(-Double.pi / 2))
-        volumeSlider.minimumValue = 0
-        volumeSlider.maximumValue = 10
-        volumeSlider.tintColor = .blue
-        volumeSlider.addTarget(self, action: #selector(self.volumeAction(_:)), for: .valueChanged)
-        videoPlayer.addSubview(volumeSlider)
+        //Gesters
+        tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
+        videoPlayer.addGestureRecognizer(tap)
 
-        //TitleLable
+        //TitlesLable
+        timeGone.frame.size.width = 80
+        timeLeft.frame.size.width = 80
         titleLable.backgroundColor = .gray
         titleLable.alpha = 0.7
         videoPlayer.addSubview(titleLable)
+        controlsBar.addSubview(timeLeft)
+        controlsBar.addSubview(timeGone)
 
         //ControlsBar
-        controlsBar.alpha = 0.5
-        controlsBar.backgroundColor = .white
-        controlsBar.layer.cornerRadius = 5
+        //controlsBar.backgroundColor = .white
+        blur.layer.masksToBounds = true
+        blur.layer.cornerRadius = 10
+        videoPlayer.addSubview(blur)
         videoPlayer.addSubview(controlsBar)
+
+        //MuteButton
+        muteUnmuteButton.frame.size = CGSize(width: 30, height: 30)
+        muteUnmuteButton.backgroundColor = .none
+        muteUnmuteButton.setImage(UIImage(named: "unmute"), for: .normal)
+        muteUnmuteButton.addTarget(self, action: #selector(self.muteUnmuteAction(_:)), for: .touchUpInside)
+        controlsBar.addSubview(muteUnmuteButton)
 
         //PlayBtton
         playButton.frame.size = CGSize(width: 50, height: 50)
         playButton.backgroundColor = .none
         playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
         playButton.addTarget(self, action: #selector(self.playPauseButtonAction(_:)), for: .touchUpInside)
-        videoPlayer.addSubview(playButton)
+        controlsBar.addSubview(playButton)
 
         //Slider
         videoProgresSlider.minimumValue = 0
@@ -61,21 +74,108 @@ class VideoViewController: UIViewController {
             let seconds: Float64 = CMTimeGetSeconds(itemDuration)
             videoProgresSlider.maximumValue = Float(seconds)
         }
+        videoProgresSlider.setThumbImage(UIImage(named: "slider"), for: .normal)
         videoProgresSlider.isContinuous = true
-        videoProgresSlider.tintColor = UIColor.red
+        videoProgresSlider.tintColor = .black
         videoProgresSlider.addTarget(self, action: #selector(self.videoProgresSliderAction(_:)), for: .valueChanged)
-        videoPlayer.addSubview(videoProgresSlider)
+        controlsBar.addSubview(videoProgresSlider)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //Constrainst
+        setupConstraints()
+        setupBlurConstraints()
+        var lineFixer = String()
+        videoPlayer.player?.addPeriodicTimeObserver(
+            forInterval: CMTime(seconds: 1, preferredTimescale: 10000), queue: .main, using: { (time) in
+                lineFixer =
+                    Double(self.videoProgresSlider.maximumValue - Float(time.seconds)).asString(style: .positional)
+                if Float(time.seconds) < 10 {
+                    self.timeGone.text = "00:0\(Double(time.seconds).asString(style: .positional))"
+                } else {
+                    self.timeGone.text = "00:\(Double(time.seconds).asString(style: .positional))"
+                }
+                if self.videoProgresSlider.maximumValue - Float(time.seconds) < 10 {
+                    self.timeLeft.text = "00:0\(lineFixer)"
+                } else {
+                    self.timeLeft.text = "00:\(lineFixer)"
+                }
+                self.videoProgresSlider.value = Float(time.seconds)
+                print(Float(time.seconds))
+        })
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        videoPlayer.pause()
+    }
+
+    @IBAction func playPauseButtonAction(_ sender: Any) {
+        setControllsVisibl()
+        if videoProgresSlider.value == videoProgresSlider.maximumValue {
+            videoPlayer.player?.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
+        }
+
+        if videoPlayer.player!.timeControlStatus == .playing {
+            playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+            videoPlayer.pause()
+        } else {
+            playButton.setImage(UIImage(named: "PauseButton"), for: .normal)
+            videoPlayer.play()
+            if isFirst {
+                setupProgressVideoSlider()
+            }
+        }
+        setControllsUnseen()
+    }
+
+    @IBAction func muteUnmuteAction(_ sender: Any) {
+        setControllsVisibl()
+        if videoPlayer.player?.volume == 0 {
+            videoPlayer.player?.volume = 5
+            muteUnmuteButton.setImage(UIImage(named: "unmute"), for: .normal)
+        } else {
+            videoPlayer.player?.volume = 0
+            muteUnmuteButton.setImage(UIImage(named: "mute"), for: .normal)
+        }
+        setControllsUnseen()
+    }
+
+    @IBAction func videoProgresSliderAction(_ sender: Any) {
+        setControllsVisibl()
+        videoPlayer.player?.seek(to: CMTime(seconds: Double(videoProgresSlider.value), preferredTimescale: 1000))
+        setControllsUnseen()
+    }
+
+    func setupTitle(title: String?) {
+        if name == nil {
+            titleLable.isHidden = true
+        } else {
+            titleLable.text = name
+        }
+    }
+}
+
+extension VideoViewController {
+
+    private func setupBlurConstraints() {
+        blur.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            blur.topAnchor.constraint(equalTo: controlsBar.topAnchor),
+            blur.bottomAnchor.constraint(equalTo: controlsBar.bottomAnchor),
+            blur.leadingAnchor.constraint(equalTo: controlsBar.leadingAnchor),
+            blur.trailingAnchor.constraint(equalTo: controlsBar.trailingAnchor)
+        ])
+    }
+
+    private func setupConstraints() {
         videoPlayer.translatesAutoresizingMaskIntoConstraints = false
         playButton.translatesAutoresizingMaskIntoConstraints = false
         videoProgresSlider.translatesAutoresizingMaskIntoConstraints = false
         controlsBar.translatesAutoresizingMaskIntoConstraints = false
         titleLable.translatesAutoresizingMaskIntoConstraints = false
-        volumeSlider.translatesAutoresizingMaskIntoConstraints = false
+        muteUnmuteButton.translatesAutoresizingMaskIntoConstraints = false
+        timeGone.translatesAutoresizingMaskIntoConstraints = false
+        timeLeft.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             videoPlayer.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             videoPlayer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
@@ -92,65 +192,24 @@ class VideoViewController: UIViewController {
             controlsBar.trailingAnchor.constraint(equalTo: videoPlayer.trailingAnchor, constant: -20),
             controlsBar.bottomAnchor.constraint(equalTo: videoPlayer.bottomAnchor, constant: -20),
 
+            muteUnmuteButton.heightAnchor.constraint(equalToConstant: 30),
+            muteUnmuteButton.widthAnchor.constraint(equalToConstant: 30),
+            muteUnmuteButton.leadingAnchor.constraint(equalTo: controlsBar.leadingAnchor, constant: 20),
+            muteUnmuteButton.bottomAnchor.constraint(equalTo: controlsBar.bottomAnchor, constant: -17),
             playButton.centerXAnchor.constraint(equalTo: controlsBar.centerXAnchor),
             playButton.bottomAnchor.constraint(equalTo: controlsBar.bottomAnchor, constant: -20),
 
-            volumeSlider.trailingAnchor.constraint(
-                equalToSystemSpacingAfter: videoPlayer.trailingAnchor, multiplier: -20),
-            volumeSlider.topAnchor.constraint(equalToSystemSpacingBelow: titleLable.bottomAnchor, multiplier: 8),
-            volumeSlider.widthAnchor.constraint(equalToConstant: 100),
+            timeGone.centerYAnchor.constraint(equalTo: videoProgresSlider.centerYAnchor),
+            timeGone.trailingAnchor.constraint(equalTo: videoProgresSlider.leadingAnchor, constant: -8),
+            timeLeft.centerYAnchor.constraint(equalTo: videoProgresSlider.centerYAnchor),
+            timeLeft.leadingAnchor.constraint(equalTo: videoProgresSlider.trailingAnchor, constant: 8),
 
             videoProgresSlider.heightAnchor.constraint(equalToConstant: 33),
-            videoProgresSlider.widthAnchor.constraint(equalToConstant: 300),
+            videoProgresSlider.widthAnchor.constraint(equalToConstant: 250),
             videoProgresSlider.bottomAnchor.constraint(equalTo: playButton.topAnchor, constant: -8),
             videoProgresSlider.centerXAnchor.constraint(equalTo: controlsBar.centerXAnchor)
         ])
-
-        videoPlayer.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 10000),
-                                                    queue: .main, using: { (time) in
-                                                        self.videoProgresSlider.value = Float(time.seconds)
-        })
     }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        videoPlayer.pause()
-    }
-
-    @IBAction func playPauseButtonAction(_ sender: Any) {
-        if videoProgresSlider.value == videoProgresSlider.maximumValue {
-            videoPlayer.player?.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
-        }
-
-        if videoPlayer.player!.timeControlStatus == .playing {
-            playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
-            videoPlayer.pause()
-        } else {
-            playButton.setImage(UIImage(named: "PauseButton"), for: .normal)
-            videoPlayer.play()
-            if isFirst {
-                setupProgressVideoSlider()
-            }
-        }
-    }
-
-    @IBAction func volumeAction(_ sender: UISlider) {
-        videoPlayer.player?.volume = volumeSlider.value
-    }
-
-    @IBAction func videoProgresSliderAction(_ sender: Any) {
-        videoPlayer.player?.seek(to: CMTime(seconds: Double(videoProgresSlider.value), preferredTimescale: 1000))
-    }
-
-    func setupTitle(title: String?) {
-        if name == nil {
-            titleLable.isHidden = true
-        } else {
-            titleLable.text = name
-        }
-    }
-}
-
-extension VideoViewController {
 
     func setupProgressVideoSlider() {
         guard let duration = self.videoPlayer.player?.currentItem?.asset.duration.seconds else {
@@ -158,5 +217,34 @@ extension VideoViewController {
             return
         }
         self.videoProgresSlider.maximumValue = Float(duration)
+    }
+
+    @objc func tapHandler() {
+        setControllsVisibl()
+        setControllsUnseen()
+    }
+
+    func setControllsVisibl() {
+        self.controlsBar.isHidden = false
+        self.blur.isHidden = false
+        timer.invalidate()
+    }
+
+    func setControllsUnseen() {
+        timer = .scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
+            self.controlsBar.isHidden = true
+            self.blur.isHidden = true
+            print("timer is done")
+        }
+    }
+}
+
+extension Double {
+    func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute, .second]
+        formatter.unitsStyle = style
+        guard let formattedString = formatter.string(from: self) else { return "" }
+        return formattedString
     }
 }
