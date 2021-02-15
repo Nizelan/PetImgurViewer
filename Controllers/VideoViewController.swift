@@ -90,9 +90,18 @@ class VideoViewController: UIViewController {
             forInterval: CMTime(seconds: 1, preferredTimescale: 10000), queue: .main, using: { (time) in
                 lineFixer =
                     Double(self.videoProgresSlider.maximumValue - Float(time.seconds)).asString(style: .positional)
-                self.timeGone.text = "00:\(Double(time.seconds).asString(style: .positional))"
-                self.timeLeft.text = "00:\(lineFixer)"
+                if Float(time.seconds) < 10 {
+                    self.timeGone.text = "00:0\(Double(time.seconds).asString(style: .positional))"
+                } else {
+                    self.timeGone.text = "00:\(Double(time.seconds).asString(style: .positional))"
+                }
+                if self.videoProgresSlider.maximumValue - Float(time.seconds) < 10 {
+                    self.timeLeft.text = "00:0\(lineFixer)"
+                } else {
+                    self.timeLeft.text = "00:\(lineFixer)"
+                }
                 self.videoProgresSlider.value = Float(time.seconds)
+                print(Float(time.seconds))
         })
     }
 
