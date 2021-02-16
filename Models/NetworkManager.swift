@@ -15,10 +15,10 @@ struct NetworkManager {
     //Fetch data
 
     func fetchGallery(sections: String, sort: String,
-                      window: String, closure: @escaping (GalleryResponse) -> Void) {
+                      window: String, page: Int, closure: @escaping (GalleryResponse) -> Void) {
 
     let urlString =
-        "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
+        "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/\(page)?showViral=true&mature=true&album_previews=true"
         print(urlString)
         let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
         guard let url = URL(string: urlString) else { return }

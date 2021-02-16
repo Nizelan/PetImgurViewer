@@ -10,6 +10,7 @@ import UIKit
 
 class MainTableViewController: UITableViewController {
     private let networkManager = NetworkManager()
+    private var pages = 1
     var sections = "hot"
     var sort = "top"
     var window = "viral"
@@ -22,16 +23,7 @@ class MainTableViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
-        self.networkManager.fetchGallery(
-            sections: SettingsData.sectionsData,
-            sort: SettingsData.sortData,
-            window: SettingsData.windowData
-        ) { (galleryArray: GalleryResponse) in
-
-            self.albums = galleryArray.data
-            self.tableView.reloadData()
-            print("\(self.albums[1].postId)---------------------------")
-        }
+        fetchingAlbums()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,13 +36,13 @@ class MainTableViewController: UITableViewController {
             return UITableViewCell()
         }
 
+        if indexPath.row == (albums.count - 1) {
+            pages += 1
+            fetchingAlbums()
+        }
+
         cell.setup(with: albums[indexPath.row])
         tableView.sizeThatFits(albums[indexPath.row].coverSize)
-
-        UIView.performWithoutAnimation {
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
 
         return cell
     }
@@ -66,6 +58,20 @@ class MainTableViewController: UITableViewController {
             guard let destination = segue.destination as? AlbumTableViewController else { return }
             guard let castedSender = sender as? Post else { return }
             destination.album = castedSender
+        }
+    }
+}
+
+extension MainTableViewController {
+    private func fetchingAlbums() {
+        self.networkManager.fetchGallery(
+            sections: SettingsData.sectionsData, sort: SettingsData.sortData,
+            window: SettingsData.windowData, page: pages
+        ) { (galleryArray: GalleryResponse) in
+
+            self.albums += galleryArray.data
+            self.tableView.reloadData()
+            print("\(self.albums[1].postId)---------------------------")
         }
     }
 }
