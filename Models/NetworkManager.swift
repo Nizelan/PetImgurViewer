@@ -17,8 +17,9 @@ struct NetworkManager {
     func fetchGallery(sections: String, sort: String,
                       window: String, page: Int, closure: @escaping (GalleryResponse) -> Void) {
 
+    let lenthFixer = "?showViral=true&mature=true&album_previews=true"
     let urlString =
-        "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/\(page)?showViral=true&mature=true&album_previews=true"
+        "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/\(page)\(lenthFixer)"
         print(urlString)
         let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
         guard let url = URL(string: urlString) else { return }

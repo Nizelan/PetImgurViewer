@@ -15,7 +15,6 @@ class MainTableViewController: UITableViewController {
     var sort = "top"
     var window = "viral"
     var albums = [Post]()
-    var imagesCount = Int()
 
     override func viewDidLoad() {
         super.viewDidLoad()
