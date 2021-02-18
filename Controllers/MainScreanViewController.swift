@@ -20,7 +20,6 @@ class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
     var albums = [Post]()
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var goToAuthorization: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +38,6 @@ class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
         secondAlbumVC?.album = album
         self.present(secondAlbumVC!, animated: true)
     }
-
-    @IBAction func goToAuthorization(_ sender: UIButton) {
-        performSegue(withIdentifier: "ShowAuthorization", sender: Any?.self)
-    }
 }
 
 extension MainScreanViewController {
@@ -56,7 +51,6 @@ extension MainScreanViewController {
             self.dataSource = MainScreanTableView(albums: self.albums, tableView: self.tableView, delegate: self)
             self.setupTableView()
             self.tableView.reloadData()
-            print("\(self.albums[1].postId)---------------------------")
         }
     }
 

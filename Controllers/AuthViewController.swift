@@ -39,7 +39,7 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
                 return
             }
             networkManager.authorization(accessTokken: accessTokken)
-            performSegue(withIdentifier: "ShowAccount", sender: Any?.self)
+            navigationController?.popViewController(animated: true)
         }
     }
 

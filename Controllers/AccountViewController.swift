@@ -27,6 +27,11 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if accountData == nil {
+            performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
+        }
+
         navigationController?.navigationBar.backItem?.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
@@ -40,13 +45,11 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     @IBAction func goToSettings(_ sender: Any) {
     }
 
-    @IBAction func goToAlbums(_ sender: Any) {
-    }
-
     @IBAction func exitButtonAction(_ sender: UIButton) {
         UserDefaults.standard.removeObject(forKey: "UserAuthorizationData")
         AuthorizationData.authorizationData.removeAll()
-        navigationController?.popViewController(animated: true)
+        performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
+
     }
 
     @IBAction func switchAction(_ sender: UISegmentedControl) {

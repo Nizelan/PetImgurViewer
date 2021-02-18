@@ -101,7 +101,6 @@ class VideoViewController: UIViewController {
                     self.timeLeft.text = "00:\(lineFixer)"
                 }
                 self.videoProgresSlider.value = Float(time.seconds)
-                print(Float(time.seconds))
         })
     }
 
