@@ -193,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oy6-d0-xkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-813" y="739"/>
+            <point key="canvasLocation" x="-1310" y="735"/>
         </scene>
         <!--Authorithation-->
         <scene sceneID="a9B-cO-19A">
@@ -258,6 +258,7 @@
                     <navigationItem key="navigationItem" id="2hw-LE-ZfS"/>
                     <connections>
                         <outlet property="tableView" destination="WeB-dz-9Bs" id="gXK-P6-q9z"/>
+                        <segue destination="CVk-Ae-QGP" kind="show" identifier="ShowAlbum" id="xRh-7U-FHR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HY8-Jv-Hve" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -392,14 +393,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-wI-xMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-813" y="13"/>
+            <point key="canvasLocation" x="-1309" y="13"/>
         </scene>
         <!--Comments-->
         <scene sceneID="RG1-YI-m4v">
             <objects>
                 <tableViewController storyboardIdentifier="CommentVC" id="iB9-Po-BVj" customClass="CommentsViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f59-68-hhW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <connections>
@@ -411,7 +412,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4t-ki-Btz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="168" y="13"/>
+            <point key="canvasLocation" x="-370" y="13"/>
         </scene>
     </scenes>
     <resources>

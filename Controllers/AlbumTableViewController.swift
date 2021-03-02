@@ -18,13 +18,28 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     var name: String?
     var link = String()
 
+    var albums: [Post]?
+    var selectedAlbum: Int?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = .gray
         tableView.rowHeight = 400
-        albumId = album!.postId
+        album = albums![selectedAlbum!]
+        self.title = album?.title
+        albumId = albums![selectedAlbum!].postId
 
         tableView.register(UINib(nibName: "SecongAlbumCell", bundle: nil), forCellReuseIdentifier: "SecongAlbumCell")
         tableView.reloadData()
+
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem))
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem))
+
+        swipeLeft.direction = .left
+        swipeRight.direction = .right
+
+        tableView.addGestureRecognizer(swipeLeft)
+        tableView.addGestureRecognizer(swipeRight)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +64,23 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         cell.setup(with: album, index: indexPath.row)
 
         return cell
+    }
+
+    @objc func moveToNextItem(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .left:
+            selectedAlbum? += 1
+            album = albums![selectedAlbum!]
+            self.tableView.reloadData()
+        case .right:
+            if selectedAlbum != 0 {
+                selectedAlbum? -= 1
+                album = albums![selectedAlbum!]
+                self.tableView.reloadData()
+            }
+        default: break
+        }
+
     }
 
     func goToVideoButtonPrassed(cell: UITableViewCell) {
