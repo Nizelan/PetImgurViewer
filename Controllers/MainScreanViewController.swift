@@ -18,6 +18,7 @@ class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
     var sort = "top"
     var window = "viral"
     var albums = [Post]()
+    var selectedAlbum: Int?
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -32,11 +33,17 @@ class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
         fetchingAlbums()
     }
 
-    func didSelectRow(album: Post) {
-        let secondAlbumVC =
-            storyboard?.instantiateViewController(identifier: "SecondAlbumVC") as? AlbumTableViewController
-        secondAlbumVC?.album = album
-        self.present(secondAlbumVC!, animated: true)
+    func didSelectRow(selectedAlbum: Int) {
+        self.selectedAlbum = selectedAlbum
+        performSegue(withIdentifier: "ShowAlbum", sender: Any?.self)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowAlbum" {
+            guard let destination = segue.destination as? AlbumTableViewController else { return }
+            destination.selectedAlbum = selectedAlbum
+            destination.albums = albums
+        }
     }
 }
 

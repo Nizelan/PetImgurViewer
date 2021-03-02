@@ -233,7 +233,6 @@ extension VideoViewController {
         timer = .scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
             self.controlsBar.isHidden = true
             self.blur.isHidden = true
-            print("timer is done")
         }
     }
 }

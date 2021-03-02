@@ -10,7 +10,7 @@ import UIKit
 
 protocol MainScreanTabelViewDelegate: class {
     func updateData()
-    func didSelectRow(album: Post)
+    func didSelectRow(selectedAlbum: Int)
 }
 
 class MainScreanTableView: NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -48,9 +48,7 @@ class MainScreanTableView: NSObject, UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedAlbum = albums[indexPath.row]
-
-        delegate?.didSelectRow(album: selectedAlbum)
+        delegate?.didSelectRow(selectedAlbum: indexPath.row)
     }
 
 }
