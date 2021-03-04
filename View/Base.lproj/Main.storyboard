@@ -233,35 +233,24 @@
             <point key="canvasLocation" x="-4155" y="-346"/>
         </scene>
         <!--Main-->
-        <scene sceneID="Py0-c5-oWa">
+        <scene sceneID="NSZ-aQ-gTB">
             <objects>
-                <viewController id="4Hc-cr-zfC" customClass="MainScreanViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xvO-Cl-R8C">
+                <tableViewController id="j63-b6-V5m" customClass="MainScreanTableViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="brD-zz-2Uw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WeB-dz-9Bs">
-                                <rect key="frame" x="0.0" y="88" width="414" height="717"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="WeB-dz-9Bs" firstAttribute="leading" secondItem="3BP-5C-MZE" secondAttribute="leading" id="75D-TU-Cg5"/>
-                            <constraint firstItem="WeB-dz-9Bs" firstAttribute="trailing" secondItem="3BP-5C-MZE" secondAttribute="trailing" id="Qcd-y8-0Z2"/>
-                            <constraint firstItem="WeB-dz-9Bs" firstAttribute="top" secondItem="3BP-5C-MZE" secondAttribute="top" id="dTa-3T-zKA"/>
-                            <constraint firstItem="3BP-5C-MZE" firstAttribute="bottom" secondItem="WeB-dz-9Bs" secondAttribute="bottom" constant="8" id="hF8-q5-UUH"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="3BP-5C-MZE"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Main" image="house.fill" catalog="system" id="LCs-hw-k3R"/>
-                    <navigationItem key="navigationItem" id="2hw-LE-ZfS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="j63-b6-V5m" id="g5o-ly-x6v"/>
+                            <outlet property="delegate" destination="j63-b6-V5m" id="F3A-5i-S7G"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Main" image="house.fill" catalog="system" id="Fuj-3i-xHL"/>
                     <connections>
-                        <outlet property="tableView" destination="WeB-dz-9Bs" id="gXK-P6-q9z"/>
-                        <segue destination="CVk-Ae-QGP" kind="show" identifier="ShowAlbum" id="xRh-7U-FHR"/>
+                        <segue destination="CVk-Ae-QGP" kind="show" identifier="ShowAlbum" id="tM8-7W-X5V"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HY8-Jv-Hve" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXi-3x-pKB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2307" y="13"/>
         </scene>
@@ -277,8 +266,8 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="4Hc-cr-zfC" kind="relationship" relationship="viewControllers" id="7eu-mP-bhz"/>
-                        <segue destination="vtl-3t-tzX" kind="relationship" relationship="viewControllers" id="NJo-DC-BpS"/>
+                        <segue destination="j63-b6-V5m" kind="relationship" relationship="viewControllers" id="ZV5-2s-TjO"/>
+                        <segue destination="vtl-3t-tzX" kind="relationship" relationship="viewControllers" id="mrA-ua-JL5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XC9-OB-kjY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
