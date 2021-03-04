@@ -10,9 +10,14 @@ import UIKit
 import AVKit
 import AVFoundation
 
+protocol AlbumTableVCDelegate: class {
+    func scrollToRow(currentRow: Int)
+}
+
 class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     let networkManager = NetworkManager()
+    weak var delegate: AlbumTableVCDelegate?
     var albumId: String?
     var name: String?
     var link = String()
@@ -40,8 +45,8 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         tableView.addGestureRecognizer(swipeRight)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.scrollToRow(currentRow: selectedAlbum)
     }
 
     // MARK: - Table view data source

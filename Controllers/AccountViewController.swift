@@ -49,7 +49,6 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
         UserDefaults.standard.removeObject(forKey: "UserAuthorizationData")
         AuthorizationData.authorizationData.removeAll()
         performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
-
     }
 
     @IBAction func switchAction(_ sender: UISegmentedControl) {

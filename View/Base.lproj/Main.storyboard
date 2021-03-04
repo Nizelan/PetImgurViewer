@@ -87,7 +87,7 @@
                                     <constraint firstAttribute="width" constant="50" id="UXp-U0-Bd3"/>
                                 </constraints>
                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <state key="normal" image="multiply.square.fill" catalog="system"/>
+                                <state key="normal" image="arrowshape.turn.up.left.fill" catalog="system"/>
                                 <connections>
                                     <action selector="exitButtonAction:" destination="vtl-3t-tzX" eventType="touchUpInside" id="FCO-da-e9s"/>
                                 </connections>
@@ -405,8 +405,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowshape.turn.up.left.fill" catalog="system" width="64" height="52"/>
         <image name="house.fill" catalog="system" width="64" height="52"/>
-        <image name="multiply.square.fill" catalog="system" width="64" height="56"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="settings" width="240" height="240"/>
         <image name="starsky" width="616" height="411"/>

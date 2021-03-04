@@ -8,7 +8,8 @@
 
 import UIKit
 
-class MainScreanTableViewController: UITableViewController {
+class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate {
+
     private let networkManager = NetworkManager()
 
     var pages = 1
@@ -25,6 +26,11 @@ class MainScreanTableViewController: UITableViewController {
         tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
         fetchingAlbums()
+    }
+
+    func scrollToRow(currentRow: Int) {
+        let index = IndexPath(row: currentRow, section: 0)
+        tableView.scrollToRow(at: index, at: .middle, animated: false)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,6 +65,7 @@ class MainScreanTableViewController: UITableViewController {
             guard let destination = segue.destination as? AlbumTableViewController else { return }
             destination.selectedAlbum = selectedAlbum
             destination.albums = albums
+            destination.delegate = self
         }
     }
 }
