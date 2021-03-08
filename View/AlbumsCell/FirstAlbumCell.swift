@@ -23,8 +23,8 @@ class FirstAlbumCell: UITableViewCell {
         super.setSelected(false, animated: animated)
     }
 
-    func setup(with album: Post) {
-        setupImage(with: album)
+    func setup(with album: Post, isCellVisible: @escaping () -> Bool) {
+        setupImage(with: album, isCellVisible: isCellVisible)
         setupUps(album)
 
         if let title = album.title {
@@ -34,7 +34,7 @@ class FirstAlbumCell: UITableViewCell {
         }
     }
 
-    private func setupImage(with album: Post) {
+    private func setupImage(with album: Post, isCellVisible: @escaping () -> Bool) {
         guard let imageLink = album.coverLink(index: 0) else {
             return
         }
@@ -52,7 +52,7 @@ class FirstAlbumCell: UITableViewCell {
                 } else {
                     print("failed to load image with url: \(imageLink)")
                 }
-            })
+            }, shouldAssignImage: isCellVisible)
         }
     }
 
@@ -67,12 +67,12 @@ class FirstAlbumCell: UITableViewCell {
         upsLabel.text = String(ups - downs) + " " + "points"
     }
 
-    private func startActivity() {
+    func startActivity() {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
     }
 
-    private func stopActivity() {
+    func stopActivity() {
         activityIndicator.stopAnimating()
         activityIndicator.isHidden = true
     }

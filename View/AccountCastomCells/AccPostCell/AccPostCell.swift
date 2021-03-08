@@ -54,7 +54,7 @@ class AccPostCell: UITableViewCell {
                 } else {
                     print("failed to load image with url: \(imageLink)")
                 }
-            })
+            }, shouldAssignImage: nil)
         }
     }
 

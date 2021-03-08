@@ -19,10 +19,11 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
     var albums = [Post]()
     var selectedAlbum = 0
 
+    var images = [UIImage]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.estimatedRowHeight = 300
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = 400
         tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
         fetchingAlbums()
@@ -48,8 +49,10 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
             fetchingAlbums()
         }
 
-        cell.setup(with: albums[indexPath.row])
-        tableView.sizeThatFits(albums[indexPath.row].coverSize)
+        cell.setup(with: self.albums[indexPath.row]) { () -> Bool in
+            return indexPath == self.tableView.indexPath(for: cell)
+        }
+        tableView.sizeThatFits(self.albums[indexPath.row].coverSize)
 
         return cell
     }

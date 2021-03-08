@@ -29,6 +29,7 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         super.viewDidLoad()
         tableView.backgroundColor = .gray
         tableView.rowHeight = 400
+        tableView.rowHeight = UITableView.automaticDimension
         self.title = albums?[selectedAlbum].title
         albumId = albums![selectedAlbum].postId
 
@@ -64,7 +65,10 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         }
 
         cell.delegate = self
-        cell.setup(with: album, index: indexPath.row)
+
+        cell.setup(with: album, index: indexPath.row) { () -> Bool in
+            return indexPath == self.tableView.indexPath(for: cell)
+        }
 
         return cell
     }

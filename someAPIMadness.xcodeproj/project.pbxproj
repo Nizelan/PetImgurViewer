@@ -320,8 +320,8 @@
 			children = (
 				99D192A124B8A59500082D6A /* Main.storyboard */,
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
-				972FCC8425C0DE070032F425 /* AlbumCell */,
 				972FCC8325C0DBBC0032F425 /* AlbumsCell */,
+				972FCC8425C0DE070032F425 /* AlbumCell */,
 				99A9F29C25C592EB00F95F3A /* CommentCell */,
 				99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */,
 				996ECAAA257A5AF000AC5CCE /* AccountCastomCells */,
