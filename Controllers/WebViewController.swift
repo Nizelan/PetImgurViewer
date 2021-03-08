@@ -24,6 +24,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.backItem?.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
 
         if let urlRequest = request {
             imgurWebView.load(urlRequest)

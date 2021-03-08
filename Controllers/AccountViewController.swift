@@ -23,9 +23,15 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     @IBOutlet weak var timeOfCreation: UILabel!
     @IBOutlet weak var tableViewSwitch: UISegmentedControl!
     @IBOutlet weak var accountTableView: UITableView!
+    @IBOutlet weak var acountExitButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if accountData == nil {
+            performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
+        }
+
         navigationController?.navigationBar.backItem?.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
@@ -39,7 +45,10 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     @IBAction func goToSettings(_ sender: Any) {
     }
 
-    @IBAction func goToAlbums(_ sender: Any) {
+    @IBAction func exitButtonAction(_ sender: UIButton) {
+        UserDefaults.standard.removeObject(forKey: "UserAuthorizationData")
+        AuthorizationData.authorizationData.removeAll()
+        performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
     }
 
     @IBAction func switchAction(_ sender: UISegmentedControl) {
@@ -111,7 +120,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SetingsSegue" {
-            guard let destination = segue.destination as? SettingsViewController else { return }
+            guard let destination = segue.destination as? FirstSettingViewController else { return }
             destination.delegate = self
         }
     }

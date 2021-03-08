@@ -32,7 +32,7 @@ class CommentCell: UITableViewCell {
                 self.commentImageView.loadGif(url: link)
                 print(link)
             } else if let imageLinc = urlString {
-                self.commentImageView.loadImage(from: imageLinc)
+                self.commentImageView.loadImage(from: imageLinc, shouldAssignImage: nil)
             }
         } else {
             setupImageSize(width: 0, height: 0)

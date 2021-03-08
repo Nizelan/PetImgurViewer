@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 struct NetworkManager {
-    var urlString = "https://api.imgur.com/3/gallery/hot/top/week/1?showViral=true&mature=true&album_previews=true"
+
+    private let baseURL = "https://api.imgur.com"
     let clientID = ClientData.clientId
     //Fetch data
 
     func fetchGallery(sections: String, sort: String,
-                      window: String, closure: @escaping (GalleryResponse) -> Void) {
+                      window: String, page: Int, closure: @escaping (GalleryResponse) -> Void) {
 
-    let urlString =
-        "https://api.imgur.com/3/gallery/\(sections)/\(sort)/\(window)/1?showViral=true&mature=true&album_previews=true"
+        let query = "/3/gallery/\(sections)/\(sort)/\(window)/\(page)?showViral=true&mature=true&album_previews=true"
+        let urlString = baseURL + query
         print(urlString)
         let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
         guard let url = URL(string: urlString) else { return }
@@ -60,7 +61,7 @@ struct NetworkManager {
 
     func fetchComment(sort: String, albumId: String, closure: @escaping (GalleryCommentResponse) -> Void) {
 
-        let urlString = "https://api.imgur.com/3/gallery/\(albumId)/comments/\(sort)"
+        let urlString = baseURL + "/3/gallery/\(albumId)/comments/\(sort)"
         let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
 
         guard let url = URL(string: urlString) else { return }
@@ -88,32 +89,30 @@ struct NetworkManager {
 
     // MARK: - Account conteinment block
 
-    func authorization() {
-        if let accessTokken = AuthorizationData.authorizationData["access_token"] {
-            let urlString = "https://api.imgur.com/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
-            let httpHeaders = ["Authorization": "Bearer \(accessTokken)"]
-            guard let url = URL(string: urlString) else { return }
-            var request = URLRequest(url: url)
+    func authorization(accessTokken: String) {
+        let urlString = baseURL + "/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
+        let httpHeaders = ["Authorization": "Bearer \(accessTokken)"]
+        guard let url = URL(string: urlString) else { return }
+        var request = URLRequest(url: url)
 
-            request.httpMethod = "GET"
-            request.allHTTPHeaderFields = httpHeaders
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let response = response {
-                    print(response)
-                }
-                if let error = error {
-                    print(error)
-                }
-                if let data = data {
-                    print("zzzzzzzzzzzzzzzzzz\(data)")
-                }
-            }.resume()
-        }
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = httpHeaders
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let error = error {
+                print(error)
+            }
+            if let data = data {
+                print("zzzzzzzzzzzzzzzzzz\(data)")
+            }
+        }.resume()
     }
 
     func fetchAccImage(closure: @escaping (AccGalleryResp) -> Void) {
         if let accessToken = AuthorizationData.authorizationData["access_token"] {
-            let urlString = "https://api.imgur.com/3/account/me/images"
+            let urlString = baseURL + "/3/account/me/images"
             let httpHeaders = ["Authorization": "Bearer \(accessToken)"]
             guard let url = URL(string: urlString) else { return }
             var request = URLRequest(url: url)
@@ -144,7 +143,7 @@ struct NetworkManager {
             print("\(Self.self) now have Access Tokken")
             return
         }
-        let urlString = "https://api.imgur.com/3/account/\(userName)/comments/\(sort)/\(page)"
+        let urlString = baseURL + "/3/account/\(userName)/comments/\(sort)/\(page)"
         let httpHeaders = ["Authorization": "Bearer \(accessTokken)"]
         guard let url = URL(string: urlString) else { print("\(Self.self) string is not valid URLString")
             return
@@ -171,7 +170,7 @@ struct NetworkManager {
     }
 
     func fetchAccFavorites(name: String, accessToken: String, closure: @escaping (AccFavoritesResp) -> Void) {
-        let urlString = "https://api.imgur.com/3/account/\(name)/favorites/0/newest"
+        let urlString = baseURL + "/3/account/\(name)/favorites/0/newest"
         let httpHeaders = ["Authorization": "Bearer \(accessToken)"]
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)

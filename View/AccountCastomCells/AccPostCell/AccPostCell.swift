@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AccPostCellDelegate {
+protocol AccPostCellDelegate: class {
     func playButtonPrassed(cell: UITableViewCell)
     func commentButtomPrassed(cell: UITableViewCell)
 }
@@ -20,7 +20,7 @@ class AccPostCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var shoveVideo: UIButton!
     @IBOutlet weak var shoveComment: UIButton!
-    var delegate: AccPostCellDelegate?
+    weak var delegate: AccPostCellDelegate?
 
     func setup(with album: AccPost) {
         setupImage(with: album)
@@ -54,7 +54,7 @@ class AccPostCell: UITableViewCell {
                 } else {
                     print("failed to load image with url: \(imageLink)")
                 }
-            })
+            }, shouldAssignImage: nil)
         }
     }
 

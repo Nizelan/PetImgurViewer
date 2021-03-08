@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol AlbumCellDelegate {
+protocol AlbumCellDelegate: class {
     func goToVideoButtonPrassed(cell: UITableViewCell)
     func goToCommentButtonPrassed(cell: UITableViewCell)
 }
@@ -19,7 +19,8 @@ class SecongAlbumCell: UITableViewCell {
     @IBOutlet weak var albumImageView: ScalingImageView!
     @IBOutlet weak var goToVideoButton: UIButton!
     @IBOutlet weak var goToComments: UIButton!
-    var delegate: AlbumCellDelegate?
+
+    weak var delegate: AlbumCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +30,12 @@ class SecongAlbumCell: UITableViewCell {
         super.setSelected(false, animated: animated)
     }
 
-    func setup(with album: Post, index: Int) {
-        setupImage(with: album, index: index)
+    func setup(with album: Post, index: Int, isVisible: @escaping () -> Bool) {
+        setupImage(with: album, index: index, isVisible: isVisible)
         setupButtons(with: album, index: index)
     }
 
-    private func setupImage(with album: Post, index: Int) {
+    private func setupImage(with album: Post, index: Int, isVisible: @escaping () -> Bool) {
         guard let imageLink = album.coverLink(index: index) else {
             return
         }
@@ -54,7 +55,7 @@ class SecongAlbumCell: UITableViewCell {
                 } else {
                     print("failed to load image with url: \(imageLink)")
                 }
-            })
+            }, shouldAssignImage: nil)
         }
     }
 

@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol AccountPostDelegate {
+protocol AccountPostDelegate: class {
     func playButtonPressed(post: AccPost)
     func commentButtonPressed(post: AccPost)
 }
 
 class AccountPosts: NSObject, UITableViewDelegate, UITableViewDataSource, AccPostCellDelegate {
 
-    var delegate: AccountPostDelegate?
+    weak var delegate: AccountPostDelegate?
     var accountImages: [AccPost]
     var tableView: UITableView
 

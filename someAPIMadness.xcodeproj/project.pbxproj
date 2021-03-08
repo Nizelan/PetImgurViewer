@@ -17,15 +17,15 @@
 		991A415C259F5AE3002AA2C1 /* ClientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A415B259F5AE3002AA2C1 /* ClientData.swift */; };
 		991F931D257BAEA800786C68 /* AccPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F931C257BAEA800786C68 /* AccPostCell.swift */; };
 		991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F9322257BB8D200786C68 /* AccFavoritesCell.swift */; };
+		9952B6CD25F111A900D2CC67 /* MainScreanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9952B6CC25F111A900D2CC67 /* MainScreanTableViewController.swift */; };
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
-		995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */; };
 		99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99616D8E252F5957001E8456 /* CommentsViewController.swift */; };
 		996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EC9AC25878DBA00A3D123 /* VideoViewController.swift */; };
 		996ECAAC257A5B3200AC5CCE /* AccCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
 		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
-		9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* SettingsViewController.swift */; };
-		9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SettingViewController.swift */; };
+		9975AA3924E2988400B418A7 /* FirstSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */; };
+		9975AA3B24E2B61400B418A7 /* SecondSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */; };
 		99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */; };
 		997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997A9A1D25C976D90077484F /* AccPostCell.xib */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
@@ -84,15 +84,15 @@
 		991A415B259F5AE3002AA2C1 /* ClientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientData.swift; sourceTree = "<group>"; };
 		991F931C257BAEA800786C68 /* AccPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccPostCell.swift; sourceTree = "<group>"; };
 		991F9322257BB8D200786C68 /* AccFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccFavoritesCell.swift; sourceTree = "<group>"; };
+		9952B6CC25F111A900D2CC67 /* MainScreanTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreanTableViewController.swift; sourceTree = "<group>"; };
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
-		995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		99616D8E252F5957001E8456 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		996EC9AC25878DBA00A3D123 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccCommentsCell.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
 		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
-		9975AA3824E2988400B418A7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		9975AA3A24E2B61400B418A7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSettingViewController.swift; sourceTree = "<group>"; };
+		9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSettingViewController.swift; sourceTree = "<group>"; };
 		99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		997A9A1D25C976D90077484F /* AccPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccPostCell.xib; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
@@ -320,8 +320,8 @@
 			children = (
 				99D192A124B8A59500082D6A /* Main.storyboard */,
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
-				972FCC8425C0DE070032F425 /* AlbumCell */,
 				972FCC8325C0DBBC0032F425 /* AlbumsCell */,
+				972FCC8425C0DE070032F425 /* AlbumCell */,
 				99A9F29C25C592EB00F95F3A /* CommentCell */,
 				99B4FF0F24D95E2600BE8F60 /* SettingsCell.swift */,
 				996ECAAA257A5AF000AC5CCE /* AccountCastomCells */,
@@ -332,7 +332,7 @@
 		99DE876C24C0819C0085DCE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				995EC83F24BE11B700E3BA8C /* MainTableViewController.swift */,
+				9952B6CC25F111A900D2CC67 /* MainScreanTableViewController.swift */,
 				99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */,
 				99616D8E252F5957001E8456 /* CommentsViewController.swift */,
 				99100126254C564000A4F295 /* AuthViewController.swift */,
@@ -341,8 +341,8 @@
 				997E37CE257262AB00DBF03A /* AccountContainer */,
 				99D96CA9256541D3008FF32B /* WebViewController.swift */,
 				99D9CA8524D2CA14009B0809 /* MainViewController.swift */,
-				9975AA3824E2988400B418A7 /* SettingsViewController.swift */,
-				9975AA3A24E2B61400B418A7 /* SettingViewController.swift */,
+				9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */,
+				9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -520,21 +520,21 @@
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
 				99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */,
 				99F55D7825791A1D00E3E03A /* AccFavoritesResp.swift in Sources */,
+				9952B6CD25F111A900D2CC67 /* MainScreanTableViewController.swift in Sources */,
 				9901468C252B4C8B00BBF166 /* SettingsData.swift in Sources */,
 				99D96CAA256541D3008FF32B /* WebViewController.swift in Sources */,
 				99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */,
-				9975AA3924E2988400B418A7 /* SettingsViewController.swift in Sources */,
+				9975AA3924E2988400B418A7 /* FirstSettingViewController.swift in Sources */,
 				99B4FF1024D95E2600BE8F60 /* SettingsCell.swift in Sources */,
 				99DE876924C07F160085DCE2 /* ParseModel.swift in Sources */,
 				99F55D7625790EAB00E3E03A /* AccCommentsResp.swift in Sources */,
 				991F931D257BAEA800786C68 /* AccPostCell.swift in Sources */,
-				9975AA3B24E2B61400B418A7 /* SettingViewController.swift in Sources */,
+				9975AA3B24E2B61400B418A7 /* SecondSettingViewController.swift in Sources */,
 				996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */,
 				9999FF4B24CB5F85000F660A /* FirstAlbumCell.swift in Sources */,
 				991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */,
 				97961D8A24DDC98A0054F9E7 /* ScalingImageView.swift in Sources */,
 				99100127254C564000A4F295 /* AuthViewController.swift in Sources */,
-				995EC84024BE11B700E3BA8C /* MainTableViewController.swift in Sources */,
 				9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */,
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */,
