@@ -25,15 +25,21 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     @IBOutlet weak var accountTableView: UITableView!
     @IBOutlet weak var acountExitButton: UIButton!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        switchChosen()
+        guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
+        accountName.text = userName
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.accountTableView.backgroundColor = .gray
+        navigationController?.navigationBar.backItem?.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
 
         if accountData == nil {
             performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
         }
-
-        navigationController?.navigationBar.backItem?.hidesBackButton = true
-        self.navigationItem.setHidesBackButton(true, animated: true)
     }
 
     func update(sectionsText: String, sortText: String, windowText: String) {
