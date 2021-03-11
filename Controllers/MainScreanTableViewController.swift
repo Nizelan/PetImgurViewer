@@ -12,21 +12,20 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
 
     private let networkManager = NetworkManager()
 
-    var pages = 1
+    var page = 1
     var sections = "hot"
     var sort = "top"
     var window = "viral"
     var albums = [Post]()
     var selectedAlbum = 0
-
-    var images = [UIImage]()
+    var index = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
         tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
-        fetchingAlbums()
+        fetchAlbums()
     }
 
     func scrollToRow(currentRow: Int) {
@@ -45,10 +44,11 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
         }
 
         if indexPath.row == (albums.count - 3) {
-            pages += 1
-            fetchingAlbums()
+            page += 1
+            fetchAlbums()
         }
 
+        hideTabBar(index: indexPath.row)
         cell.setup(with: self.albums[indexPath.row]) { () -> Bool in
             return indexPath == self.tableView.indexPath(for: cell)
         }
@@ -74,14 +74,24 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
 }
 
 extension MainScreanTableViewController {
-    private func fetchingAlbums() {
+    private func fetchAlbums() {
         self.networkManager.fetchGallery(
             sections: SettingsData.sectionsData, sort: SettingsData.sortData,
-            window: SettingsData.windowData, page: pages
+            window: SettingsData.windowData, page: page
         ) { (galleryArray: GalleryResponse) in
             self.albums += galleryArray.data
 
             self.tableView.reloadData()
+        }
+    }
+
+    func hideTabBar(index: Int) {
+        if self.index < index {
+            self.index += 1
+            tabBarController?.tabBar.isHidden = true
+        } else if self.index > index {
+            self.index -= 1
+            tabBarController?.tabBar.isHidden = false
         }
     }
 }

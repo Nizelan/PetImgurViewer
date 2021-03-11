@@ -35,9 +35,7 @@ class FirstAlbumCell: UITableViewCell {
     }
 
     private func setupImage(with album: Post, isCellVisible: @escaping () -> Bool) {
-        guard let imageLink = album.coverLink(index: 0) else {
-            return
-        }
+        guard let imageLink = album.coverLink(index: 0) else { return }
 
         imageViewOutlet.imageSize = album.coverSize
 

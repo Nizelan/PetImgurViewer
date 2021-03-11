@@ -38,7 +38,6 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem))
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(moveToNextItem))
-
         swipeLeft.direction = .left
         swipeRight.direction = .right
 
@@ -87,7 +86,6 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
             }
         default: break
         }
-
     }
 
     func goToVideoButtonPrassed(cell: UITableViewCell) {
