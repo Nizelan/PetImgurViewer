@@ -44,7 +44,8 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
             return UICollectionViewCell()
         }
         NSLayoutConstraint.activate(
-            [cell.viralImageView.widthAnchor.constraint(equalToConstant: (view.frame.width / 2) - 30)])
+            [cell.viralImageView.widthAnchor.constraint(equalToConstant: (view.frame.width / 2) - 30),
+             cell.viralImageView.heightAnchor.constraint(equalToConstant: 210)])
 
         if indexPath.row == (mostViralAlbums.count - 1) {
             page += 1
