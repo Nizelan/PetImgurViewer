@@ -24,13 +24,33 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
         super.viewDidLoad()
         self.collectionView!.register(UINib(
             nibName: "MostViralCell", bundle: nil), forCellWithReuseIdentifier: "MostViralCell")
-
         fetchAlbums()
+        if let layout = collectionView?.collectionViewLayout as? CustomCollectionLayout {
+            layout.delegate = self
+        }
+
+        let swipeUP = UISwipeGestureRecognizer(target: self, action: #selector(hideTabBar))
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(hideTabBar))
+        swipeUP.direction = .up
+        swipeDown.direction = .down
+
+        collectionView?.addGestureRecognizer(swipeUP)
+        collectionView?.addGestureRecognizer(swipeDown)
     }
 
     func scrollToRow(currentRow: Int) {
         let index = IndexPath(row: currentRow, section: 0)
         collectionView.scrollToItem(at: index, at: .bottom, animated: false)
+    }
+
+    @objc func hideTabBar(_ sender: UISwipeGestureRecognizer) {
+        switch sender.direction {
+        case .up:
+            tabBarController?.tabBar.isHidden = true
+        case .down:
+            tabBarController?.tabBar.isHidden = false
+        default: break
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -43,16 +63,16 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
             withReuseIdentifier: "MostViralCell", for: indexPath) as? MostViralCell else {
             return UICollectionViewCell()
         }
-        NSLayoutConstraint.activate(
-            [cell.viralImageView.widthAnchor.constraint(equalToConstant: (view.frame.width / 2) - 30),
-             cell.viralImageView.heightAnchor.constraint(equalToConstant: 210)])
 
-        if indexPath.row == (mostViralAlbums.count - 1) {
+        if indexPath.item == (mostViralAlbums.count - 3) {
             page += 1
             fetchAlbums()
         }
-        hideTabBar(index: indexPath.row)
-        cell.setup(with: self.mostViralAlbums[indexPath.row]) { () -> Bool in
+        cell.setup(with: self.mostViralAlbums[indexPath.item]) { () -> Bool in
+//            print(indexPath)
+//            print(indexPath.row)
+//            print(indexPath.item)
+//            print(self.collectionView.indexPath(for: cell))
             return indexPath == self.collectionView.indexPath(for: cell)
         }
 
@@ -75,28 +95,15 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
     }
 }
 
-extension MostViralCollectionVC: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
-
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+extension MostViralCollectionVC: UICollectionViewDelegateFlowLayout, CustomCollectionLayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+        guard let height = mostViralAlbums[indexPath.item].images?[0].height else { return 0}
+        if height <= 250 {
+            return CGFloat(height)
+        } else if height > 250 {
+            return 250
+        }
+       return CGFloat(height)
     }
 
     func fetchAlbums() {
@@ -104,18 +111,8 @@ extension MostViralCollectionVC: UICollectionViewDelegateFlowLayout {
                                     sort: "viral",
                                     window: "week",
                                     page: page) {(galleryRasponse: GalleryResponse) in
-            self.mostViralAlbums = galleryRasponse.data
-            self.collectionView.reloadData()
-        }
-    }
-
-    func hideTabBar(index: Int) {
-        if self.index < index {
-            self.index += 1
-            tabBarController?.tabBar.isHidden = true
-        } else if self.index > index {
-            self.index -= 1
-            tabBarController?.tabBar.isHidden = false
+                                        self.mostViralAlbums += galleryRasponse.data
+                                        self.collectionView.reloadData()
         }
     }
 }

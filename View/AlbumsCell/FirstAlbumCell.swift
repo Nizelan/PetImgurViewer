@@ -44,8 +44,8 @@ class FirstAlbumCell: UITableViewCell {
         } else {
             self.startActivity()
             imageViewOutlet.loadImage(from: imageLink, completion: { (success) in
-                self.stopActivity()
                 if success {
+                    self.stopActivity()
                     print("successfully loaded image with url: \(imageLink)")
                 } else {
                     print("failed to load image with url: \(imageLink)")
