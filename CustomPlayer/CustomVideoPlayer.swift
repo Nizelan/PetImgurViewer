@@ -18,7 +18,6 @@ class CustomVideoPlayer: UIView {
     override var bounds: CGRect {
         didSet {
             playerLayer!.frame = self.bounds
-            print(bounds)
         }
     }
 
@@ -45,8 +44,6 @@ class CustomVideoPlayer: UIView {
         self.playerLayer = playerLayer
         NotificationCenter.default.addObserver(self, selector: #selector(playerEndPlay),
                                                name: .AVPlayerItemDidPlayToEndTime, object: nil)
-        print(bounds)
-
     }
 
     func play() {
@@ -67,6 +64,5 @@ class CustomVideoPlayer: UIView {
     }
 
     @objc func playerEndPlay() {
-        print("Player ends playing video")
     }
 }

@@ -22,13 +22,12 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView!.register(UINib(
-            nibName: "MostViralCell", bundle: nil), forCellWithReuseIdentifier: "MostViralCell")
-        fetchAlbums()
         if let layout = collectionView?.collectionViewLayout as? CustomCollectionLayout {
             layout.delegate = self
         }
-
+        self.collectionView!.register(UINib(
+            nibName: "MostViralCell", bundle: nil), forCellWithReuseIdentifier: "MostViralCell")
+        fetchAlbums()
     }
 
     func scrollToRow(currentRow: Int) {
@@ -67,7 +66,6 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedAlbum = indexPath.row
-
         performSegue(withIdentifier: "ShowAlbum", sender: Any?.self)
     }
 
@@ -85,7 +83,6 @@ extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         guard let height = mostViralAlbums[indexPath.item].images?[0].height else {
             return 250
-
         }
 
         if height <= 250 {

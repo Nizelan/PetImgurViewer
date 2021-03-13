@@ -99,7 +99,6 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                                                delegate: self)
                 self.setupTableView()
             }
-            print("AccountPosts")
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
             networkManager.fetchAccFavorites(
                 name: userName,
@@ -109,10 +108,8 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                                                        delegate: self)
                     self.setupTableView()
             }
-            print("AccountFavorites")
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
             self.accountTableView.reloadData()
-            print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
             networkManager.fetchAccComment(userName: userName,
                                            page: 0,
@@ -120,7 +117,6 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                 self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }
-            print("AccountComments")
         }
     }
 

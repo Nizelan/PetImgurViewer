@@ -51,7 +51,6 @@ class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
                 return comment
             }
             currentIndex += 1
-            print(currentIndex)
             if comment.children!.count != 0, let foundIt = indentDetermine(at: row,
                                                                            currentIndex: &currentIndex,
                                                                            indent: &indent,

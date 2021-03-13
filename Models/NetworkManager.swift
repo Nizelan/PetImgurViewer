@@ -20,7 +20,6 @@ struct NetworkManager {
 
         let query = "/3/gallery/\(sections)/\(sort)/\(window)/\(page)?showViral=true&mature=true&album_previews=true"
         let urlString = baseURL + query
-        print(urlString)
         let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
@@ -37,7 +36,6 @@ struct NetworkManager {
                 if let gallery: GalleryResponse = self.parseJSON(withData: data) {
                     DispatchQueue.main.async {
                         closure(gallery)
-                        //print(gallery.data)
                     }
                 }
             }
@@ -105,7 +103,7 @@ struct NetworkManager {
                 print(error)
             }
             if let data = data {
-                print("zzzzzzzzzzzzzzzzzz\(data)")
+                print(data)
             }
         }.resume()
     }
@@ -129,7 +127,6 @@ struct NetworkManager {
                     if let gallery: AccGalleryResp = self.parseJSON(withData: data) {
                         DispatchQueue.main.async {
                             closure(gallery)
-                            //print(gallery.data)
                         }
                     }
                 }

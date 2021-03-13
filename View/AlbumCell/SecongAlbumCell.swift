@@ -39,7 +39,6 @@ class SecongAlbumCell: UITableViewCell {
         guard let imageLink = album.coverLink(index: index) else {
             return
         }
-        print("\(imageLink)")
 
         albumImageView.imageSize = album.coverSize
 
