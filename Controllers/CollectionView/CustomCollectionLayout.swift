@@ -84,6 +84,7 @@ class CustomCollectionLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cache[indexPath.item]
+        print("****************\(cache[indexPath.row])")
+        return cache[indexPath.row]
     }
 }
