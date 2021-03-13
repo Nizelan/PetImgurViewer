@@ -14,6 +14,7 @@ class MostViralCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ptsLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var currentIndexPath = IndexPath(item: -1, section: -1)
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -52,13 +52,9 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
             page += 1
             fetchAlbums()
         }
-
+        cell.currentIndexPath = indexPath
         cell.setup(with: self.mostViralAlbums[indexPath.item]) { () -> Bool in
-            print(indexPath)
-            print(indexPath.row)
-            print(indexPath.item)
-            print(self.collectionView.indexPath(for: cell))
-            return indexPath == self.collectionView.indexPath(for: cell)
+            return indexPath == cell.currentIndexPath
         }
 
         return cell
@@ -111,5 +107,9 @@ extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
                                         self.mostViralAlbums += galleryRasponse.data
                                         self.collectionView.reloadData()
         }
+    }
+
+    func calculateImageHight(image: Images) {
+        
     }
 }
