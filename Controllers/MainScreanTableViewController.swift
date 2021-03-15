@@ -12,13 +12,11 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
 
     private let networkManager = NetworkManager()
 
-    var page = 1
     var sections = "hot"
     var sort = "top"
     var window = "viral"
     var albums = [Post]()
     var selectedAlbum = 0
-    var index = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +42,10 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
         }
 
         if indexPath.row == (albums.count - 3) {
-            page += 1
+            networkManager.page += 1
             fetchAlbums()
         }
 
-        hideTabBar(index: indexPath.row)
         cell.setup(with: self.albums[indexPath.row]) { () -> Bool in
             return indexPath == self.tableView.indexPath(for: cell)
         }
@@ -71,27 +68,25 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
             destination.delegate = self
         }
     }
+
+    override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        if actualPosition.y > 0 {
+            tabBarController?.tabBar.isHidden = false
+        } else {
+            tabBarController?.tabBar.isHidden = true
+        }
+    }
 }
 
 extension MainScreanTableViewController {
     private func fetchAlbums() {
         self.networkManager.fetchGallery(
             sections: SettingsData.sectionsData, sort: SettingsData.sortData,
-            window: SettingsData.windowData, page: page
+            window: SettingsData.windowData, page: networkManager.page
         ) { (galleryArray: GalleryResponse) in
             self.albums += galleryArray.data
-
             self.tableView.reloadData()
-        }
-    }
-
-    func hideTabBar(index: Int) {
-        if self.index < index {
-            self.index += 1
-            tabBarController?.tabBar.isHidden = true
-        } else if self.index > index {
-            self.index -= 1
-            tabBarController?.tabBar.isHidden = false
         }
     }
 }

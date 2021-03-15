@@ -33,12 +33,7 @@ class CustomCollectionLayout: UICollectionViewLayout {
     }
 
     override func prepare() {
-        guard
-            cache.isEmpty,
-            let collectionView = collectionView
-            else {
-                return
-        }
+        guard let collectionView = collectionView else { return }
 
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
@@ -85,5 +80,10 @@ class CustomCollectionLayout: UICollectionViewLayout {
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cache[indexPath.row]
+    }
+
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        guard let collectionView = collectionView else { return false }
+        return !newBounds.size.equalTo(collectionView.bounds.size)
     }
 }

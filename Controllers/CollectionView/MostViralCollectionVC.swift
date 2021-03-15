@@ -17,8 +17,6 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
 
     var mostViralAlbums = [Post]()
     var selectedAlbum = 0
-    var page = 1
-    var index = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +44,8 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
             return UICollectionViewCell()
         }
 
-        hideTabBar(currentIndex: indexPath.item)
-
         if indexPath.item == (mostViralAlbums.count - 3) {
-            page += 1
+            networkManager.page += 1
             fetchAlbums()
         }
         cell.currentIndexPath = indexPath
@@ -73,29 +69,25 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
             destination.delegate = self
         }
     }
+
+    override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        if actualPosition.y > 0 {
+            tabBarController?.tabBar.isHidden = false
+        } else {
+            tabBarController?.tabBar.isHidden = true
+        }
+    }
 }
 
 extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        guard let height = mostViralAlbums[indexPath.item].images?[0].height else {
-            return 250
-        }
-
-        if height <= 250 {
-            return CGFloat(height)
-        } else if height > 250 {
-            return 250
-        }
-        return CGFloat(height)
-    }
-
-    func hideTabBar(currentIndex: Int) {
-        if index <= currentIndex {
-            index += 1
-            tabBarController?.tabBar.isHidden = true
-        } else if index > currentIndex {
-            index -= 1
-            tabBarController?.tabBar.isHidden = false
+        if mostViralAlbums[indexPath.row].aspectRatio <= 0.2 {
+            return 5000 * mostViralAlbums[indexPath.row].aspectRatio
+        } else if mostViralAlbums[indexPath.row].aspectRatio <= 0.5 {
+            return 1000 * mostViralAlbums[indexPath.row].aspectRatio
+        } else {
+            return 250 / mostViralAlbums[indexPath.row].aspectRatio
         }
     }
 
@@ -103,13 +95,9 @@ extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
         networkManager.fetchGallery(sections: "top",
                                     sort: "viral",
                                     window: "week",
-                                    page: page) {(galleryRasponse: GalleryResponse) in
+                                    page: networkManager.page) {(galleryRasponse: GalleryResponse) in
                                         self.mostViralAlbums += galleryRasponse.data
                                         self.collectionView.reloadData()
         }
-    }
-
-    func calculateImageHight(image: Images) {
-        
     }
 }

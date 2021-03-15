@@ -284,7 +284,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="brD-zz-2Uw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
                             <outlet property="dataSource" destination="j63-b6-V5m" id="g5o-ly-x6v"/>
                             <outlet property="delegate" destination="j63-b6-V5m" id="F3A-5i-S7G"/>
@@ -303,7 +303,7 @@
         <scene sceneID="fW1-DN-dHa">
             <objects>
                 <tabBarController hidesBottomBarWhenPushed="YES" id="Eje-da-ueo" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="TbV-9I-rE5"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="TbV-9I-rE5"/>
                     <tabBar key="tabBar" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TCe-qj-Yp6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -457,6 +457,6 @@
         <image name="starsky" width="616" height="411"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eBz-C7-rTy"/>
+        <segue reference="tM8-7W-X5V"/>
     </inferredMetricsTieBreakers>
 </document>

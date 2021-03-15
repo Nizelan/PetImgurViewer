@@ -24,6 +24,7 @@ class FirstAlbumCell: UITableViewCell {
     }
 
     func setup(with album: Post, isCellVisible: @escaping () -> Bool) {
+        self.layer.cornerRadius = 10
         setupImage(with: album, isCellVisible: isCellVisible)
         setupUps(album)
 
