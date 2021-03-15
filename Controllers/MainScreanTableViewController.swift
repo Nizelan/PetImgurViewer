@@ -12,21 +12,18 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
 
     private let networkManager = NetworkManager()
 
-    var pages = 1
     var sections = "hot"
     var sort = "top"
     var window = "viral"
     var albums = [Post]()
     var selectedAlbum = 0
 
-    var images = [UIImage]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.rowHeight = 400
         tableView.register(UINib(nibName: "FirstAlbumCell", bundle: nil), forCellReuseIdentifier: "FirstAlbumCell")
 
-        fetchingAlbums()
+        fetchAlbums()
     }
 
     func scrollToRow(currentRow: Int) {
@@ -45,8 +42,8 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
         }
 
         if indexPath.row == (albums.count - 3) {
-            pages += 1
-            fetchingAlbums()
+            networkManager.page += 1
+            fetchAlbums()
         }
 
         cell.setup(with: self.albums[indexPath.row]) { () -> Bool in
@@ -71,16 +68,24 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
             destination.delegate = self
         }
     }
+
+    override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
+        if actualPosition.y > 0 {
+            tabBarController?.tabBar.isHidden = false
+        } else {
+            tabBarController?.tabBar.isHidden = true
+        }
+    }
 }
 
 extension MainScreanTableViewController {
-    private func fetchingAlbums() {
+    private func fetchAlbums() {
         self.networkManager.fetchGallery(
             sections: SettingsData.sectionsData, sort: SettingsData.sortData,
-            window: SettingsData.windowData, page: pages
+            window: SettingsData.windowData, page: networkManager.page
         ) { (galleryArray: GalleryResponse) in
             self.albums += galleryArray.data
-
             self.tableView.reloadData()
         }
     }

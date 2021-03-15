@@ -35,7 +35,6 @@ class AccFavoritesCell: UITableViewCell {
     private func setupImage(with album: FavoritePost) {
         let imageLink = album.link
 
-        print("aspect ratio --- \(album.aspectRatio)")
         favoriteImageView.translatesAutoresizingMaskIntoConstraints = false
         favoriteImageView.imageSize = album.coverSize
         self.setNeedsLayout()

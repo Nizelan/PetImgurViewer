@@ -117,7 +117,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tQE-I6-kqV"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="account" image="person.fill" catalog="system" id="TTr-VQ-uF1"/>
+                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="TTr-VQ-uF1"/>
                     <navigationItem key="navigationItem" title="Acount Screan" id="eEN-aZ-H9I"/>
                     <connections>
                         <outlet property="accountAvatar" destination="z53-SL-K77" id="Zxd-v2-fPA"/>
@@ -167,7 +167,52 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xi8-C2-AXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-538" y="-1130"/>
+            <point key="canvasLocation" x="-506" y="-638"/>
+        </scene>
+        <!--Custom Tab Bar Controller-->
+        <scene sceneID="0YF-8D-0f3">
+            <objects>
+                <tabBarController hidesBottomBarWhenPushed="YES" id="Ksr-up-DvP" customClass="CustomTabBarController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="zYe-Dg-4Wh"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rr8-WY-gQa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="selectedImageTintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="3Ke-Yb-MLZ" kind="relationship" relationship="viewControllers" id="sQS-Sh-0VG"/>
+                        <segue destination="j63-b6-V5m" kind="relationship" relationship="viewControllers" id="ke2-mm-S4A"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ixn-Rg-vi5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3255" y="372"/>
+        </scene>
+        <!--Most viral-->
+        <scene sceneID="LOY-rA-reH">
+            <objects>
+                <collectionViewController id="3Ke-Yb-MLZ" customClass="MostViralCollectionVC" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cdE-SU-G1z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewLayout key="collectionViewLayout" id="iK6-fK-H84" customClass="CustomCollectionLayout" customModule="someAPIMadness" customModuleProvider="target"/>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="3Ke-Yb-MLZ" id="onp-UD-aNf"/>
+                            <outlet property="delegate" destination="3Ke-Yb-MLZ" id="877-x9-O0U"/>
+                        </connections>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Most viral" id="vPI-iA-JcQ"/>
+                    <connections>
+                        <segue destination="CVk-Ae-QGP" kind="show" identifier="ShowAlbum" id="eBz-C7-rTy"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WD9-ZE-fgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2307.2463768115945" y="734.59821428571422"/>
         </scene>
         <!--playVideoView-->
         <scene sceneID="EK3-Pd-Anf">
@@ -193,7 +238,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oy6-d0-xkb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1310" y="735"/>
+            <point key="canvasLocation" x="-1343" y="1101"/>
         </scene>
         <!--Authorithation-->
         <scene sceneID="a9B-cO-19A">
@@ -206,7 +251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HeR-e4-H1p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1435" y="-1130"/>
+            <point key="canvasLocation" x="-1343" y="-638"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="Dyt-Yx-dad">
@@ -232,20 +277,20 @@
             </objects>
             <point key="canvasLocation" x="-4155" y="-346"/>
         </scene>
-        <!--Main-->
+        <!--Folloving-->
         <scene sceneID="NSZ-aQ-gTB">
             <objects>
                 <tableViewController id="j63-b6-V5m" customClass="MainScreanTableViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="brD-zz-2Uw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <connections>
                             <outlet property="dataSource" destination="j63-b6-V5m" id="g5o-ly-x6v"/>
                             <outlet property="delegate" destination="j63-b6-V5m" id="F3A-5i-S7G"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Main" image="house.fill" catalog="system" id="Fuj-3i-xHL"/>
+                    <tabBarItem key="tabBarItem" title="Folloving" id="Fuj-3i-xHL"/>
                     <connections>
                         <segue destination="CVk-Ae-QGP" kind="show" identifier="ShowAlbum" id="tM8-7W-X5V"/>
                     </connections>
@@ -257,8 +302,8 @@
         <!--Tab Bar Controller-->
         <scene sceneID="fW1-DN-dHa">
             <objects>
-                <tabBarController id="Eje-da-ueo" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="TbV-9I-rE5"/>
+                <tabBarController hidesBottomBarWhenPushed="YES" id="Eje-da-ueo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="TbV-9I-rE5"/>
                     <tabBar key="tabBar" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TCe-qj-Yp6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -266,8 +311,8 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="j63-b6-V5m" kind="relationship" relationship="viewControllers" id="ZV5-2s-TjO"/>
-                        <segue destination="vtl-3t-tzX" kind="relationship" relationship="viewControllers" id="mrA-ua-JL5"/>
+                        <segue destination="Ksr-up-DvP" kind="relationship" relationship="viewControllers" id="oWU-ac-xXz"/>
+                        <segue destination="vtl-3t-tzX" kind="relationship" relationship="viewControllers" id="pwk-oA-e0F"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XC9-OB-kjY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,7 +366,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="292-8m-Yev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="494" y="-1130"/>
+            <point key="canvasLocation" x="-1343" y="-1326"/>
         </scene>
         <!--Seting Cell-->
         <scene sceneID="LQR-OO-SeR">
@@ -359,7 +404,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bYs-ZS-owd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="-1130"/>
+            <point key="canvasLocation" x="-507" y="-1342"/>
         </scene>
         <!--Albom-->
         <scene sceneID="CAj-TX-Bp1">
@@ -382,7 +427,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-wI-xMG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1309" y="13"/>
+            <point key="canvasLocation" x="-1343" y="372"/>
         </scene>
         <!--Comments-->
         <scene sceneID="RG1-YI-m4v">
@@ -401,7 +446,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4t-ki-Btz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-370" y="13"/>
+            <point key="canvasLocation" x="-507" y="372"/>
         </scene>
     </scenes>
     <resources>
@@ -411,4 +456,7 @@
         <image name="settings" width="240" height="240"/>
         <image name="starsky" width="616" height="411"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tM8-7W-X5V"/>
+    </inferredMetricsTieBreakers>
 </document>

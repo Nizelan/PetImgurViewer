@@ -24,6 +24,7 @@ class FirstAlbumCell: UITableViewCell {
     }
 
     func setup(with album: Post, isCellVisible: @escaping () -> Bool) {
+        self.layer.cornerRadius = 10
         setupImage(with: album, isCellVisible: isCellVisible)
         setupUps(album)
 
@@ -35,9 +36,7 @@ class FirstAlbumCell: UITableViewCell {
     }
 
     private func setupImage(with album: Post, isCellVisible: @escaping () -> Bool) {
-        guard let imageLink = album.coverLink(index: 0) else {
-            return
-        }
+        guard let imageLink = album.coverLink(index: 0) else { return }
 
         imageViewOutlet.imageSize = album.coverSize
 
@@ -46,8 +45,8 @@ class FirstAlbumCell: UITableViewCell {
         } else {
             self.startActivity()
             imageViewOutlet.loadImage(from: imageLink, completion: { (success) in
-                self.stopActivity()
                 if success {
+                    self.stopActivity()
                     print("successfully loaded image with url: \(imageLink)")
                 } else {
                     print("failed to load image with url: \(imageLink)")

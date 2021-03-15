@@ -35,7 +35,6 @@ class AccPostCell: UITableViewCell {
     private func setupImage(with album: AccPost) {
         let imageLink = album.link
 
-        print("aspect ratio --- \(album.aspectRatio)")
         postImage.translatesAutoresizingMaskIntoConstraints = false
         postImage.imageSize = album.coverSize
         self.setNeedsLayout()

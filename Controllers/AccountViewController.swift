@@ -25,15 +25,21 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     @IBOutlet weak var accountTableView: UITableView!
     @IBOutlet weak var acountExitButton: UIButton!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        switchChosen()
+        guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
+        accountName.text = userName
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.accountTableView.backgroundColor = .gray
+        navigationController?.navigationBar.backItem?.hidesBackButton = true
+        self.navigationItem.setHidesBackButton(true, animated: true)
 
         if accountData == nil {
             performSegue(withIdentifier: "ShowAuthVC", sender: Any?.self)
         }
-
-        navigationController?.navigationBar.backItem?.hidesBackButton = true
-        self.navigationItem.setHidesBackButton(true, animated: true)
     }
 
     func update(sectionsText: String, sortText: String, windowText: String) {
@@ -93,7 +99,6 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                                                delegate: self)
                 self.setupTableView()
             }
-            print("AccountPosts")
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
             networkManager.fetchAccFavorites(
                 name: userName,
@@ -103,10 +108,8 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                                                        delegate: self)
                     self.setupTableView()
             }
-            print("AccountFavorites")
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
             self.accountTableView.reloadData()
-            print("AccountFollowing")
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
             networkManager.fetchAccComment(userName: userName,
                                            page: 0,
@@ -114,7 +117,6 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                 self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }
-            print("AccountComments")
         }
     }
 

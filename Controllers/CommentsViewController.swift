@@ -29,7 +29,6 @@ class CommentsViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-        print("\(String(describing: albumID))*******************************")
     }
 
     // MARK: - Table view data source
@@ -76,7 +75,6 @@ class CommentsViewController: UITableViewController {
                 return comment
             }
             currentIndex += 1
-            print(currentIndex)
             if comment.children!.count != 0, let foundIt = commentFind(at: row,
                                                               currentIndex: &currentIndex,
                                                               in: comment.children!) {
@@ -93,7 +91,6 @@ class CommentsViewController: UITableViewController {
                 return comment
             }
             currentIndex += 1
-            print(currentIndex)
             if comment.children!.count != 0, let foundIt = indentDetermine(at: row,
                                                                            currentIndex: &currentIndex,
                                                                            indent: &indent,

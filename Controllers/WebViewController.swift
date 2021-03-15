@@ -42,7 +42,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                  decidePolicyFor navigationAction: WKNavigationAction,
                  decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         decisionHandler(.allow)
-        print(navigationAction.request)
         if let uRLString = navigationAction.request.url?.absoluteString {
             if uRLString.contains("access_token") {
                 testArray = uRLString.split(separator: "&").map({ (substring) -> String in
@@ -50,8 +49,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                 })
                 self.scheme = String(testArray[0].prefix(12))
                 testArray[0].removeFirst(12)
-                print("~~~~~~~~~~~~~~~~~\(scheme)")
-                print("==============\(uRLString)")
                 testDictionary = testArray.reduce(into: testDictionary) { (into, string) in
                     let callbackData = string.split(separator: "=").map { (substring) -> String in
                         String(substring)
@@ -59,8 +56,6 @@ class WebViewController: UIViewController, WKNavigationDelegate {
                     into[callbackData[0]] = callbackData[1]
                 }
             }
-            print("-------------------------\(testDictionary)")
-            print("&&&&&&&&&&&&&&&&&&\(testArray)")
             if scheme.isEmpty == false {
                 self.navigationController?.popViewController(animated: true)
                 dismiss(animated: true, completion: nil)

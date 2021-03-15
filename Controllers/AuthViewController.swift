@@ -25,7 +25,6 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         if let unwraptDict = defaults.dictionary(forKey: "UserAuthorizationData") as? [String: String] {
             AuthorizationData.authorizationData = unwraptDict
-            print(unwraptDict)
         }
         if AuthorizationData.authorizationData.isEmpty {
             let urlString = "https://api.imgur.com/oauth2/authorize?client_id=\(clientID)&response_type=token"
@@ -35,7 +34,7 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
             performSegue(withIdentifier: "ShowWebView", sender: Any?.self)
         } else {
             guard let accessTokken = AuthorizationData.authorizationData["access_token"] else {
-                print("\(Self.self) Access token is not be finded")
+                print("\(Self.self) Access token can not be found")
                 return
             }
             networkManager.authorization(accessTokken: accessTokken)
@@ -46,7 +45,6 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     func update(dict: [String: String]) {
         AuthorizationData.authorizationData = dict
         defaults.set(dict, forKey: "UserAuthorizationData")
-        print("TESTING_OUTPUT\(String(describing: AuthorizationData.authorizationData))")
     }
 
     func showAlert() {

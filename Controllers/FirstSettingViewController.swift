@@ -33,9 +33,6 @@ class FirstSettingViewController: UITableViewController, SettingViewControllerDe
         SettingsData.sectionsData = selectedSettings[0]
         SettingsData.sortData = selectedSettings[1]
         SettingsData.windowData = selectedSettings[2]
-        print("\(SettingsData.sectionsData)-------------------------------------")
-        print("\(SettingsData.sortData)-----------------------------------")
-        print("\(SettingsData.windowData)----------------------------------------")
         delegate?.update(sectionsText: selectedSettings[0],
                          sortText: selectedSettings[1],
                          windowText: selectedSettings[2])
