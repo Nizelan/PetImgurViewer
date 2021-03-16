@@ -33,6 +33,7 @@
 		9975AA3B24E2B61400B418A7 /* SecondSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */; };
 		99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */; };
 		997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997A9A1D25C976D90077484F /* AccPostCell.xib */; };
+		997B90DA2600B92B0040A636 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B90D92600B92B0040A636 /* NetworkService.swift */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
 		997E37D22572657400DBF03A /* AccountPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D12572657400DBF03A /* AccountPosts.swift */; };
 		997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D3257265C300DBF03A /* AccountFollowing.swift */; };
@@ -105,6 +106,7 @@
 		9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSettingViewController.swift; sourceTree = "<group>"; };
 		99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		997A9A1D25C976D90077484F /* AccPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccPostCell.xib; sourceTree = "<group>"; };
+		997B90D92600B92B0040A636 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
 		997E37D12572657400DBF03A /* AccountPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPosts.swift; sourceTree = "<group>"; };
 		997E37D3257265C300DBF03A /* AccountFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFollowing.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				9901468A252B4C4900BBF166 /* Data */,
 				997FEDE42577BD4A005AACBF /* ParseModels */,
 				99DE877224C08D6D0085DCE2 /* NetworkManager.swift */,
+				997B90D92600B92B0040A636 /* NetworkService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */,
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */,
+				997B90DA2600B92B0040A636 /* NetworkService.swift in Sources */,
 				996CCCE725FBBD7B00F10B17 /* CustomCollectionLayout.swift in Sources */,
 				997FEDE62577BD86005AACBF /* AccGalleryResp.swift in Sources */,
 				997E37D62572661900DBF03A /* AccountComments.swift in Sources */,

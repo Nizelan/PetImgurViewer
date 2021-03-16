@@ -10,7 +10,7 @@ import UIKit
 
 class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
 
-    private let networkManager = NetworkManager()
+    private let networkService = NetworkService()
 
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     private let itemsPerRow: CGFloat = 2
@@ -45,7 +45,7 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
         }
 
         if indexPath.item == (mostViralAlbums.count - 3) {
-            networkManager.page += 1
+            networkService.page += 1
             fetchAlbums()
         }
         cell.currentIndexPath = indexPath
@@ -92,10 +92,10 @@ extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
     }
 
     func fetchAlbums() {
-        networkManager.fetchGallery(sections: "top",
+        networkService.networkManager.fetchGallery(sections: "top",
                                     sort: "viral",
                                     window: "week",
-                                    page: networkManager.page) {(galleryRasponse: GalleryResponse) in
+                                    page: networkService.page) {(galleryRasponse: GalleryResponse) in
                                         self.mostViralAlbums += galleryRasponse.data
                                         self.collectionView.reloadData()
         }
