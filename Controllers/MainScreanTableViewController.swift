@@ -10,11 +10,8 @@ import UIKit
 
 class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate {
 
-    private let networkManager = NetworkManager()
+    private let networkService = NetworkService()
 
-    var sections = "hot"
-    var sort = "top"
-    var window = "viral"
     var albums = [Post]()
     var selectedAlbum = 0
 
@@ -42,7 +39,7 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
         }
 
         if indexPath.row == (albums.count - 3) {
-            networkManager.page += 1
+            networkService.page += 1
             fetchAlbums()
         }
 
@@ -81,9 +78,9 @@ class MainScreanTableViewController: UITableViewController, AlbumTableVCDelegate
 
 extension MainScreanTableViewController {
     private func fetchAlbums() {
-        self.networkManager.fetchGallery(
+        self.networkService.networkManager.fetchGallery(
             sections: SettingsData.sectionsData, sort: SettingsData.sortData,
-            window: SettingsData.windowData, page: networkManager.page
+            window: SettingsData.windowData, page: networkService.page
         ) { (galleryArray: GalleryResponse) in
             self.albums += galleryArray.data
             self.tableView.reloadData()

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NetworkManager {
+struct NetworkManager {
 
     private let baseURL = "https://api.imgur.com"
     let clientID = ClientData.clientId
