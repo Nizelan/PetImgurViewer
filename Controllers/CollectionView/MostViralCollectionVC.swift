@@ -8,24 +8,20 @@
 
 import UIKit
 
-class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
+class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate, CustomCollectionLayoutDelegate {
 
     private let networkService = NetworkService()
 
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    private let itemsPerRow: CGFloat = 2
-
     var mostViralAlbums = [Post]()
+    var customAlbum = [Post]()
     var selectedAlbum = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let layout = collectionView?.collectionViewLayout as? CustomCollectionLayout {
-            layout.delegate = self
-        }
+        columnCountChange(columns: 2)
         self.collectionView!.register(UINib(
             nibName: "MostViralCell", bundle: nil), forCellWithReuseIdentifier: "MostViralCell")
-        fetchAlbums()
+        fetchAlbums(sections: "top", sort: "viral", window: "week", album: 1)
     }
 
     func scrollToRow(currentRow: Int) {
@@ -46,7 +42,7 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
 
         if indexPath.item == (mostViralAlbums.count - 3) {
             networkService.page += 1
-            fetchAlbums()
+            fetchAlbums(sections: "top", sort: "viral", window: "week", album: 1)
         }
         cell.currentIndexPath = indexPath
         cell.setup(with: self.mostViralAlbums[indexPath.item]) { () -> Bool in
@@ -78,9 +74,22 @@ class MostViralCollectionVC: UICollectionViewController, AlbumTableVCDelegate {
             tabBarController?.tabBar.isHidden = true
         }
     }
-}
 
-extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
+    func fetchAlbums(sections: String, sort: String, window: String, album: Int) {
+        networkService.networkManager.fetchGallery(sections: sections,
+                                    sort: sort,
+                                    window: window,
+                                    page: networkService.page) {(galleryRasponse: GalleryResponse) in
+                                        if album == 1 {
+                                            self.mostViralAlbums += galleryRasponse.data
+                                            self.collectionView.reloadData()
+                                        } else if album == 0 {
+                                            self.customAlbum += galleryRasponse.data
+                                            self.collectionView.reloadData()
+                                        }
+        }
+    }
+
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         if mostViralAlbums[indexPath.row].aspectRatio <= 0.2 {
             return 5000 * mostViralAlbums[indexPath.row].aspectRatio
@@ -91,13 +100,10 @@ extension MostViralCollectionVC: CustomCollectionLayoutDelegate {
         }
     }
 
-    func fetchAlbums() {
-        networkService.networkManager.fetchGallery(sections: "top",
-                                    sort: "viral",
-                                    window: "week",
-                                    page: networkService.page) {(galleryRasponse: GalleryResponse) in
-                                        self.mostViralAlbums += galleryRasponse.data
-                                        self.collectionView.reloadData()
+    func columnCountChange(columns: Int) {
+        if let layout = collectionView?.collectionViewLayout as? CustomCollectionLayout {
+            layout.delegate = self
+            layout.numberOfColumns = columns
         }
     }
 }

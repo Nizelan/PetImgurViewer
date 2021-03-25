@@ -10,12 +10,13 @@ import UIKit
 
 protocol CustomCollectionLayoutDelegate: AnyObject {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat
+    func columnCountChange(columns: Int)
 }
 
 class CustomCollectionLayout: UICollectionViewLayout {
     weak var delegate: CustomCollectionLayoutDelegate?
 
-    private let numberOfColumns = 2
+    var numberOfColumns = 2
     private let cellPadding: CGFloat = 6
 
     private var cache: [UICollectionViewLayoutAttributes] = []
