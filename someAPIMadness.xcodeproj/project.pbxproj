@@ -20,7 +20,6 @@
 		991A415C259F5AE3002AA2C1 /* ClientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991A415B259F5AE3002AA2C1 /* ClientData.swift */; };
 		991F931D257BAEA800786C68 /* AccPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F931C257BAEA800786C68 /* AccPostCell.swift */; };
 		991F9323257BB8D200786C68 /* AccFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991F9322257BB8D200786C68 /* AccFavoritesCell.swift */; };
-		9952B6CD25F111A900D2CC67 /* MainScreanTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9952B6CC25F111A900D2CC67 /* MainScreanTableViewController.swift */; };
 		995A26BF2538703B000093CB /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995A26BE2538703B000093CB /* CommentCell.swift */; };
 		99616D90252F5957001E8456 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99616D8E252F5957001E8456 /* CommentsViewController.swift */; };
 		996CCCE725FBBD7B00F10B17 /* CustomCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996CCCE625FBBD7B00F10B17 /* CustomCollectionLayout.swift */; };
@@ -33,6 +32,8 @@
 		9975AA3B24E2B61400B418A7 /* SecondSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */; };
 		99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */; };
 		997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997A9A1D25C976D90077484F /* AccPostCell.xib */; };
+		997AD39426134B8C00BBB44C /* CustomTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997AD39326134B8C00BBB44C /* CustomTitleView.xib */; };
+		997AD39626134BA800BBB44C /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997AD39526134BA800BBB44C /* CustomTitleView.swift */; };
 		997B90DA2600B92B0040A636 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B90D92600B92B0040A636 /* NetworkService.swift */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
 		997E37D22572657400DBF03A /* AccountPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D12572657400DBF03A /* AccountPosts.swift */; };
@@ -99,7 +100,6 @@
 		991A415B259F5AE3002AA2C1 /* ClientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientData.swift; sourceTree = "<group>"; };
 		991F931C257BAEA800786C68 /* AccPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccPostCell.swift; sourceTree = "<group>"; };
 		991F9322257BB8D200786C68 /* AccFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccFavoritesCell.swift; sourceTree = "<group>"; };
-		9952B6CC25F111A900D2CC67 /* MainScreanTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreanTableViewController.swift; sourceTree = "<group>"; };
 		995A26BE2538703B000093CB /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		99616D8E252F5957001E8456 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		996CCCE625FBBD7B00F10B17 /* CustomCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionLayout.swift; sourceTree = "<group>"; };
@@ -112,6 +112,8 @@
 		9975AA3A24E2B61400B418A7 /* SecondSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondSettingViewController.swift; sourceTree = "<group>"; };
 		99798DB8258BCD4F00FFD5C2 /* CustomVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomVideoPlayer.swift; sourceTree = "<group>"; };
 		997A9A1D25C976D90077484F /* AccPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccPostCell.xib; sourceTree = "<group>"; };
+		997AD39326134B8C00BBB44C /* CustomTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTitleView.xib; sourceTree = "<group>"; };
+		997AD39526134BA800BBB44C /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
 		997B90D92600B92B0040A636 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
 		997E37D12572657400DBF03A /* AccountPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPosts.swift; sourceTree = "<group>"; };
@@ -222,6 +224,13 @@
 			path = CollectionCell;
 			sourceTree = "<group>";
 		};
+		996BF9042614ADE6000758A3 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		996CCCE525FBBCE100F10B17 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,6 +257,15 @@
 				997A9A1D25C976D90077484F /* AccPostCell.xib */,
 			);
 			path = AccPostCell;
+			sourceTree = "<group>";
+		};
+		997AD39226134B2B00BBB44C /* CustomNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				997AD39326134B8C00BBB44C /* CustomTitleView.xib */,
+				997AD39526134BA800BBB44C /* CustomTitleView.swift */,
+			);
+			path = CustomNavigationBar;
 			sourceTree = "<group>";
 		};
 		997E37CE257262AB00DBF03A /* AccountContainer */ = {
@@ -354,6 +372,7 @@
 			children = (
 				99D192A124B8A59500082D6A /* Main.storyboard */,
 				99D192A624B8A59D00082D6A /* LaunchScreen.storyboard */,
+				997AD39226134B2B00BBB44C /* CustomNavigationBar */,
 				9919107025F9218B004FDE64 /* CollectionCell */,
 				972FCC8325C0DBBC0032F425 /* AlbumsCell */,
 				972FCC8425C0DE070032F425 /* AlbumCell */,
@@ -367,7 +386,7 @@
 		99DE876C24C0819C0085DCE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9952B6CC25F111A900D2CC67 /* MainScreanTableViewController.swift */,
+				996BF9042614ADE6000758A3 /* TabBar */,
 				99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */,
 				99616D8E252F5957001E8456 /* CommentsViewController.swift */,
 				99100126254C564000A4F295 /* AuthViewController.swift */,
@@ -534,6 +553,7 @@
 				9913876D25A3454A007466C8 /* AccFavoritesCell.xib in Resources */,
 				9980567225A87B0C00B0A000 /* CommentCell.xib in Resources */,
 				997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */,
+				997AD39426134B8C00BBB44C /* CustomTitleView.xib in Resources */,
 				99A9F2A025C593B200F95F3A /* AccCommentsCell.xib in Resources */,
 				99D192A524B8A59D00082D6A /* Assets.xcassets in Resources */,
 				99D192A324B8A59500082D6A /* Main.storyboard in Resources */,
@@ -594,9 +614,9 @@
 				997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */,
 				99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */,
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
+				997AD39626134BA800BBB44C /* CustomTitleView.swift in Sources */,
 				99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */,
 				99F55D7825791A1D00E3E03A /* AccFavoritesResp.swift in Sources */,
-				9952B6CD25F111A900D2CC67 /* MainScreanTableViewController.swift in Sources */,
 				9901468C252B4C8B00BBF166 /* SettingsData.swift in Sources */,
 				99D96CAA256541D3008FF32B /* WebViewController.swift in Sources */,
 				99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */,
