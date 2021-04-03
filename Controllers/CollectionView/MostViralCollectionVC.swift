@@ -26,6 +26,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.titleView = customTitle
         columnCountChange(columns: selectedAlbum)
+        customTitle.delegate = self
         self.collectionView!.register(UINib(
             nibName: "MostViralCell", bundle: nil), forCellWithReuseIdentifier: "MostViralCell")
         fetchingDependingSelectedAlbum(selectedAlbum: .mostViral)
@@ -103,33 +104,27 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
     }
 
     func fetchAlbums(sections: String, sort: String, window: String, album: Int) {
-        networkService.networkManager.fetchGallery(sections: sections,
-                                                   sort: sort,
-                                                   window: window,
-                                                   page: networkService.page) {(galleryRasponse: GalleryResponse) in
-                                                    self.albums += galleryRasponse.data
-                                                    self.collectionView.reloadData()
+        networkService.networkManager.fetchGallery(
+            sections: sections,
+            sort: sort,
+            window: window,
+            page: networkService.page
+        ) { galleryRasponse in
+            self.albums += galleryRasponse.data
+            self.collectionView.reloadData()
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        if albums[indexPath.row].aspectRatio <= 0.2 {
-            return 5000 * albums[indexPath.row].aspectRatio
-        } else if albums[indexPath.row].aspectRatio <= 0.5 {
-            return 1000 * albums[indexPath.row].aspectRatio
-        } else {
-            return 250 / albums[indexPath.row].aspectRatio
-        }
+        let cellWidth = collectionView.frame.width / 2 - 12
+        let captionHeight = 49
+        return cellWidth / albums[indexPath.row].aspectRatio + CGFloat(captionHeight)
     }
 
     func columnCountChange(columns: Int) {
         if let layout = collectionView?.collectionViewLayout as? CustomCollectionLayout {
             layout.delegate = self
             layout.numberOfColumns = columns
-        }
-
-        if let titleView = self.navigationController?.navigationBar.topItem?.titleView as? CustomTitleView {
-            titleView.delegate = self
         }
     }
 
@@ -138,10 +133,12 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         case .mostViral:
             fetchAlbums(sections: "top", sort: "viral", window: "week", album: self.selectedAlbum)
         case .following:
-            fetchAlbums(sections: SettingsData.sectionsData,
-                        sort: SettingsData.sortData,
-                        window: SettingsData.windowData,
-                        album: self.selectedAlbum)
+            fetchAlbums(
+                sections: SettingsData.sectionsData,
+                sort: SettingsData.sortData,
+                window: SettingsData.windowData,
+                album: self.selectedAlbum
+            )
         }
     }
 }

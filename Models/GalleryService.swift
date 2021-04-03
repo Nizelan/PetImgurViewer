@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 
-class NetworkService {
+class GalleryService {
     let networkManager = NetworkManager()
 
     var page = 1
-
 }

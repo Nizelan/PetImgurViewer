@@ -34,7 +34,7 @@
 		997A9A1E25C976D90077484F /* AccPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997A9A1D25C976D90077484F /* AccPostCell.xib */; };
 		997AD39426134B8C00BBB44C /* CustomTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 997AD39326134B8C00BBB44C /* CustomTitleView.xib */; };
 		997AD39626134BA800BBB44C /* CustomTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997AD39526134BA800BBB44C /* CustomTitleView.swift */; };
-		997B90DA2600B92B0040A636 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B90D92600B92B0040A636 /* NetworkService.swift */; };
+		997B90DA2600B92B0040A636 /* GalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B90D92600B92B0040A636 /* GalleryService.swift */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
 		997E37D22572657400DBF03A /* AccountPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D12572657400DBF03A /* AccountPosts.swift */; };
 		997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D3257265C300DBF03A /* AccountFollowing.swift */; };
@@ -114,7 +114,7 @@
 		997A9A1D25C976D90077484F /* AccPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccPostCell.xib; sourceTree = "<group>"; };
 		997AD39326134B8C00BBB44C /* CustomTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTitleView.xib; sourceTree = "<group>"; };
 		997AD39526134BA800BBB44C /* CustomTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTitleView.swift; sourceTree = "<group>"; };
-		997B90D92600B92B0040A636 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		997B90D92600B92B0040A636 /* GalleryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryService.swift; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
 		997E37D12572657400DBF03A /* AccountPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPosts.swift; sourceTree = "<group>"; };
 		997E37D3257265C300DBF03A /* AccountFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFollowing.swift; sourceTree = "<group>"; };
@@ -222,13 +222,6 @@
 				9919107325F92BD0004FDE64 /* MostViralCell.swift */,
 			);
 			path = CollectionCell;
-			sourceTree = "<group>";
-		};
-		996BF9042614ADE6000758A3 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		996CCCE525FBBCE100F10B17 /* CollectionView */ = {
@@ -362,7 +355,7 @@
 				9901468A252B4C4900BBF166 /* Data */,
 				997FEDE42577BD4A005AACBF /* ParseModels */,
 				99DE877224C08D6D0085DCE2 /* NetworkManager.swift */,
-				997B90D92600B92B0040A636 /* NetworkService.swift */,
+				997B90D92600B92B0040A636 /* GalleryService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -386,7 +379,6 @@
 		99DE876C24C0819C0085DCE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				996BF9042614ADE6000758A3 /* TabBar */,
 				99AEDAA024CF0AA700B266A6 /* AlbumTableViewController.swift */,
 				99616D8E252F5957001E8456 /* CommentsViewController.swift */,
 				99100126254C564000A4F295 /* AuthViewController.swift */,
@@ -636,7 +628,7 @@
 				9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */,
 				99D1929E24B8A59500082D6A /* SceneDelegate.swift in Sources */,
 				997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */,
-				997B90DA2600B92B0040A636 /* NetworkService.swift in Sources */,
+				997B90DA2600B92B0040A636 /* GalleryService.swift in Sources */,
 				996CCCE725FBBD7B00F10B17 /* CustomCollectionLayout.swift in Sources */,
 				997FEDE62577BD86005AACBF /* AccGalleryResp.swift in Sources */,
 				997E37D62572661900DBF03A /* AccountComments.swift in Sources */,

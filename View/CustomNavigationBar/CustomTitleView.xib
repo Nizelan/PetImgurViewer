@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomTitleView" customModule="someAPIMadness" customModuleProvider="target">
             <connections>
                 <outlet property="customTitle" destination="Lfc-MA-zf9" id="b3F-Pg-Tig"/>
                 <outlet property="followingBO" destination="WGf-Hk-Ptq" id="ZLX-Bq-E19"/>

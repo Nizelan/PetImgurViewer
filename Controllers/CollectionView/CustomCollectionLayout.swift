@@ -47,14 +47,14 @@ class CustomCollectionLayout: UICollectionViewLayout {
         for item in 0..<collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
 
-            let photoHeight = delegate?.collectionView(
-                collectionView,
-                heightForPhotoAtIndexPath: indexPath) ?? 180
+            let photoHeight = delegate?.collectionView(collectionView, heightForPhotoAtIndexPath: indexPath) ?? 180
             let height = cellPadding * 2 + photoHeight
-            let frame = CGRect(x: xOffset[column],
-                               y: yOffset[column],
-                               width: columnWidth,
-                               height: height)
+            let frame = CGRect(
+                x: xOffset[column],
+                y: yOffset[column],
+                width: columnWidth,
+                height: height
+            )
             let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
 
             let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
@@ -86,5 +86,10 @@ class CustomCollectionLayout: UICollectionViewLayout {
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         guard let collectionView = collectionView else { return false }
         return !newBounds.size.equalTo(collectionView.bounds.size)
+    }
+
+    override func invalidateLayout() {
+        super.invalidateLayout()
+        cache = []
     }
 }
