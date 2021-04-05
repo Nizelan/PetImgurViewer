@@ -41,13 +41,11 @@ class CustomTitleView: UIView {
     }
 
     @IBAction func mostViral(_ sender: UIButton) {
-        print("Most viral was tapped")
         animateSlide(point: mostViralBO.frame.origin.x)
         delegate?.mostViralTapt()
     }
 
     @IBAction func following(_ sender: UIButton) {
-        print("Following was tapped")
         animateSlide(point: followingBO.frame.origin.x + 3)
         delegate?.follovingTapt()
     }

@@ -14,7 +14,6 @@ struct NetworkManager {
     private let baseURL = "https://api.imgur.com"
     let clientID = ClientData.clientId
     var page = 1
-    //Fetch data
 
     func fetchGallery(sections: String, sort: String,
                       window: String, page: Int, closure: @escaping (GalleryResponse) -> Void) {

@@ -58,9 +58,11 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let album = albums?[selectedAlbum],
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SecongAlbumCell",
-                                                     for: indexPath) as? SecongAlbumCell else {
-                return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: "SecongAlbumCell",
+                for: indexPath
+                ) as? SecongAlbumCell else {
+                    return UITableViewCell()
         }
 
         cell.delegate = self

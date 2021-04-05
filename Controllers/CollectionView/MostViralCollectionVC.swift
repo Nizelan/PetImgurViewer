@@ -16,20 +16,22 @@ enum SelectedAlbum: Int {
 class MostViralCollectionVC: UICollectionViewController,
 AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
 
-    private let networkService = NetworkService()
+    private let galleryService = GalleryService()
 
     var albums = [Post]()
     var selectedAlbum = 2
     var customTitle = CustomTitleView()
-
+    var timer = Timer()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.titleView = customTitle
         columnCountChange(columns: selectedAlbum)
         customTitle.delegate = self
         self.collectionView!.register(UINib(
-            nibName: "MostViralCell", bundle: nil), forCellWithReuseIdentifier: "MostViralCell")
-        fetchingDependingSelectedAlbum(selectedAlbum: .mostViral)
+            nibName: "MostViralCell",
+            bundle: nil
+        ), forCellWithReuseIdentifier: "MostViralCell")
+        mostViralTapt()
     }
 
     func scrollToRow(currentRow: Int) {
@@ -41,19 +43,21 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         return albums.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "MostViralCell", for: indexPath) as? MostViralCell else {
-            return UICollectionViewCell()
+                return UICollectionViewCell()
         }
 
-        if indexPath.item == (albums.count - 3) {
-            networkService.page += 1
+        if indexPath.item == (albums.count - 6) {
+            galleryService.page += 1
             if selectedAlbum == 2 {
-                fetchingDependingSelectedAlbum(selectedAlbum: .mostViral)
+                albums += galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral)
+                self.collectionView.reloadData()
             } else if selectedAlbum == 1 {
-                fetchingDependingSelectedAlbum(selectedAlbum: .following)
+                albums += galleryService.fetchGalleryAlbums(selectedAlbum: .following)
+                self.collectionView.reloadData()
             }
         }
         cell.currentIndexPath = indexPath
@@ -68,7 +72,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         albums.removeAll()
         selectedAlbum = 2
         columnCountChange(columns: selectedAlbum)
-        fetchingDependingSelectedAlbum(selectedAlbum: .mostViral)
+        albums += galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral)
         collectionView.reloadData()
     }
 
@@ -76,7 +80,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         albums.removeAll()
         selectedAlbum = 1
         columnCountChange(columns: selectedAlbum)
-        fetchingDependingSelectedAlbum(selectedAlbum: .following)
+        albums += galleryService.fetchGalleryAlbums(selectedAlbum: .following)
         collectionView.reloadData()
     }
 
@@ -103,18 +107,6 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         }
     }
 
-    func fetchAlbums(sections: String, sort: String, window: String, album: Int) {
-        networkService.networkManager.fetchGallery(
-            sections: sections,
-            sort: sort,
-            window: window,
-            page: networkService.page
-        ) { galleryRasponse in
-            self.albums += galleryRasponse.data
-            self.collectionView.reloadData()
-        }
-    }
-
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         let cellWidth = collectionView.frame.width / 2 - 12
         let captionHeight = 49
@@ -125,20 +117,6 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         if let layout = collectionView?.collectionViewLayout as? CustomCollectionLayout {
             layout.delegate = self
             layout.numberOfColumns = columns
-        }
-    }
-
-    func fetchingDependingSelectedAlbum(selectedAlbum: SelectedAlbum) {
-        switch selectedAlbum {
-        case .mostViral:
-            fetchAlbums(sections: "top", sort: "viral", window: "week", album: self.selectedAlbum)
-        case .following:
-            fetchAlbums(
-                sections: SettingsData.sectionsData,
-                sort: SettingsData.sortData,
-                window: SettingsData.windowData,
-                album: self.selectedAlbum
-            )
         }
     }
 }

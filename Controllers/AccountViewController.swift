@@ -78,12 +78,14 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     func commentButtonPressed(post: AccPost) {
         let commentVC = storyboard?.instantiateViewController(identifier: "CommentVC") as? CommentsViewController
         commentVC?.albumID = post.postId
-        commentVC?.networkManager.fetchComment(sort: "best",
-                                               albumId: commentVC!.albumID!,
-                                               closure: { (commentArray: GalleryCommentResponse) in
-            commentVC?.comments = commentArray.data
-            commentVC?.createCountOfCells(commentsArray: commentVC!.comments)
-            commentVC?.tableView.reloadData()
+        commentVC?.networkManager.fetchComment(
+            sort: "best",
+            albumId: commentVC!.albumID!,
+            closure: { (commentArray: GalleryCommentResponse
+                ) in
+                commentVC?.comments = commentArray.data
+                commentVC?.createCountOfCells(commentsArray: commentVC!.comments)
+                commentVC?.tableView.reloadData()
         })
         self.present(commentVC!, animated: true)
     }
@@ -103,17 +105,21 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
             networkManager.fetchAccFavorites(
                 name: userName,
                 accessToken: accesToken) { (accFavoritesResp: AccFavoritesResp) in
-                    self.dataSource = AccountFavorites(favorites: accFavoritesResp.data,
-                                                       tableView: self.accountTableView,
-                                                       delegate: self)
+                    self.dataSource = AccountFavorites(
+                        favorites: accFavoritesResp.data,
+                        tableView: self.accountTableView,
+                        delegate: self
+                    )
                     self.setupTableView()
             }
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
             self.accountTableView.reloadData()
         } else if tableViewSwitch.selectedSegmentIndex == 3 {
-            networkManager.fetchAccComment(userName: userName,
-                                           page: 0,
-                                           sort: "newest") { (accCommentsResp: AccCommentsResp) in
+            networkManager.fetchAccComment(
+                userName: userName,
+                page: 0,
+                sort: "newest"
+            ) { (accCommentsResp: AccCommentsResp) in
                 self.dataSource = AccountComments(comments: accCommentsResp.data, tableView: self.accountTableView)
                 self.setupTableView()
             }
