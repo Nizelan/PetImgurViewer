@@ -15,13 +15,14 @@ class GalleryService {
     var albums = [Post]()
     var page = 1
 
-    func fetchGalleryAlbums(selectedAlbum: SelectedAlbum) -> [Post] {
+    func fetchGalleryAlbums(selectedAlbum: SelectedAlbum, closure: @escaping (GalleryResponse) -> Void) {
         switch selectedAlbum {
         case .mostViral:
             networkManager.fetchGallery(sections: "top", sort: "viral", window: "week", page: page) { galleryRasponse in
-                self.albums = galleryRasponse.data
+                DispatchQueue.main.async {
+                    closure(galleryRasponse)
+                }
             }
-            return albums
         case .following:
             networkManager.fetchGallery(
                 sections: SettingsData.sectionsData,
@@ -29,9 +30,10 @@ class GalleryService {
                 window: SettingsData.windowData,
                 page: page
             ) { galleryRasponse in
-                self.albums = galleryRasponse.data
+                DispatchQueue.main.async {
+                    closure(galleryRasponse)
+                }
             }
-            return albums
         }
     }
 }
