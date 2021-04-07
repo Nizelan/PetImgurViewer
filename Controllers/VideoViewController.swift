@@ -80,7 +80,7 @@ class VideoViewController: UIViewController {
         setupBlurConstraints()
         var lineFixer = String()
         videoPlayer.player?.addPeriodicTimeObserver(
-            forInterval: CMTime(seconds: 1, preferredTimescale: 10000), queue: .main, using: { (time) in
+            forInterval: CMTime(seconds: 1, preferredTimescale: 10000), queue: .main, using: { time in
                 lineFixer =
                     Double(self.videoProgresSlider.maximumValue - Float(time.seconds)).asString(style: .positional)
                 if Float(time.seconds) < 10 {
@@ -93,12 +93,14 @@ class VideoViewController: UIViewController {
                 } else {
                     self.timeLeft.text = "00:\(lineFixer)"
                 }
-                self.videoProgresSlider.value = Float(time.seconds)
-        })
+                self.videoProgresSlider.value = Float(time.seconds
+                )}
+        )
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         videoPlayer.pause()
+        super.viewWillDisappear(true)
     }
 
     @IBAction func playPauseButtonAction(_ sender: Any) {

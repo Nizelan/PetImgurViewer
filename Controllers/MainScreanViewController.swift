@@ -17,7 +17,7 @@ class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
     var sections = "hot"
     var sort = "top"
     var window = "viral"
-    var albums = [Post]()
+    var albums: [Post] = []
     var selectedAlbum: Int?
 
     @IBOutlet weak var tableView: UITableView!
@@ -50,8 +50,10 @@ class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
 extension MainScreanViewController {
     private func fetchingAlbums() {
         self.networkManager.fetchGallery(
-            sections: SettingsData.sectionsData, sort: SettingsData.sortData,
-            window: SettingsData.windowData, page: pages
+            sections: SettingsData.sectionsData,
+            sort: SettingsData.sortData,
+            window: SettingsData.windowData,
+            page: pages
         ) { (galleryArray: GalleryResponse) in
             self.albums += galleryArray.data
 

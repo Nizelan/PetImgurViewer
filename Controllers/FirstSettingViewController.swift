@@ -14,9 +14,11 @@ protocol SettingsControllerDelegate: class {
 
 class FirstSettingViewController: UITableViewController, SettingViewControllerDelagate {
 
-    var arrayOfSetings = [["hot", "top", "user"],
-    ["viral", "top", "time", "rising"],
-    ["week", "month", "year", "all"]]
+    var arrayOfSetings = [
+        ["hot", "top", "user"],
+        ["viral", "top", "time", "rising"],
+        ["week", "month", "year", "all"]
+    ]
     var settingsNames = [SettingsData.sectionsData, SettingsData.sortData, SettingsData.windowData]
 
     var selectedRow = 0

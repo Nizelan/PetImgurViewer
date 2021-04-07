@@ -31,11 +31,11 @@ class CustomVideoPlayer: UIView {
         commonInit()
     }
 
-    fileprivate func commonInit() {
+    private func commonInit() {
         addPlayerToView(self)
     }
 
-    fileprivate func addPlayerToView(_ view: UIView) {
+    private func addPlayerToView(_ view: UIView) {
         player = AVPlayer()
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
@@ -43,8 +43,10 @@ class CustomVideoPlayer: UIView {
         view.layer.insertSublayer(playerLayer, at: 0)
         self.playerLayer = playerLayer
         NotificationCenter.default.addObserver(
-            self, selector: #selector(playerEndPlay),
-            name: .AVPlayerItemDidPlayToEndTime, object: nil
+            self,
+            selector: #selector(playerEndPlay),
+            name: .AVPlayerItemDidPlayToEndTime,
+            object: nil
         )
     }
 

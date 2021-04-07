@@ -1,11 +1,3 @@
-//
-//  AlbumTableViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 27.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 import AVKit
 import AVFoundation
@@ -47,6 +39,7 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.scrollToRow(currentRow: selectedAlbum)
+        super.viewWillDisappear(true)
     }
 
     // MARK: - Table view data source

@@ -16,8 +16,8 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet weak var imgurWebView: WKWebView!
     var request: URLRequest?
-    var testArray = [String]()
-    var testDictionary = [String: String]()
+    var testArray: [String] = []
+    var testDictionary: [String: String] = [:]
     var scheme = String()
 
     weak var webDelegate: WebViewControllerDelegate?
@@ -38,19 +38,21 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         webDelegate?.update(dict: testDictionary)
     }
 
-    func webView(_ webView: WKWebView,
-                 decidePolicyFor navigationAction: WKNavigationAction,
-                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
         decisionHandler(.allow)
         if let uRLString = navigationAction.request.url?.absoluteString {
             if uRLString.contains("access_token") {
-                testArray = uRLString.split(separator: "&").map({ (substring) -> String in
+                testArray = uRLString.split(separator: "&").map({ substring -> String in
                     String(substring)
                 })
                 self.scheme = String(testArray[0].prefix(12))
                 testArray[0].removeFirst(12)
-                testDictionary = testArray.reduce(into: testDictionary) { (into, string) in
-                    let callbackData = string.split(separator: "=").map { (substring) -> String in
+                testDictionary = testArray.reduce(into: testDictionary) { into, string in
+                    let callbackData = string.split(separator: "=").map { substring -> String in
                         String(substring)
                     }
                     into[callbackData[0]] = callbackData[1]

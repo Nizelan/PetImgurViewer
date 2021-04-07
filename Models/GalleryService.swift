@@ -1,18 +1,9 @@
-//
-//  NetworkMediator.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 16.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
 class GalleryService {
     let networkManager = NetworkManager()
 
-    var albums = [Post]()
     var page = 1
 
     func fetchGalleryAlbums(selectedAlbum: SelectedAlbum, closure: @escaping (GalleryResponse) -> Void) {

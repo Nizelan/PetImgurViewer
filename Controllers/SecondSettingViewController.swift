@@ -14,7 +14,7 @@ protocol SettingViewControllerDelagate: class {
 
 class SecondSettingViewController: UITableViewController {
 
-    var settings = [String]()
+    var settings: [String] = []
     var selectedString = ""
     weak var settingDelegate: SettingViewControllerDelagate?
 

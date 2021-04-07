@@ -11,7 +11,7 @@ import UIKit
 class CommentsViewController: UITableViewController {
     let networkManager = NetworkManager()
     var albumID: String?
-    var comments = [Comment]()
+    var comments: [Comment] = []
     var countOfCells = Int()
     var indentationLevel = 0
     var currentIndent = 0
@@ -76,12 +76,14 @@ class CommentsViewController: UITableViewController {
                 return comment
             }
             currentIndex += 1
-            if comment.children!.count != 0, let foundIt = commentFind(
-                at: row,
-                currentIndex: &currentIndex,
-                in: comment.children!
-                ) {
-                return foundIt
+            if let children = comment.children {
+                if comment.children?.isEmpty == true, let foundIt = commentFind(
+                    at: row,
+                    currentIndex: &currentIndex,
+                    in: children
+                    ) {
+                    return foundIt
+                }
             }
         }
 
@@ -94,15 +96,17 @@ class CommentsViewController: UITableViewController {
                 return comment
             }
             currentIndex += 1
-            if comment.children!.count != 0, let foundIt = indentDetermine(
-                at: row,
-                currentIndex: &currentIndex,
-                indent: &indent,
-                in: comment.children!
-                ) {
-                indent += 1
-                self.currentIndent = indent
-                return foundIt
+            if let children = comment.children {
+                if comment.children?.isEmpty == true, let foundIt = indentDetermine(
+                    at: row,
+                    currentIndex: &currentIndex,
+                    indent: &indent,
+                    in: children
+                    ) {
+                    indent += 1
+                    self.currentIndent = indent
+                    return foundIt
+                }
             }
         }
         return nil

@@ -1,11 +1,3 @@
-//
-//  AlbumCell.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 24.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class FirstAlbumCell: UITableViewCell {
@@ -44,7 +36,7 @@ class FirstAlbumCell: UITableViewCell {
             imageViewOutlet.image = UIImage(named: "playVideo")
         } else {
             self.startActivity()
-            imageViewOutlet.loadImage(from: imageLink, completion: { (success) in
+            imageViewOutlet.loadImage(from: imageLink, completion: { success in
                 if success {
                     self.stopActivity()
                     print("successfully loaded image with url: \(imageLink)")

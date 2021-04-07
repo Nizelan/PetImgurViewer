@@ -29,13 +29,17 @@ class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
         tableView.rowHeight = UITableView.automaticDimension
         guard let cell =
             tableView.dequeueReusableCell(withIdentifier: "AccCommentsCell", for: indexPath) as? AccCommentsCell else {
-            return UITableViewCell()
+                return UITableViewCell()
         }
 
         var dummy = 0
         var lvlOfIndent = 0
-        if let comment = indentDetermine(at: indexPath.row, currentIndex: &dummy,
-                                         indent: &lvlOfIndent, in: accComments) {
+        if let comment = indentDetermine(
+            at: indexPath.row,
+            currentIndex: &dummy,
+            indent: &lvlOfIndent,
+            in: accComments
+            ) {
             cell.setup(comment: comment, indentLVL: lvlOfIndent)
             self.currentIndent = 0
 
@@ -44,20 +48,28 @@ class AccountComments: NSObject, UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func indentDetermine(at row: Int, currentIndex: inout Int,
-                         indent: inout Int, in array: [AccComment]) -> AccComment? {
+    func indentDetermine(
+        at row: Int,
+        currentIndex: inout Int,
+        indent: inout Int,
+        in array: [AccComment]
+    ) -> AccComment? {
         for comment in array {
             if currentIndex == row {
                 return comment
             }
             currentIndex += 1
-            if comment.children!.count != 0, let foundIt = indentDetermine(at: row,
-                                                                           currentIndex: &currentIndex,
-                                                                           indent: &indent,
-                                                                           in: comment.children!) {
-                indent += 1
-                self.currentIndent = indent
-                return foundIt
+            if let children = comment.children {
+                if comment.children?.isEmpty == true, let foundIt = indentDetermine(
+                    at: row,
+                    currentIndex: &currentIndex,
+                    indent: &indent,
+                    in: children
+                    ) {
+                    indent += 1
+                    self.currentIndent = indent
+                    return foundIt
+                }
             }
         }
         return nil

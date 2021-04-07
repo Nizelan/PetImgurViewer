@@ -1,11 +1,3 @@
-//
-//  NetworkManager.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 16.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -15,8 +7,13 @@ struct NetworkManager {
     let clientID = ClientData.clientId
     var page = 1
 
-    func fetchGallery(sections: String, sort: String,
-                      window: String, page: Int, closure: @escaping (GalleryResponse) -> Void) {
+    func fetchGallery(
+        sections: String,
+        sort: String,
+        window: String,
+        page: Int,
+        closure: @escaping (GalleryResponse) -> Void
+    ) {
 
         let query = "/3/gallery/\(sections)/\(sort)/\(window)/\(page)?showViral=true&mature=true&album_previews=true"
         let urlString = baseURL + query
@@ -25,7 +22,7 @@ struct NetworkManager {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = httpHeaders
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 print(response)
             }
@@ -39,7 +36,8 @@ struct NetworkManager {
                     }
                 }
             }
-        }.resume()
+        }
+        .resume()
     }
 
     func fetchImage(urlString: String, completion: @escaping (UIImage?) -> Void) {
@@ -68,7 +66,7 @@ struct NetworkManager {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = httpHeaders
 
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 print(response)
             }
@@ -82,7 +80,8 @@ struct NetworkManager {
                     }
                 }
             }
-        }.resume()
+        }
+        .resume()
     }
 
     // MARK: - Account conteinment block
@@ -95,7 +94,7 @@ struct NetworkManager {
 
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = httpHeaders
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 print(response)
             }
@@ -105,7 +104,8 @@ struct NetworkManager {
             if let data = data {
                 print(data)
             }
-        }.resume()
+        }
+        .resume()
     }
 
     func fetchAccImage(closure: @escaping (AccGalleryResp) -> Void) {
@@ -116,7 +116,7 @@ struct NetworkManager {
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             request.allHTTPHeaderFields = httpHeaders
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
+            URLSession.shared.dataTask(with: request) { data, response, error in
                 if let response = response {
                     print(response)
                 }
@@ -130,7 +130,8 @@ struct NetworkManager {
                         }
                     }
                 }
-            }.resume()
+            }
+            .resume()
         }
     }
 
@@ -149,7 +150,7 @@ struct NetworkManager {
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = httpHeaders
 
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 print(response)
             }
@@ -163,7 +164,8 @@ struct NetworkManager {
                     }
                 }
             }
-        }.resume()
+        }
+        .resume()
     }
 
     func fetchAccFavorites(name: String, accessToken: String, closure: @escaping (AccFavoritesResp) -> Void) {
@@ -173,7 +175,7 @@ struct NetworkManager {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = httpHeaders
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
                 print(response)
             }
@@ -187,7 +189,8 @@ struct NetworkManager {
                     }
                 }
             }
-        }.resume()
+        }
+        .resume()
     }
 
     // Parse JSON

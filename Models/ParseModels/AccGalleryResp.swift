@@ -1,11 +1,3 @@
-//
-//  AccGalleryResp.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 02.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import Foundation
 import CoreGraphics
 

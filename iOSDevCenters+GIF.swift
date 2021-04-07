@@ -59,7 +59,7 @@ extension UIImage {
         return gif(data: imageData)
     }
 
-    internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource!) -> Double {
+    internal class func delayForImageAtIndex(_ index: Int, source: CGImageSource) -> Double {
         var delay = 0.1
 
         // Get dictionaries
@@ -98,31 +98,34 @@ extension UIImage {
         // Check if one of them is nil
         if bff == nil || aff == nil {
             if bff != nil {
-                return bff!
+                return 100
             } else if aff != nil {
-                return aff!
+                return 100
             } else {
                 return 0
             }
         }
 
         // Swap for modulo
-        if aff! < bff! {
-            let cff = aff
-            aff = bff
-            bff = cff
+        if let xff = aff, let zff = bff {
+            if xff < zff {
+                let cff = aff
+                aff = bff
+                bff = cff
+            }
         }
 
         // Get greatest common divisor
         var rest: Int
         while true {
-            rest = aff! % bff!
-
-            if rest == 0 {
-                return bff! // Found it
-            } else {
-                aff = bff
-                bff = rest
+            if let xff = aff, let zff = bff {
+                rest = xff % zff
+                if rest == 0 {
+                    return zff // Found it
+                } else {
+                    aff = zff
+                    bff = rest
+                }
             }
         }
     }
@@ -143,8 +146,8 @@ extension UIImage {
 
     internal class func animatedImageWithSource(_ source: CGImageSource) -> UIImage? {
         let count = CGImageSourceGetCount(source)
-        var images = [CGImage]()
-        var delays = [Int]()
+        var images: [CGImage] = []
+        var delays: [Int] = []
 
         // Fill arrays
         for index in 0..<count {
@@ -172,7 +175,7 @@ extension UIImage {
 
         // Get frames
         let gcd = gcdForArray(delays)
-        var frames = [UIImage]()
+        var frames: [UIImage] = []
 
         var frame: UIImage
         var frameCount: Int
@@ -186,6 +189,7 @@ extension UIImage {
         }
 
         // Heyhey
+
         let animation = UIImage.animatedImage(with: frames,
             duration: Double(duration) / 1000.0)
 

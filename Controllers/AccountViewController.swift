@@ -1,11 +1,3 @@
-//
-//  AcountViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 25.11.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class AccountViewController: UIViewController,
@@ -15,7 +7,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     var dataSource: (UITableViewDataSource & UITableViewDelegate)?
     var accountData: [String: String]?
 
-    var accountImages = [AccPost]()
+    var accountImages: [AccPost] = []
 
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!

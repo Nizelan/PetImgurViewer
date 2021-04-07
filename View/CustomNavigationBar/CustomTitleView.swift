@@ -1,11 +1,3 @@
-//
-//  CustomNavigationBar.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 30.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol CustomTitleViewDelegate: class {
