@@ -53,10 +53,16 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         if indexPath.item == (albums.count - 6) {
             galleryService.page += 1
             if selectedAlbum == 2 {
-                albums += galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral)
+                galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral) { (galleryResponse) in
+                    self.albums += galleryResponse.data
+                    self.collectionView.reloadData()
+                }
                 self.collectionView.reloadData()
             } else if selectedAlbum == 1 {
-                albums += galleryService.fetchGalleryAlbums(selectedAlbum: .following)
+                galleryService.fetchGalleryAlbums(selectedAlbum: .following) { (galleryResponse) in
+                    self.albums += galleryResponse.data
+                    self.collectionView.reloadData()
+                }
                 self.collectionView.reloadData()
             }
         }
@@ -72,16 +78,20 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         albums.removeAll()
         selectedAlbum = 2
         columnCountChange(columns: selectedAlbum)
-        albums += galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral)
-        collectionView.reloadData()
+        galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral) { (galleryResponse) in
+            self.albums += galleryResponse.data
+            self.collectionView.reloadData()
+        }
     }
 
     func follovingTapt() {
         albums.removeAll()
         selectedAlbum = 1
         columnCountChange(columns: selectedAlbum)
-        albums += galleryService.fetchGalleryAlbums(selectedAlbum: .following)
-        collectionView.reloadData()
+        galleryService.fetchGalleryAlbums(selectedAlbum: .following) { (galleryResponse) in
+            self.albums += galleryResponse.data
+            self.collectionView.reloadData()
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
