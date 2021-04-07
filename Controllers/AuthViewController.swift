@@ -14,9 +14,11 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     var urlRequest: URLRequest?
     let clientID = ClientData.clientId
     let defaults = UserDefaults.standard
-    let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,
-                                                   FileManager.SearchPathDomainMask.allDomainsMask,
-                                                   true)
+    let path = NSSearchPathForDirectoriesInDomains(
+        FileManager.SearchPathDirectory.documentDirectory,
+        FileManager.SearchPathDomainMask.allDomainsMask,
+        true
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()

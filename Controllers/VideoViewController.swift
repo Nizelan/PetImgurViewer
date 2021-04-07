@@ -34,11 +34,9 @@ class VideoViewController: UIViewController {
         videoPlayer.videoLink = link
         setupTitle(title: name)
 
-        //Gesters
         tap = UITapGestureRecognizer(target: self, action: #selector(tapHandler))
         videoPlayer.addGestureRecognizer(tap)
 
-        //TitlesLable
         timeGone.frame.size.width = 80
         timeLeft.frame.size.width = 80
         titleLable.backgroundColor = .gray
@@ -47,28 +45,23 @@ class VideoViewController: UIViewController {
         controlsBar.addSubview(timeLeft)
         controlsBar.addSubview(timeGone)
 
-        //ControlsBar
-        //controlsBar.backgroundColor = .white
         blur.layer.masksToBounds = true
         blur.layer.cornerRadius = 10
         videoPlayer.addSubview(blur)
         videoPlayer.addSubview(controlsBar)
 
-        //MuteButton
         muteUnmuteButton.frame.size = CGSize(width: 30, height: 30)
         muteUnmuteButton.backgroundColor = .none
         muteUnmuteButton.setImage(UIImage(named: "unmute"), for: .normal)
         muteUnmuteButton.addTarget(self, action: #selector(self.muteUnmuteAction(_:)), for: .touchUpInside)
         controlsBar.addSubview(muteUnmuteButton)
 
-        //PlayBtton
         playButton.frame.size = CGSize(width: 50, height: 50)
         playButton.backgroundColor = .none
         playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
         playButton.addTarget(self, action: #selector(self.playPauseButtonAction(_:)), for: .touchUpInside)
         controlsBar.addSubview(playButton)
 
-        //Slider
         videoProgresSlider.minimumValue = 0
         if let itemDuration = videoPlayer.player?.currentItem?.duration {
             let seconds: Float64 = CMTimeGetSeconds(itemDuration)
@@ -230,7 +223,7 @@ extension VideoViewController {
     }
 
     func setControllsUnseen() {
-        timer = .scheduledTimer(withTimeInterval: 5.0, repeats: false) { timer in
+        timer = .scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in
             self.controlsBar.isHidden = true
             self.blur.isHidden = true
         }

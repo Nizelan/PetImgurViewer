@@ -42,8 +42,10 @@ class CustomVideoPlayer: UIView {
         playerLayer.videoGravity = .resizeAspect
         view.layer.insertSublayer(playerLayer, at: 0)
         self.playerLayer = playerLayer
-        NotificationCenter.default.addObserver(self, selector: #selector(playerEndPlay),
-                                               name: .AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(
+            self, selector: #selector(playerEndPlay),
+            name: .AVPlayerItemDidPlayToEndTime, object: nil
+        )
     }
 
     func play() {

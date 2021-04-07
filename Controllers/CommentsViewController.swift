@@ -45,13 +45,14 @@ class CommentsViewController: UITableViewController {
         var dummy = 0
         var lvlOfIndent = 0
         if let comment = indentDetermine(at: indexPath.row, currentIndex: &dummy, indent: &lvlOfIndent, in: comments) {
-            commentCell.setupCell(comment: comment,
-                                  indentLVL: lvlOfIndent,
-                                  urlString: comment.linkFinder())
+            commentCell.setupCell(
+                comment: comment,
+                indentLVL: lvlOfIndent,
+                urlString: comment.linkFinder()
+            )
             self.currentIndent = 0
 
             return commentCell
-
         }
         return commentCell
     }
@@ -75,9 +76,11 @@ class CommentsViewController: UITableViewController {
                 return comment
             }
             currentIndex += 1
-            if comment.children!.count != 0, let foundIt = commentFind(at: row,
-                                                              currentIndex: &currentIndex,
-                                                              in: comment.children!) {
+            if comment.children!.count != 0, let foundIt = commentFind(
+                at: row,
+                currentIndex: &currentIndex,
+                in: comment.children!
+                ) {
                 return foundIt
             }
         }
@@ -91,10 +94,12 @@ class CommentsViewController: UITableViewController {
                 return comment
             }
             currentIndex += 1
-            if comment.children!.count != 0, let foundIt = indentDetermine(at: row,
-                                                                           currentIndex: &currentIndex,
-                                                                           indent: &indent,
-                                                                           in: comment.children!) {
+            if comment.children!.count != 0, let foundIt = indentDetermine(
+                at: row,
+                currentIndex: &currentIndex,
+                indent: &indent,
+                in: comment.children!
+                ) {
                 indent += 1
                 self.currentIndent = indent
                 return foundIt
