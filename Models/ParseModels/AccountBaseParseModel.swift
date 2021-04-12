@@ -9,4 +9,5 @@ struct AccountBase: Codable {
     let url: String
     let avatar: String
     let reputation: Int
+    let created: Int
 }

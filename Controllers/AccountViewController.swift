@@ -82,19 +82,22 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
         guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
 
         networkManager.fetchAcountBase(userName: userName) { accountBase in
+            print(accountBase.data)
             self.startActivity()
             self.accountSetup(
                 avatar: accountBase.data.avatar,
                 name: accountBase.data.url,
-                reputation: accountBase.data.reputation)
+                reputation: accountBase.data.reputation,
+                creation: accountBase.data.created
+            )
         }
     }
 
-    func accountSetup(avatar: String, name: String, reputation: Int) {
+    func accountSetup(avatar: String, name: String, reputation: Int, creation: Int) {
         accountName.text = name
         avatarSetup(avatar: avatar)
+        timeOfCreation.text = convertIntToDate(int: creation)
         pointsTrophy.text = String("Reputation \(reputation)")
-        timeOfCreation.isHidden = true
     }
 
     func avatarSetup(avatar: String) {
@@ -107,6 +110,14 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                 self.accountAvatar.image = UIImage(named: "placeholder")
             }
         }, shouldAssignImage: nil)
+    }
+
+    func convertIntToDate(int: Int) -> String {
+        let timeInterval = TimeInterval(int)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
+        return formatter.string(from: date)
     }
 
     func switchChosen() {
