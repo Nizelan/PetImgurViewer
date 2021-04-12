@@ -1,11 +1,3 @@
-//
-//  AlbumCell.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 14.01.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol AlbumCellDelegate: class {
@@ -47,7 +39,7 @@ class SecongAlbumCell: UITableViewCell {
             stopActivity()
         } else {
             self.startActivity()
-            albumImageView.loadImage(from: imageLink, completion: { (success) in
+            albumImageView.loadImage(from: imageLink, completion: { success in
                 self.stopActivity()
                 if success {
                     print("successfully loaded image with url: \(imageLink)")
@@ -59,10 +51,12 @@ class SecongAlbumCell: UITableViewCell {
     }
 
     private func setupButtons(with album: Post, index: Int) {
-        if album.coverLink(index: index)!.contains("mp4") {
-            goToVideoButton.isHidden = false
-        } else {
-            goToVideoButton.isHidden = true
+        if let coverLink = album.coverLink(index: index) {
+            if coverLink.contains("mp4") {
+                goToVideoButton.isHidden = false
+            } else {
+                goToVideoButton.isHidden = true
+            }
         }
     }
 

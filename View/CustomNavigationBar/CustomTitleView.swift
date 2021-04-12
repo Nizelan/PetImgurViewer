@@ -1,11 +1,3 @@
-//
-//  CustomNavigationBar.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 30.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol CustomTitleViewDelegate: class {
@@ -66,6 +58,7 @@ class CustomTitleView: UIView {
             frame.origin.y = self.mostViralBO.frame.origin.y + 38
 
             self.sliderView.frame = frame
+        }, completion: { _ in
         })
     }
 }

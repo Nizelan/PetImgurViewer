@@ -1,11 +1,3 @@
-//
-//  MostViralCell.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 10.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class MostViralCell: UICollectionViewCell {
@@ -38,7 +30,7 @@ class MostViralCell: UICollectionViewCell {
             viralImageView.image = UIImage(named: "playVideo")
             stopActivity()
         } else {
-            viralImageView.loadImage(from: link, completion: { (success) in
+            viralImageView.loadImage(from: link, completion: { success in
                 if success {
                     self.stopActivity()
                     print("successfully loaded image with url: \(link)")

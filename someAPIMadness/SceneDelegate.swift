@@ -1,25 +1,19 @@
-//
-//  SceneDelegate.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 10.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    func scene(_ scene: UIScene,
-               willConnectTo session: UISceneSession,
-               options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         guard let error = (scene as? UIWindowScene) else { return }
         print("\(Self.self) \(error)")
     }
 
-    func sceneDidDisconnect(_ scene: UIScene) {    }
+    func sceneDidDisconnect(_ scene: UIScene) {}
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         // Called when the scene has moved from an inactive state to an active state.

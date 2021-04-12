@@ -1,11 +1,3 @@
-//
-//  MostViralCollectionVC.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 10.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 enum SelectedAlbum: Int {
@@ -18,7 +10,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
 
     private let galleryService = GalleryService()
 
-    var albums = [Post]()
+    var albums: [Post] = []
     var selectedAlbum = 2
     var customTitle = CustomTitleView()
     var timer = Timer()
@@ -27,7 +19,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         self.navigationController?.navigationBar.topItem?.titleView = customTitle
         columnCountChange(columns: selectedAlbum)
         customTitle.delegate = self
-        self.collectionView!.register(UINib(
+        self.collectionView.register(UINib(
             nibName: "MostViralCell",
             bundle: nil
         ), forCellWithReuseIdentifier: "MostViralCell")
@@ -43,7 +35,9 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         return albums.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
+    override func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "MostViralCell", for: indexPath) as? MostViralCell else {
@@ -53,13 +47,13 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         if indexPath.item == (albums.count - 6) {
             galleryService.page += 1
             if selectedAlbum == 2 {
-                galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral) { (galleryResponse) in
+                galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral) { galleryResponse in
                     self.albums += galleryResponse.data
                     self.collectionView.reloadData()
                 }
                 self.collectionView.reloadData()
             } else if selectedAlbum == 1 {
-                galleryService.fetchGalleryAlbums(selectedAlbum: .following) { (galleryResponse) in
+                galleryService.fetchGalleryAlbums(selectedAlbum: .following) { galleryResponse in
                     self.albums += galleryResponse.data
                     self.collectionView.reloadData()
                 }
@@ -78,7 +72,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         albums.removeAll()
         selectedAlbum = 2
         columnCountChange(columns: selectedAlbum)
-        galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral) { (galleryResponse) in
+        galleryService.fetchGalleryAlbums(selectedAlbum: .mostViral) { galleryResponse in
             self.albums += galleryResponse.data
             self.collectionView.reloadData()
         }
@@ -88,7 +82,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         albums.removeAll()
         selectedAlbum = 1
         columnCountChange(columns: selectedAlbum)
-        galleryService.fetchGalleryAlbums(selectedAlbum: .following) { (galleryResponse) in
+        galleryService.fetchGalleryAlbums(selectedAlbum: .following) { galleryResponse in
             self.albums += galleryResponse.data
             self.collectionView.reloadData()
         }

@@ -1,11 +1,3 @@
-//
-//  AuthViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 30.10.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class AuthViewController: UIViewController, WebViewControllerDelegate {
@@ -25,6 +17,7 @@ class AuthViewController: UIViewController, WebViewControllerDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         if let unwraptDict = defaults.dictionary(forKey: "UserAuthorizationData") as? [String: String] {
             AuthorizationData.authorizationData = unwraptDict
         }

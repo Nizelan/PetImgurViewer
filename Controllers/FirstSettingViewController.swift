@@ -1,11 +1,3 @@
-//
-//  SetingsViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 11.08.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol SettingsControllerDelegate: class {
@@ -14,9 +6,11 @@ protocol SettingsControllerDelegate: class {
 
 class FirstSettingViewController: UITableViewController, SettingViewControllerDelagate {
 
-    var arrayOfSetings = [["hot", "top", "user"],
-    ["viral", "top", "time", "rising"],
-    ["week", "month", "year", "all"]]
+    var arrayOfSetings = [
+        ["hot", "top", "user"],
+        ["viral", "top", "time", "rising"],
+        ["week", "month", "year", "all"]
+    ]
     var settingsNames = [SettingsData.sectionsData, SettingsData.sortData, SettingsData.windowData]
 
     var selectedRow = 0
@@ -33,9 +27,10 @@ class FirstSettingViewController: UITableViewController, SettingViewControllerDe
         SettingsData.sectionsData = selectedSettings[0]
         SettingsData.sortData = selectedSettings[1]
         SettingsData.windowData = selectedSettings[2]
-        delegate?.update(sectionsText: selectedSettings[0],
-                         sortText: selectedSettings[1],
-                         windowText: selectedSettings[2])
+        delegate?.update(
+            sectionsText: selectedSettings[0],
+            sortText: selectedSettings[1],
+            windowText: selectedSettings[2])
     }
 
     func updateSeting(selectedSetting: String) {

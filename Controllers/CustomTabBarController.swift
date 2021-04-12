@@ -1,11 +1,3 @@
-//
-//  CustomTabBarController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 11.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class CustomTabBarController: UITabBarController {
