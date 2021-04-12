@@ -58,6 +58,7 @@ class CustomTitleView: UIView {
             frame.origin.y = self.mostViralBO.frame.origin.y + 38
 
             self.sliderView.frame = frame
+        }, completion: { _ in
         })
     }
 }

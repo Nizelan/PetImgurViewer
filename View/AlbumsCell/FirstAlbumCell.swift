@@ -48,8 +48,7 @@ class FirstAlbumCell: UITableViewCell {
     }
 
     private func setupUps(_ album: Post) {
-        guard let ups = album.ups,
-              let downs = album.downs else {
+        guard let ups = album.ups, let downs = album.downs else {
             upsLabel.isHidden = true
             upsImage.isHidden = true
             return

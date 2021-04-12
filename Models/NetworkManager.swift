@@ -86,6 +86,34 @@ struct NetworkManager {
 
     // MARK: - Account conteinment block
 
+    func fetchAcountBase(userName: String, closure: @escaping (AccountBaseResponse) -> Void) {
+        let urlString = baseURL + "/3/account/\(userName)"
+        let httpHeaders = ["Authorization": "Client-ID \(clientID)"]
+
+        guard let url = URL(string: urlString) else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = httpHeaders
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let response = response {
+                print(response)
+            }
+            if let error = error {
+                print(error)
+            }
+            if let data = data {
+                if let accountBase: AccountBaseResponse = self.parseJSON(withData: data) {
+                    DispatchQueue.main.async {
+                        closure(accountBase)
+                    }
+                }
+            }
+        }
+        .resume()
+    }
+
     func authorization(accessTokken: String) {
         let urlString = baseURL + "/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
         let httpHeaders = ["Authorization": "Bearer \(accessTokken)"]

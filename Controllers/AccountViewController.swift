@@ -9,6 +9,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
     var accountImages: [AccPost] = []
 
+    @IBOutlet weak var avatarActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var accountAvatar: UIImageView!
     @IBOutlet weak var accountName: UILabel!
     @IBOutlet weak var pointsTrophy: UILabel!
@@ -22,6 +23,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
         switchChosen()
         guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
         accountName.text = userName
+        fetchAcountBase()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,32 +56,57 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     }
 
     func playButtonPressed(post: FavoritePost) {
-        let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
-        videoViewC?.link = post.images[0].mp4
-        videoViewC?.name = post.title
-        self.present(videoViewC!, animated: true)
+        createVIdeoViewVC(link: post.images[0].mp4, title: post.title)
     }
 
     func playButtonPressed(post: AccPost) {
-        let videoViewC = storyboard?.instantiateViewController(identifier: "VideoViewC") as? VideoViewController
-        videoViewC?.link = post.link
-        videoViewC?.name = post.title
-        self.present(videoViewC!, animated: true)
+        createVIdeoViewVC(link: post.link, title: post.title)
     }
 
     func commentButtonPressed(post: AccPost) {
-        let commentVC = storyboard?.instantiateViewController(identifier: "CommentVC") as? CommentsViewController
-        commentVC?.albumID = post.postId
-        commentVC?.networkManager.fetchComment(
+        guard let commentVC = storyboard?.instantiateViewController(
+            identifier: "CommentVC") as? CommentsViewController else { return }
+        commentVC.albumID = post.postId
+        guard let albumId = commentVC.albumID else { return }
+        commentVC.networkManager.fetchComment(
             sort: "best",
-            albumId: commentVC!.albumID!,
-            closure: { (commentArray: GalleryCommentResponse
-                ) in
-                commentVC?.comments = commentArray.data
-                commentVC?.createCountOfCells(commentsArray: commentVC!.comments)
-                commentVC?.tableView.reloadData()
-        })
-        self.present(commentVC!, animated: true)
+            albumId: albumId) { commentArray in
+                commentVC.comments = commentArray.data
+                commentVC.createCountOfCells(commentsArray: commentVC.comments)
+                commentVC.tableView.reloadData()
+        }
+        self.present(commentVC, animated: true)
+    }
+
+    func fetchAcountBase() {
+        guard let userName = AuthorizationData.authorizationData["account_username"] else { return }
+
+        networkManager.fetchAcountBase(userName: userName) { accountBase in
+            self.startActivity()
+            self.accountSetup(
+                avatar: accountBase.data.avatar,
+                name: accountBase.data.url,
+                reputation: accountBase.data.reputation)
+        }
+    }
+
+    func accountSetup(avatar: String, name: String, reputation: Int) {
+        accountName.text = name
+        avatarSetup(avatar: avatar)
+        pointsTrophy.text = String("Reputation \(reputation)")
+        timeOfCreation.isHidden = true
+    }
+
+    func avatarSetup(avatar: String) {
+        accountAvatar.layer.cornerRadius = 5
+        accountAvatar.loadImage(from: avatar, completion: { success in
+            if success {
+                self.stopActivity()
+            } else {
+                self.stopActivity()
+                self.accountAvatar.image = UIImage(named: "placeholder")
+            }
+        }, shouldAssignImage: nil)
     }
 
     func switchChosen() {
@@ -88,9 +115,10 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
 
         if tableViewSwitch.selectedSegmentIndex == 0 {
             networkManager.fetchAccImage { (accGalleryResp: AccGalleryResp) in
-                self.dataSource = AccountPosts(images: accGalleryResp.data,
-                                               tableView: self.accountTableView,
-                                               delegate: self)
+                self.dataSource = AccountPosts(
+                    images: accGalleryResp.data,
+                    tableView: self.accountTableView,
+                    delegate: self)
                 self.setupTableView()
             }
         } else if tableViewSwitch.selectedSegmentIndex == 1 {
@@ -132,5 +160,23 @@ extension AccountViewController {
         self.accountTableView.delegate = self.dataSource
         self.accountTableView.dataSource = self.dataSource
         self.accountTableView.reloadData()
+    }
+
+    func createVIdeoViewVC(link: String?, title: String?) {
+        guard let videoViewC = storyboard?.instantiateViewController(
+            identifier: "VideoViewC") as? VideoViewController else { return }
+        videoViewC.link = link
+        videoViewC.name = title
+        self.present(videoViewC, animated: true)
+    }
+
+    func startActivity() {
+        avatarActivityIndicator.startAnimating()
+        avatarActivityIndicator.isHidden = false
+    }
+
+    func stopActivity() {
+        avatarActivityIndicator.stopAnimating()
+        avatarActivityIndicator.isHidden = true
     }
 }

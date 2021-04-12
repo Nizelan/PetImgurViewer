@@ -26,6 +26,7 @@
 		996DD40A25FA33510035B9F1 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996DD40925FA33510035B9F1 /* CustomTabBarController.swift */; };
 		996EC9AD25878DBA00A3D123 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EC9AC25878DBA00A3D123 /* VideoViewController.swift */; };
 		996ECAAC257A5B3200AC5CCE /* AccCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */; };
+		99701A772620811800B5F8F5 /* AccountBaseParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99701A762620811800B5F8F5 /* AccountBaseParseModel.swift */; };
 		9972EDE225307C850056E660 /* CommentParseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9972EDE125307C850056E660 /* CommentParseModel.swift */; };
 		99735E51254061B300D8C96F /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */; };
 		9975AA3924E2988400B418A7 /* FirstSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */; };
@@ -106,6 +107,7 @@
 		996DD40925FA33510035B9F1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		996EC9AC25878DBA00A3D123 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		996ECAAB257A5B3200AC5CCE /* AccCommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccCommentsCell.swift; sourceTree = "<group>"; };
+		99701A762620811800B5F8F5 /* AccountBaseParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBaseParseModel.swift; sourceTree = "<group>"; };
 		9972EDE125307C850056E660 /* CommentParseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentParseModel.swift; sourceTree = "<group>"; };
 		99735E50254061B300D8C96F /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
 		9975AA3824E2988400B418A7 /* FirstSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstSettingViewController.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			children = (
 				99DE876824C07F160085DCE2 /* ParseModel.swift */,
 				9972EDE125307C850056E660 /* CommentParseModel.swift */,
+				99701A762620811800B5F8F5 /* AccountBaseParseModel.swift */,
 				997FEDE52577BD86005AACBF /* AccGalleryResp.swift */,
 				99F55D7525790EAB00E3E03A /* AccCommentsResp.swift */,
 				99F55D7725791A1D00E3E03A /* AccFavoritesResp.swift */,
@@ -607,6 +610,7 @@
 				997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */,
 				99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */,
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
+				99701A772620811800B5F8F5 /* AccountBaseParseModel.swift in Sources */,
 				997AD39626134BA800BBB44C /* CustomTitleView.swift in Sources */,
 				99798DB9258BCD5000FFD5C2 /* CustomVideoPlayer.swift in Sources */,
 				99F55D7825791A1D00E3E03A /* AccFavoritesResp.swift in Sources */,

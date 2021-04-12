@@ -1,11 +1,3 @@
-//
-//  WebViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 18.11.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 import WebKit
 
@@ -46,9 +38,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         decisionHandler(.allow)
         if let uRLString = navigationAction.request.url?.absoluteString {
             if uRLString.contains("access_token") {
-                testArray = uRLString.split(separator: "&").map({ substring -> String in
-                    String(substring)
-                })
+                testArray = uRLString.split(separator: "&").map { substring -> String in String(substring) }
                 self.scheme = String(testArray[0].prefix(12))
                 testArray[0].removeFirst(12)
                 testDictionary = testArray.reduce(into: testDictionary) { into, string in

@@ -1,11 +1,3 @@
-//
-//  SettingViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 11.08.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol SettingViewControllerDelagate: class {

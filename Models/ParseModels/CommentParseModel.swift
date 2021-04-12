@@ -14,9 +14,10 @@ struct Comment: Codable {
         var urlString: String?
 
         let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let matches = detector?.matches(in: comment,
-                                          options: [],
-                                          range: NSRange(location: 0, length: comment.utf16.count)) {
+        if let matches = detector?.matches(
+            in: comment,
+            options: [],
+            range: NSRange(location: 0, length: comment.utf16.count)) {
             for mach in matches {
                 guard let range = Range(mach.range, in: comment) else { continue }
                 let url = comment[range]

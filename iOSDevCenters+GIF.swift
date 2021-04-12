@@ -44,8 +44,7 @@ extension UIImage {
 
     public class func gif(name: String) -> UIImage? {
         // Check for existance of gif
-        guard let bundleURL = Bundle.main
-          .url(forResource: name, withExtension: "gif") else {
+        guard let bundleURL = Bundle.main.url(forResource: name, withExtension: "gif") else {
             print("SwiftGif: This image named \"\(name)\" does not exist")
             return nil
         }
@@ -65,9 +64,10 @@ extension UIImage {
         // Get dictionaries
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
         let gifPropertiesPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
-        if CFDictionaryGetValueIfPresent(cfProperties,
-                                         Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(),
-                                         gifPropertiesPointer) == false {
+        if CFDictionaryGetValueIfPresent(
+            cfProperties,
+            Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(),
+            gifPropertiesPointer) == false {
             return delay
         }
 

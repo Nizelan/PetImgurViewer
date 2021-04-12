@@ -1,23 +1,15 @@
-//
-//  CustomVideoView.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 17.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 import AVKit
 
 class CustomVideoPlayer: UIView {
 
     var player: AVPlayer?
-    var playerLayer: AVPlayerLayer?
+    var playerLayer = AVPlayerLayer()
     var videoLink: String?
 
     override var bounds: CGRect {
         didSet {
-            playerLayer!.frame = self.bounds
+            playerLayer.frame = self.bounds
         }
     }
 

@@ -1,11 +1,3 @@
-//
-//  CustomCollectionLayout.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 12.03.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol CustomCollectionLayoutDelegate: AnyObject {

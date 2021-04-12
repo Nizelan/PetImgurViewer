@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 14.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 import AVKit
 import AVFoundation
@@ -80,7 +72,8 @@ class VideoViewController: UIViewController {
         setupBlurConstraints()
         var lineFixer = String()
         videoPlayer.player?.addPeriodicTimeObserver(
-            forInterval: CMTime(seconds: 1, preferredTimescale: 10000), queue: .main, using: { time in
+            forInterval: CMTime(seconds: 1, preferredTimescale: 10000),
+            queue: .main) { time in
                 lineFixer =
                     Double(self.videoProgresSlider.maximumValue - Float(time.seconds)).asString(style: .positional)
                 if Float(time.seconds) < 10 {
@@ -88,14 +81,14 @@ class VideoViewController: UIViewController {
                 } else {
                     self.timeGone.text = "00:\(Double(time.seconds).asString(style: .positional))"
                 }
+
                 if self.videoProgresSlider.maximumValue - Float(time.seconds) < 10 {
                     self.timeLeft.text = "00:0\(lineFixer)"
                 } else {
                     self.timeLeft.text = "00:\(lineFixer)"
                 }
-                self.videoProgresSlider.value = Float(time.seconds
-                )}
-        )
+                self.videoProgresSlider.value = Float(time.seconds)
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -109,7 +102,7 @@ class VideoViewController: UIViewController {
             videoPlayer.player?.seek(to: CMTime(seconds: 0, preferredTimescale: 1000))
         }
 
-        if videoPlayer.player!.timeControlStatus == .playing {
+        if videoPlayer.player?.timeControlStatus == .playing {
             playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
             videoPlayer.pause()
         } else {

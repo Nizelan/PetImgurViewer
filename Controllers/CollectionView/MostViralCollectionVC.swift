@@ -19,7 +19,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         self.navigationController?.navigationBar.topItem?.titleView = customTitle
         columnCountChange(columns: selectedAlbum)
         customTitle.delegate = self
-        self.collectionView!.register(UINib(
+        self.collectionView.register(UINib(
             nibName: "MostViralCell",
             bundle: nil
         ), forCellWithReuseIdentifier: "MostViralCell")

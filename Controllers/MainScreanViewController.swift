@@ -1,11 +1,3 @@
-//
-//  MainScreanViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 17.02.2021.
-//  Copyright © 2021 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class MainScreanViewController: UIViewController, MainScreanTabelViewDelegate {
