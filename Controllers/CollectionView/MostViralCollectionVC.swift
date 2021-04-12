@@ -14,6 +14,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
     var selectedAlbum = 2
     var customTitle = CustomTitleView()
     var timer = Timer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.titleView = customTitle
@@ -24,6 +25,16 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
             bundle: nil
         ), forCellWithReuseIdentifier: "MostViralCell")
         mostViralTapt()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        customTitle.isHidden = true
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        customTitle.isHidden = false
     }
 
     func scrollToRow(currentRow: Int) {
