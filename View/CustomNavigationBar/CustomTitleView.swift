@@ -1,7 +1,7 @@
 import UIKit
 
 protocol CustomTitleViewDelegate: class {
-    func mostViralTapt()
+    func mostViralPressed()
     func follovingTapt()
 }
 
@@ -34,7 +34,7 @@ class CustomTitleView: UIView {
 
     @IBAction func mostViral(_ sender: UIButton) {
         animateSlide(point: mostViralBO.frame.origin.x)
-        delegate?.mostViralTapt()
+        delegate?.mostViralPressed()
     }
 
     @IBAction func following(_ sender: UIButton) {

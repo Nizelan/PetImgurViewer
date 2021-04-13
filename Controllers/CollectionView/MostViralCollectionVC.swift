@@ -24,7 +24,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
             nibName: "MostViralCell",
             bundle: nil
         ), forCellWithReuseIdentifier: "MostViralCell")
-        mostViralTapt()
+        mostViralPressed()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
