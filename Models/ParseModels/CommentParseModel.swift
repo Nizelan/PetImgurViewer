@@ -1,11 +1,3 @@
-//
-//  CommentParseModel.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 09.10.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import Foundation
 
 struct GalleryCommentResponse: Codable {
@@ -22,9 +14,10 @@ struct Comment: Codable {
         var urlString: String?
 
         let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        if let matches = detector?.matches(in: comment,
-                                          options: [],
-                                          range: NSRange(location: 0, length: comment.utf16.count)) {
+        if let matches = detector?.matches(
+            in: comment,
+            options: [],
+            range: NSRange(location: 0, length: comment.utf16.count)) {
             for mach in matches {
                 guard let range = Range(mach.range, in: comment) else { continue }
                 let url = comment[range]

@@ -1,11 +1,3 @@
-//
-//  TableView.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 12.10.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class SubTableViewComment: UITableView, UITableViewDelegate, UITableViewDataSource {
@@ -20,8 +12,10 @@ class SubTableViewComment: UITableView, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell",
-                                        for: indexPath) as? CommentCell else { return UITableViewCell() }
+        guard let commentCell = tableView.dequeueReusableCell(
+            withIdentifier: "CommentCell",
+            for: indexPath
+            ) as? CommentCell else { return UITableViewCell() }
 
         commentCell.nameLabel.text = commentsArray[indexPath.row].author
         commentCell.commentLabel.text = commentsArray[indexPath.row].comment

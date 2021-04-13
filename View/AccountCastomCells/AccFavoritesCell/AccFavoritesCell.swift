@@ -1,11 +1,3 @@
-//
-//  CollectionFavoritesCell.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 05.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol AccFavoritesCellDelegate: class {
@@ -46,7 +38,7 @@ class AccFavoritesCell: UITableViewCell {
         } else {
             goToVideos.isHidden = true
             self.startActivity()
-            favoriteImageView.loadImage(from: imageLink, completion: { (success) in
+            favoriteImageView.loadImage(from: imageLink, completion: { success in
                 self.stopActivity()
                 if success {
                     print("successfully loaded image with url: \(imageLink)")

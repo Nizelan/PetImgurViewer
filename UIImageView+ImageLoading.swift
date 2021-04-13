@@ -10,7 +10,7 @@ extension UIImageView {
     ) {
         self.image = placeholderImage; // nil if there was no placeholder provided
 
-        NetworkManager().fetchImage(urlString: urlString) { (image) in
+        NetworkManager().fetchImage(urlString: urlString) { image in
             if let shouldAssignImage = shouldAssignImage {
                 if shouldAssignImage() == true {
                     self.image = image

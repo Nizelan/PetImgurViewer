@@ -1,23 +1,15 @@
-//
-//  CustomVideoView.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 17.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 import AVKit
 
 class CustomVideoPlayer: UIView {
 
     var player: AVPlayer?
-    var playerLayer: AVPlayerLayer?
+    var playerLayer = AVPlayerLayer()
     var videoLink: String?
 
     override var bounds: CGRect {
         didSet {
-            playerLayer!.frame = self.bounds
+            playerLayer.frame = self.bounds
         }
     }
 
@@ -31,11 +23,11 @@ class CustomVideoPlayer: UIView {
         commonInit()
     }
 
-    fileprivate func commonInit() {
+    private func commonInit() {
         addPlayerToView(self)
     }
 
-    fileprivate func addPlayerToView(_ view: UIView) {
+    private func addPlayerToView(_ view: UIView) {
         player = AVPlayer()
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = self.bounds
@@ -43,8 +35,10 @@ class CustomVideoPlayer: UIView {
         view.layer.insertSublayer(playerLayer, at: 0)
         self.playerLayer = playerLayer
         NotificationCenter.default.addObserver(
-            self, selector: #selector(playerEndPlay),
-            name: .AVPlayerItemDidPlayToEndTime, object: nil
+            self,
+            selector: #selector(playerEndPlay),
+            name: .AVPlayerItemDidPlayToEndTime,
+            object: nil
         )
     }
 

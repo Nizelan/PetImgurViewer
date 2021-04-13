@@ -1,11 +1,3 @@
-//
-//  AlbumTableViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 27.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 import AVKit
 import AVFoundation
@@ -22,7 +14,7 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
     var name: String?
     var link = String()
 
-    var albums: [Post]?
+    var albums: [Post] = []
     var selectedAlbum = 0
 
     override func viewDidLoad() {
@@ -30,8 +22,8 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         tableView.backgroundColor = .gray
         tableView.rowHeight = 400
         tableView.rowHeight = UITableView.automaticDimension
-        self.title = albums?[selectedAlbum].title
-        albumId = albums![selectedAlbum].postId
+        self.title = albums[selectedAlbum].title
+        albumId = albums[selectedAlbum].postId
 
         tableView.register(UINib(nibName: "SecongAlbumCell", bundle: nil), forCellReuseIdentifier: "SecongAlbumCell")
         tableView.reloadData()
@@ -47,27 +39,23 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.scrollToRow(currentRow: selectedAlbum)
+        super.viewWillDisappear(true)
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = albums?[selectedAlbum].images?.count else { return 0 }
+        guard let count = albums[selectedAlbum].images?.count else { return 0 }
         return count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let album = albums?[selectedAlbum],
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "SecongAlbumCell",
-                for: indexPath
-                ) as? SecongAlbumCell else {
-                    return UITableViewCell()
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SecongAlbumCell", for: indexPath)
+            as? SecongAlbumCell else { return UITableViewCell() }
 
         cell.delegate = self
 
-        cell.setup(with: album, index: indexPath.row) { () -> Bool in
+        cell.setup(with: albums[selectedAlbum], index: indexPath.row) { () -> Bool in
             return indexPath == self.tableView.indexPath(for: cell)
         }
 
@@ -78,12 +66,12 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
         switch sender.direction {
         case .left:
             selectedAlbum += 1
-            self.title = albums?[selectedAlbum].title
+            self.title = albums[selectedAlbum].title
             self.tableView.reloadData()
         case .right:
             if selectedAlbum != 0 {
                 selectedAlbum -= 1
-                self.title = albums?[selectedAlbum].title
+                self.title = albums[selectedAlbum].title
                 self.tableView.reloadData()
             }
         default: break
@@ -95,11 +83,11 @@ class AlbumTableViewController: UITableViewController, AlbumCellDelegate {
             print("\(Self.self) now have cell")
             return
         }
-        guard let url = albums?[selectedAlbum].images![indexPathRow].link else {
+        guard let url = albums[selectedAlbum].images?[indexPathRow].link else {
             print("\(Self.self) ERROR: This album has now have link")
             return
         }
-        guard let title = albums?[selectedAlbum].title else {
+        guard let title = albums[selectedAlbum].title else {
             print("\(Self.self) ERROR: This album has now have link")
             return
         }

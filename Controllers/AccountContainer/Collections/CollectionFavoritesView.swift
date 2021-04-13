@@ -1,11 +1,3 @@
-//
-//  CollectionFavoritesView.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 05.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 private let reuseIdentifier = "CollFavoritesCell"
@@ -22,8 +14,10 @@ class CollectionFavoritesView: UICollectionView {
         return 5
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         return cell
     }
@@ -31,9 +25,11 @@ class CollectionFavoritesView: UICollectionView {
 
 extension CollectionFavoritesView: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
 
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = frame.width - paddingSpace
@@ -42,15 +38,19 @@ extension CollectionFavoritesView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
         return sectionInsets
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
         return sectionInsets.left
     }
 }
