@@ -129,6 +129,9 @@ class VideoViewController: UIViewController {
 
     @IBAction func videoProgresSliderAction(_ sender: Any) {
         setControllsVisibl()
+        if videoPlayer.player?.timeControlStatus != .playing {
+            playButton.setImage(UIImage(named: "PlayButton"), for: .normal)
+        }
         videoPlayer.player?.seek(to: CMTime(seconds: Double(videoProgresSlider.value), preferredTimescale: 1000))
         setControllsUnseen()
     }
