@@ -1,11 +1,3 @@
-//
-//  File.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 16.07.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import Foundation
 import CoreGraphics
 
@@ -44,12 +36,16 @@ struct Image: Codable {
 }
 
 extension Post {
-    var coverImageLink: String? {
-        if isAlbum {
-            return images?.first?.link
-        } else {
-            return link
+
+    func coverLink(index: Int) -> String? {
+        var coverImageLink: String? {
+            if isAlbum {
+                return images?[index].link
+            } else {
+                return link
+            }
         }
+        return coverImageLink
     }
 
     var coverSize: CGSize {

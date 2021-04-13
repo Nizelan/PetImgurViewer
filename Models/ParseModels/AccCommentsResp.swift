@@ -1,11 +1,3 @@
-//
-//  AccCommentsResp.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 03.12.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import Foundation
 
 struct AccCommentsResp: Codable {
@@ -17,7 +9,7 @@ struct AccComment: Codable {
     let comment: String
     let author: String
     let points: Int
-    let children: [AccCommentsResp]?
+    let children: [AccComment]?
 
     enum CodingKeys: String, CodingKey {
         case commentId = "id"

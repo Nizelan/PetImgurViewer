@@ -1,43 +1,45 @@
-//
-//  AuthViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 30.10.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class AuthViewController: UIViewController, WebViewControllerDelegate {
+
     private let networkManager = NetworkManager()
     var urlRequest: URLRequest?
-
-    @IBOutlet weak var titelLabel: UILabel!
-    @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var enterButton: UIButton!
+    let clientID = ClientData.clientId
+    let defaults = UserDefaults.standard
+    let path = NSSearchPathForDirectoriesInDomains(
+        FileManager.SearchPathDirectory.documentDirectory,
+        FileManager.SearchPathDomainMask.allDomainsMask,
+        true
+    )
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
-    func update(dict: [String: String]) {
-        AuthorizationData.authorizationData = dict
-        print("TESTING_OUTPUT\(String(describing: AuthorizationData.authorizationData))")
-    }
-
-    @IBAction func login(_ sender: UIButton) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if let unwraptDict = defaults.dictionary(forKey: "UserAuthorizationData") as? [String: String] {
+            AuthorizationData.authorizationData = unwraptDict
+        }
         if AuthorizationData.authorizationData.isEmpty {
-            let urlString = "https://api.imgur.com/oauth2/authorize?client_id=960fe8e1862cf58&response_type=token"
+            let urlString = "https://api.imgur.com/oauth2/authorize?client_id=\(clientID)&response_type=token"
             guard let url = URL(string: urlString) else { return }
             let request = URLRequest(url: url)
             urlRequest = request
             performSegue(withIdentifier: "ShowWebView", sender: Any?.self)
         } else {
-            networkManager.authorization()
-            performSegue(withIdentifier: "ShowAccount", sender: Any?.self)
+            guard let accessTokken = AuthorizationData.authorizationData["access_token"] else {
+                print("\(Self.self) Access token can not be found")
+                return
+            }
+            networkManager.authorization(accessTokken: accessTokken)
+            navigationController?.popViewController(animated: true)
         }
+    }
+
+    func update(dict: [String: String]) {
+        AuthorizationData.authorizationData = dict
+        defaults.set(dict, forKey: "UserAuthorizationData")
     }
 
     func showAlert() {

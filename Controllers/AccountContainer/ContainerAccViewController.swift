@@ -1,11 +1,3 @@
-//
-//  ContainerAccountControllersViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 30.11.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class ContainerAccViewController: UIViewController, AccountViewControllerDelegate {
@@ -21,8 +13,9 @@ class ContainerAccViewController: UIViewController, AccountViewControllerDelegat
     }
 
     func configAccView() {
-        if let viewController = UIStoryboard(name: "Main",
-                                             bundle: nil).instantiateInitialViewController() as? AccountViewController {
+        if let viewController = UIStoryboard(
+            name: "Main",
+            bundle: nil).instantiateInitialViewController() as? AccountViewController {
             viewController.accDelegate = self
             accViewController = viewController
             addChild(accViewController)
@@ -33,9 +26,9 @@ class ContainerAccViewController: UIViewController, AccountViewControllerDelegat
 
     func configPost() {
         if accountPosts == nil {
-            accountPosts = AccountPosts()
-            addChild(accountPosts!)
-            view.insertSubview(accountPosts!.view, at: 0)
+            self.accountPosts = AccountPosts()
+            addChild(accountPosts)
+            view.insertSubview(accountPosts.view, at: 0)
             accountPosts?.didMove(toParent: self)
         }
     }

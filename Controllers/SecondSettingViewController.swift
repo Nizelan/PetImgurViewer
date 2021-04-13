@@ -1,20 +1,12 @@
-//
-//  SettingViewController.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 11.08.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 protocol SettingViewControllerDelagate: class {
-    func updateSeting(selectedSetting: String) 
+    func updateSeting(selectedSetting: String)
 }
 
-class SettingViewController: UITableViewController {
+class SecondSettingViewController: UITableViewController {
 
-    var settings = [String]()
+    var settings: [String] = []
     var selectedString = ""
     weak var settingDelegate: SettingViewControllerDelagate?
 

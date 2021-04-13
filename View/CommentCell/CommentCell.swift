@@ -1,18 +1,11 @@
-//
-//  CommentCell.swift
-//  someAPIMadness
-//
-//  Created by Nizelan on 15.10.2020.
-//  Copyright © 2020 Nizelan. All rights reserved.
-//
-
 import UIKit
 
 class CommentCell: UITableViewCell {
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    @IBOutlet weak var ptsLabel: UILabel!
     @IBOutlet weak var commentImageView: ScalingImageView!
+    @IBOutlet weak var ptsLabel: UILabel!
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -29,9 +22,8 @@ class CommentCell: UITableViewCell {
             setupImageSize(width: 240, height: 170)
             if link.contains("gif") {
                 self.commentImageView.loadGif(url: link)
-                print(link)
             } else if let imageLinc = urlString {
-                self.commentImageView.loadImage(from: imageLinc)
+                self.commentImageView.loadImage(from: imageLinc, shouldAssignImage: nil)
             }
         } else {
             setupImageSize(width: 0, height: 0)
