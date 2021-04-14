@@ -27,7 +27,7 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.accountTableView.backgroundColor = .gray
+        self.accountTableView.backgroundColor = .darkGray
         navigationController?.navigationBar.backItem?.hidesBackButton = true
         self.navigationItem.setHidesBackButton(true, animated: true)
 
