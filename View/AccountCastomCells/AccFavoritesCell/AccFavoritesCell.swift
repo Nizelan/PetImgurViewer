@@ -14,6 +14,7 @@ class AccFavoritesCell: UITableViewCell {
     weak var delegate: AccFavoritesCellDelegate?
 
     func setup(with album: FavoritePost) {
+        self.layer.cornerRadius = 10
         setupImage(with: album)
         self.ups.text = String(album.points)
 
@@ -34,6 +35,7 @@ class AccFavoritesCell: UITableViewCell {
 
         if album.images[0].mp4 != nil {
             goToVideos.isHidden = false
+            favoriteImageView.image = UIImage(named: "playVideo")
             stopActivity()
         } else {
             goToVideos.isHidden = true

@@ -15,12 +15,14 @@ class AccPostCell: UITableViewCell {
     weak var delegate: AccPostCellDelegate?
 
     func setup(with album: AccPost) {
+        self.layer.cornerRadius = 10
         setupImage(with: album)
 
         if let title = album.title {
             postTitle.text = title
         } else {
-            postTitle.isHidden = true
+            postTitle.textColor = .darkGray
+            postTitle.text = "Title"
         }
     }
 
@@ -33,7 +35,8 @@ class AccPostCell: UITableViewCell {
         self.layoutIfNeeded()
 
         if imageLink.contains("mp4") {
-            shoveVideo.isHidden = true
+            shoveVideo.isHidden = false
+            postImage.image = UIImage(named: "playVideo")
             stopActivity()
         } else {
             self.shoveVideo.isHidden = true

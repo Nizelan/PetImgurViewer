@@ -38,7 +38,6 @@
 		997B90DA2600B92B0040A636 /* GalleryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B90D92600B92B0040A636 /* GalleryService.swift */; };
 		997E37D02572631900DBF03A /* AccountFavorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37CF2572631900DBF03A /* AccountFavorites.swift */; };
 		997E37D22572657400DBF03A /* AccountPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D12572657400DBF03A /* AccountPosts.swift */; };
-		997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D3257265C300DBF03A /* AccountFollowing.swift */; };
 		997E37D62572661900DBF03A /* AccountComments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E37D52572661900DBF03A /* AccountComments.swift */; };
 		997E4AF725B0927400EAD653 /* SecongAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997E4AF625B0927400EAD653 /* SecongAlbumCell.swift */; };
 		997FEDE62577BD86005AACBF /* AccGalleryResp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997FEDE52577BD86005AACBF /* AccGalleryResp.swift */; };
@@ -95,7 +94,6 @@
 		997B90D92600B92B0040A636 /* GalleryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryService.swift; sourceTree = "<group>"; };
 		997E37CF2572631900DBF03A /* AccountFavorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFavorites.swift; sourceTree = "<group>"; };
 		997E37D12572657400DBF03A /* AccountPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPosts.swift; sourceTree = "<group>"; };
-		997E37D3257265C300DBF03A /* AccountFollowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFollowing.swift; sourceTree = "<group>"; };
 		997E37D52572661900DBF03A /* AccountComments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountComments.swift; sourceTree = "<group>"; };
 		997E4AF625B0927400EAD653 /* SecongAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecongAlbumCell.swift; sourceTree = "<group>"; };
 		997FEDE52577BD86005AACBF /* AccGalleryResp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccGalleryResp.swift; sourceTree = "<group>"; };
@@ -210,7 +208,6 @@
 			children = (
 				997E37D12572657400DBF03A /* AccountPosts.swift */,
 				997E37CF2572631900DBF03A /* AccountFavorites.swift */,
-				997E37D3257265C300DBF03A /* AccountFollowing.swift */,
 				997E37D52572661900DBF03A /* AccountComments.swift */,
 			);
 			path = AccountContainer;
@@ -440,7 +437,6 @@
 				995A26BF2538703B000093CB /* CommentCell.swift in Sources */,
 				9919107425F92BD0004FDE64 /* MostViralCell.swift in Sources */,
 				9902D1C6256E9D98004F86FA /* AccountViewController.swift in Sources */,
-				997E37D4257265C300DBF03A /* AccountFollowing.swift in Sources */,
 				99DE877324C08D6D0085DCE2 /* NetworkManager.swift in Sources */,
 				99D1929C24B8A59500082D6A /* AppDelegate.swift in Sources */,
 				99701A772620811800B5F8F5 /* AccountBaseParseModel.swift in Sources */,
