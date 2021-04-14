@@ -144,8 +144,6 @@ SettingsControllerDelegate, AccountFavoritesDelegate, AccountPostDelegate {
                     self.setupTableView()
             }
         } else if tableViewSwitch.selectedSegmentIndex == 2 {
-            self.accountTableView.reloadData()
-        } else if tableViewSwitch.selectedSegmentIndex == 3 {
             networkManager.fetchAccComment(
                 userName: userName,
                 page: 0,

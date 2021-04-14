@@ -10,7 +10,7 @@
         <!--Acount Screan-->
         <scene sceneID="cib-sr-iRv">
             <objects>
-                <viewController id="vtl-3t-tzX" customClass="AccountViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vtl-3t-tzX" customClass="AccountViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZAk-9y-x25">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,7 +57,6 @@
                                 <segments>
                                     <segment title="Post"/>
                                     <segment title="Favorites"/>
-                                    <segment title="Following"/>
                                     <segment title="Comments"/>
                                 </segments>
                                 <connections>
@@ -143,7 +142,7 @@
         <!--Web View Controller-->
         <scene sceneID="2Nx-vY-tK3">
             <objects>
-                <viewController id="B21-RM-aho" customClass="WebViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="B21-RM-aho" customClass="WebViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="I0w-PT-5Sg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -178,12 +177,12 @@
         <!--Most Viral CollectionVC-->
         <scene sceneID="LOY-rA-reH">
             <objects>
-                <collectionViewController id="3Ke-Yb-MLZ" customClass="MostViralCollectionVC" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="3Ke-Yb-MLZ" customClass="MostViralCollectionVC" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="cdE-SU-G1z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <collectionViewLayout key="collectionViewLayout" id="iK6-fK-H84" customClass="CustomCollectionLayout" customModule="someAPIMadness" customModuleProvider="target"/>
+                        <collectionViewLayout key="collectionViewLayout" id="iK6-fK-H84" customClass="CustomCollectionLayout" customModule="PetImgurViewer" customModuleProvider="target"/>
                         <cells/>
                         <connections>
                             <outlet property="dataSource" destination="3Ke-Yb-MLZ" id="onp-UD-aNf"/>
@@ -202,12 +201,12 @@
         <!--playVideoView-->
         <scene sceneID="EK3-Pd-Anf">
             <objects>
-                <viewController storyboardIdentifier="VideoViewC" id="VmE-Ck-bCh" customClass="VideoViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VideoViewC" id="VmE-Ck-bCh" customClass="VideoViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LgJ-uV-gCk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urs-Oz-gie" customClass="CustomVideoPlayer" customModule="someAPIMadness" customModuleProvider="target">
+                            <view contentMode="scaleAspectFit" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urs-Oz-gie" customClass="CustomVideoPlayer" customModule="PetImgurViewer" customModuleProvider="target">
                                 <rect key="frame" x="20" y="29" width="374" height="759"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
@@ -228,7 +227,7 @@
         <!--Authorithation-->
         <scene sceneID="a9B-cO-19A">
             <objects>
-                <viewController storyboardIdentifier="AuthVC" id="b1W-8Z-vnB" customClass="AuthViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthVC" id="b1W-8Z-vnB" customClass="AuthViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Authorithation" id="MB1-gF-rxk"/>
                     <connections>
                         <segue destination="B21-RM-aho" kind="show" identifier="ShowWebView" id="Sqs-nA-vIn"/>
@@ -241,7 +240,7 @@
         <!--Main View Controller-->
         <scene sceneID="Dyt-Yx-dad">
             <objects>
-                <navigationController id="zII-7F-TcP" customClass="MainViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="zII-7F-TcP" customClass="MainViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="4d1-hM-wcG">
                         <barButtonItem key="rightBarButtonItem" id="nGi-Ah-MpW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Pao-oh-zOX">
@@ -285,13 +284,13 @@
         <!--Setings-->
         <scene sceneID="Jle-91-Tdn">
             <objects>
-                <tableViewController id="Spf-Yv-dno" customClass="FirstSettingViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Spf-Yv-dno" customClass="FirstSettingViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="arW-x4-1KM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="77z-uD-rMk" detailTextLabel="fos-2z-4Ap" rowHeight="60" style="IBUITableViewCellStyleValue1" id="WBT-Ka-Feb" customClass="SettingsCell" customModule="someAPIMadness" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SettingsCell" textLabel="77z-uD-rMk" detailTextLabel="fos-2z-4Ap" rowHeight="60" style="IBUITableViewCellStyleValue1" id="WBT-Ka-Feb" customClass="SettingsCell" customModule="PetImgurViewer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="55.5" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WBT-Ka-Feb" id="6Xq-19-laI">
@@ -334,7 +333,7 @@
         <!--Seting Cell-->
         <scene sceneID="LQR-OO-SeR">
             <objects>
-                <tableViewController id="Cj2-vv-9AB" customClass="SecondSettingViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Cj2-vv-9AB" customClass="SecondSettingViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="2ca-tx-gdB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -372,7 +371,7 @@
         <!--Albom-->
         <scene sceneID="CAj-TX-Bp1">
             <objects>
-                <tableViewController storyboardIdentifier="SecondAlbumVC" id="CVk-Ae-QGP" customClass="AlbumTableViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SecondAlbumVC" id="CVk-Ae-QGP" customClass="AlbumTableViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="7A0-eq-mpL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -395,7 +394,7 @@
         <!--Comments-->
         <scene sceneID="RG1-YI-m4v">
             <objects>
-                <tableViewController storyboardIdentifier="CommentVC" id="iB9-Po-BVj" customClass="CommentsViewController" customModule="someAPIMadness" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CommentVC" id="iB9-Po-BVj" customClass="CommentsViewController" customModule="PetImgurViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="f59-68-hhW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
