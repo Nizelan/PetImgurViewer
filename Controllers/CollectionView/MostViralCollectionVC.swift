@@ -79,7 +79,7 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
         return cell
     }
 
-    func mostViralTapt() {
+    func mostViralPressed() {
         albums.removeAll()
         selectedAlbum = 2
         columnCountChange(columns: selectedAlbum)
