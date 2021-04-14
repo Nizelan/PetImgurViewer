@@ -116,10 +116,29 @@ AlbumTableVCDelegate, CustomCollectionLayoutDelegate, CustomTitleViewDelegate {
     override func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
         let actualPosition = scrollView.panGestureRecognizer.translation(in: scrollView.superview)
         if actualPosition.y > 0 {
-            tabBarController?.tabBar.isHidden = false
+            hideTabBar(bool: false)
         } else {
-            tabBarController?.tabBar.isHidden = true
+            hideTabBar(bool: true)
         }
+    }
+
+    func hideTabBar(bool: Bool) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            if bool {
+                if var fabricBottomFrame = self.tabBarController?.tabBar.frame {
+                    fabricBottomFrame.origin.y += fabricBottomFrame.size.height
+
+                    self.tabBarController?.tabBar.frame = fabricBottomFrame
+                }
+            } else {
+                if var fabricBottomFrame = self.tabBarController?.tabBar.frame {
+                    fabricBottomFrame.origin.y -= fabricBottomFrame.size.height
+
+                    self.tabBarController?.tabBar.frame = fabricBottomFrame
+                }
+            }
+        }, completion: { _ in
+        })
     }
 
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
