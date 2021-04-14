@@ -19,7 +19,6 @@ class VideoViewController: UIViewController {
     var timer = Timer()
     var muteUnmuteButton = UIButton()
     var timeGone = UILabel()
-    var timeLeft = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +29,9 @@ class VideoViewController: UIViewController {
         videoPlayer.addGestureRecognizer(tap)
 
         timeGone.frame.size.width = 80
-        timeLeft.frame.size.width = 80
         titleLable.backgroundColor = .gray
         titleLable.alpha = 0.7
         videoPlayer.addSubview(titleLable)
-        controlsBar.addSubview(timeLeft)
         controlsBar.addSubview(timeGone)
 
         blur.layer.masksToBounds = true
@@ -70,23 +67,10 @@ class VideoViewController: UIViewController {
         super.viewWillAppear(animated)
         setupConstraints()
         setupBlurConstraints()
-        var lineFixer = String()
         videoPlayer.player?.addPeriodicTimeObserver(
             forInterval: CMTime(seconds: 1, preferredTimescale: 10000),
             queue: .main) { time in
-                lineFixer =
-                    Double(self.videoProgresSlider.maximumValue - Float(time.seconds)).asString(style: .positional)
-                if Float(time.seconds) < 10 {
-                    self.timeGone.text = "00:0\(Double(time.seconds).asString(style: .positional))"
-                } else {
-                    self.timeGone.text = "00:\(Double(time.seconds).asString(style: .positional))"
-                }
-
-                if self.videoProgresSlider.maximumValue - Float(time.seconds) < 10 {
-                    self.timeLeft.text = "00:0\(lineFixer)"
-                } else {
-                    self.timeLeft.text = "00:\(lineFixer)"
-                }
+                self.timeGone.text = self.timeConverter(time: time)
                 self.videoProgresSlider.value = Float(time.seconds)
         }
     }
@@ -143,6 +127,15 @@ class VideoViewController: UIViewController {
             titleLable.text = name
         }
     }
+
+    func timeConverter(time: CMTime) -> String {
+        let time = Int(time.seconds)
+        let timeInterval = TimeInterval(time)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "mm:ss"
+        return formatter.string(from: date)
+    }
 }
 
 extension VideoViewController {
@@ -165,7 +158,6 @@ extension VideoViewController {
         titleLable.translatesAutoresizingMaskIntoConstraints = false
         muteUnmuteButton.translatesAutoresizingMaskIntoConstraints = false
         timeGone.translatesAutoresizingMaskIntoConstraints = false
-        timeLeft.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             videoPlayer.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             videoPlayer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
@@ -191,8 +183,6 @@ extension VideoViewController {
 
             timeGone.centerYAnchor.constraint(equalTo: videoProgresSlider.centerYAnchor),
             timeGone.trailingAnchor.constraint(equalTo: videoProgresSlider.leadingAnchor, constant: -8),
-            timeLeft.centerYAnchor.constraint(equalTo: videoProgresSlider.centerYAnchor),
-            timeLeft.leadingAnchor.constraint(equalTo: videoProgresSlider.trailingAnchor, constant: 8),
 
             videoProgresSlider.heightAnchor.constraint(equalToConstant: 33),
             videoProgresSlider.widthAnchor.constraint(equalToConstant: 250),
